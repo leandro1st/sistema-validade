@@ -56,13 +56,25 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     $vetor_produto = $vetor['nome_produto'];
                     $vetor_validade = $vetor['validade'];
                     $vetor_id = $vetor['id'];
-                    ?>
+                    date_default_timezone_set('America/Sao_Paulo');
+                    // echo 'Agora em São Paulo é: <strong>'. date('d/m/Y H:i:s').'</strong><br /><br />'
+                    // echo date('d-m-Y')."<br>";
+                    // echo date("d-m-Y", strtotime($vetor_validade));
+                    if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))){ ?>
+                        <tr class="bg-warning">
+                            <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
+                            <td><?php echo $vetor_produto ?></td>
+                            <td class="text-center"><?php echo date("d-m-Y", strtotime($vetor_validade)) ?></td>
+                        </tr>
+                        <?php
+                    } else{ ?>
                     <tr>
                         <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                         <td><?php echo $vetor_produto ?></td>
                         <td class="text-center"><?php echo date("d-m-Y", strtotime($vetor_validade)) ?></td>
                     </tr>
                 <?php }
+                }
             ?>
             </tbody>
         </table>
