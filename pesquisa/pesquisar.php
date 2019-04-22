@@ -2,7 +2,7 @@
 require("../c.php");
 
 $produto = trim($_POST['nome_pesquisa']);
-$pesquisar = mysqli_query($connect, "SELECT * FROM $produtos WHERE $nome_produto = '$produto'");
+$pesquisar = mysqli_query($connect, "SELECT * FROM $produtos WHERE $nome_produto = '$produto' ORDER BY validade DESC");
 $numero_produto = mysqli_num_rows($pesquisar);
 ?>
 

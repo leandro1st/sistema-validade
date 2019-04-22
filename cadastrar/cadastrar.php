@@ -16,8 +16,8 @@
                 method: "post",
                 url: "form_validades.php",
                 data: $("#form_cadastrar").serialize(),
-                success: function() {
-                    alert("Cadastrado");
+                success: function(data) {
+                    alert(data);
                 },
             });
         }
@@ -52,7 +52,7 @@
             <div class="form-group row">
                 <label for="nome" class="col-2 col-form-label">Nome do produto</label>
                 <div class="col-10">
-                    <input type="text" id="nome" name="nome_produto" class="form-control" id="nome" autofocus required><br>
+                    <input type="text" id="nome" name="nome_produto" class="form-control" autofocus required><br>
                 </div>
                 <label for="data_vencimento" class="col-2 col-form-label">Data do vencimento</label>
                 <div class="col-10">
