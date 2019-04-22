@@ -20,7 +20,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
     <script>
         function excluirProduto(id, produto, validade) {
             document.getElementById("cod_produto").value = id;
-            document.getElementById("nome_produto").value = produto;
+            // document.getElementById("nome_produto").value = produto;
             document.getElementById("nome").innerHTML = produto;
             document.getElementById("vencimento").innerHTML = validade;
         }
@@ -74,7 +74,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     <th scope="col" width="10%">#</th>
                     <th scope="col">Produto</th>
                     <th scope="col" width="20%">Validade</th>
-                    <th scope="col" width="5%"></th>
+                    <th scope="col" width="5%"><i class="fas fa-cogs"></i></th>
                 </tr>
             </thead>
             <tbody>
@@ -93,9 +93,9 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                             <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
                                 <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                                 <td><?php echo $vetor_produto ?></td>
-                                <td class="text-center"><?php echo date("d-m-Y", strtotime($vetor_validade)) ?></td>
+                                <td class="text-center"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></td>
                                 <td align="center">
-                                    <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d-m-Y', strtotime($vetor_validade)) ?>')"></i></a>
+                                    <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i></a>
                                 </td>
                             </tr>
                             <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
@@ -138,9 +138,9 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                             <tr id="linha-<?php echo $vetor_id ?>">
                                 <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                                 <td><?php echo $vetor_produto ?></td>
-                                <td class="text-center"><?php echo date("d-m-Y", strtotime($vetor_validade)) ?></td>
+                                <td class="text-center"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></td>
                                 <td align="center">
-                                    <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d-m-Y', strtotime($vetor_validade)) ?>')"></i></a>
+                                    <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i></a>
                                 </td>
                             </tr>
                             <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">

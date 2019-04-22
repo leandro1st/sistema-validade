@@ -63,14 +63,14 @@ $numero_produto = mysqli_num_rows($pesquisar);
                             <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
                                 <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                                 <td><?php echo $vetor_produto ?></td>
-                                <td class="text-center"><?php echo date("d-m-Y", strtotime($vetor_validade)) ?></td>
+                                <td class="text-center"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></td>
                             </tr>
                         <?php
                     } else { ?>
                             <tr id="linha-<?php echo $vetor_id ?>">
                                 <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                                 <td><?php echo $vetor_produto ?></td>
-                                <td class="text-center"><?php echo date("d-m-Y", strtotime($vetor_validade)) ?></td>
+                                <td class="text-center"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></td>
                             </tr>
                             </form>
                         <?php }
