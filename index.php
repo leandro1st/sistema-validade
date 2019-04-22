@@ -1,6 +1,6 @@
 <?php
 require("c.php");
-$pesquisar_produtos = mysqli_query($connect, "SELECT * FROM $produtos ORDER BY validade DESC");
+$pesquisar_produtos = mysqli_query($connect, "SELECT * FROM $produtos ORDER BY validade ASC");
 $numero_produtos = mysqli_num_rows($pesquisar_produtos);
 // echo $numero_produtos;
 ?>

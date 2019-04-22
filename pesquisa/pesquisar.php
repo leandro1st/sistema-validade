@@ -2,14 +2,14 @@
 require("../c.php");
 
 $produto = trim($_POST['nome_pesquisa']);
-$pesquisar = mysqli_query($connect, "SELECT * FROM $produtos WHERE $nome_produto = '$produto' ORDER BY validade DESC");
+$pesquisar = mysqli_query($connect, "SELECT * FROM $produtos WHERE $nome_produto = '$produto' ORDER BY validade ASC");
 $numero_produto = mysqli_num_rows($pesquisar);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pesquisar</title>
@@ -18,8 +18,9 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="../"><i class="far fa-calendar-alt" style="font-size: 35px;"></i></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,20 +53,29 @@ $numero_produto = mysqli_num_rows($pesquisar);
             </thead>
             <tbody>
                 <?php
-                if ($numero_produto > 0){
+                if ($numero_produto > 0) {
                     for ($i = 0; $i < $numero_produto; $i++) {
                         $vetor = mysqli_fetch_array($pesquisar);
-                        $vetor_nome = $vetor['nome_produto'];
+                        $vetor_produto = $vetor['nome_produto'];
                         $vetor_validade = $vetor['validade'];
                         $vetor_id = $vetor['id'];
-                        ?>
-                        <tr>
-                            <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                            <td><?php echo $vetor_nome ?></td>
-                            <td class="text-center"><?php echo date("d-m-Y", strtotime($vetor_validade)) ?></td>
-                        </tr>
-                    <?php }
-                } else{ ?>
+                        if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
+                            <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
+                                <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
+                                <td><?php echo $vetor_produto ?></td>
+                                <td class="text-center"><?php echo date("d-m-Y", strtotime($vetor_validade)) ?></td>
+                            </tr>
+                        <?php
+                    } else { ?>
+                            <tr id="linha-<?php echo $vetor_id ?>">
+                                <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
+                                <td><?php echo $vetor_produto ?></td>
+                                <td class="text-center"><?php echo date("d-m-Y", strtotime($vetor_validade)) ?></td>
+                            </tr>
+                            </form>
+                        <?php }
+                }
+            } else { ?>
                     <script>
                         alert("Nada encontrado!");
                         document.location.href = "../";
@@ -74,6 +84,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
             ?>
             </tbody>
         </table>
-    </main>    
+    </main>
 </body>
+
 </html>
