@@ -30,7 +30,6 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -48,19 +47,65 @@
     </nav><br>
     <main class="container">
         <h1 class="text-center">Cadastrar produtos</h1><br>
-        <form id="form_cadastrar">
-            <div class="form-group row">
-                <label for="nome" class="col-2 col-form-label">Nome do produto</label>
-                <div class="col-10">
-                    <input type="text" id="nome" name="nome_produto" class="form-control" autofocus required><br>
+        <form id="form_cadastrar" class="needs-validation" novalidate>
+            <div class="form-row">
+                <div class="col">
+                    <div id="div-nome">
+                        <label for="nome"><b>Nome do produto:</b></label>
+                        <input type="text" id="nome" name="nome_produto" class="form-control" placeholder="Nome do produto" autofocus required>
+                        <div class="invalid-feedback">
+                            Por favor, digite o nome do produto!
+                        </div><br>
+                    </div>
+                    <div id="div-vencimento">
+                        <label for="vencimento"><b>Data do vencimento:</b></label>
+                        <input class="form-control" type="date" id="vencimento" name="data_vencimento" min="2019-01-01" max="2099-12-31" required>
+                        <div class="invalid-feedback">
+                            Por favor, digite o data de vencimento! (min: 01/01/2019 | máx: 31-12-2099)
+                        </div>
+                    </div>
                 </div>
-                <label for="data_vencimento" class="col-2 col-form-label">Data do vencimento</label>
-                <div class="col-10">
-                    <input class="form-control" type="date" id="vencimento" name="data_vencimento" min="2019-01-01" max="2099-12-31" required>
-                </div>
-            </div>
-            <input type="submit" class="btn btn-success" value="Cadastrar" onclick="cadastrar()" style="float: right;">
+            </div><br>
+            <button type="submit" id="btn_enviar" class="btn btn-success" onclick="cadastrar()" style="float: right;">Cadastrar</button>
         </form>
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function() {
+                'use strict';
+                window.addEventListener('load', function() {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function(form) {
+                        form.addEventListener('submit', function(event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function() {
+                'use strict';
+                window.addEventListener('load', function() {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function(form) {
+                        form.addEventListener('submit', function(event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+        </script>
     </main>
 </body>
 

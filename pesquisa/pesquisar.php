@@ -2,7 +2,7 @@
 require("../c.php");
 
 $produto = trim($_POST['nome_pesquisa']);
-$pesquisar = mysqli_query($connect, "SELECT * FROM $produtos WHERE $nome_produto = '$produto' ORDER BY validade ASC");
+$pesquisar = mysqli_query($connect, "SELECT * FROM $produtos WHERE $nome_produto like '%" . $produto . "%' or DATE_FORMAT(validade, '%d/%m/%Y') like '%" . $produto . "%' ORDER BY validade ASC");
 $numero_produto = mysqli_num_rows($pesquisar);
 ?>
 
@@ -42,7 +42,14 @@ $numero_produto = mysqli_num_rows($pesquisar);
         </div>
     </nav><br>
     <main class="container">
-        <h1 class="text-center">Validades</h1><br>
+        <h4>Resultados: <small><?php echo $produto ?></small></h4>
+        <?php
+        if ($numero_produto == 1) {
+            echo "<b>" . $numero_produto . "</b> encontrado";
+        } else {
+            echo "<b>" . $numero_produto . "</b> encontrados";
+        }
+        ?><br><br>
         <table class="table table-bordered">
             <thead class="thead-light" style="font-size:20px">
                 <tr class="text-center">
