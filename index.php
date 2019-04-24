@@ -24,6 +24,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
             document.getElementById("nome").innerHTML = produto;
             document.getElementById("vencimento").innerHTML = validade;
         }
+        var num = "<?php echo $numero_produtos ?>";
 
         function excluir(id) {
             // alert(id);
@@ -35,9 +36,39 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     $('#linha-' + id).fadeOut(300, function() {
                         $('#linha-' + id).remove();
                     });
+                    num -= 1;
+                    if (num > 1) {
+                        document.getElementById("contagem").innerHTML = 'Deseja realmente excluir todos (' + num + ') os registros?';
+                        document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num + ' registros!';
+                    } else if (num == 1) {
+                        document.getElementById("contagem").innerHTML = 'Deseja realmente excluir o registro?';
+                        document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num + ' registro!';
+                    } else if (num == 0) {
+                        document.getElementById("sem_dados").innerHTML = 'Não há nenhum registro!';
+                        document.getElementById("sem_dados").style.display = 'block';
+                        document.getElementById("tabela").innerHTML = '';
+                        document.getElementById("botao_excluir").disabled = 'true';
+                        document.getElementById("botao_excluir").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir").title = 'Não há nada para ser excluído!';
+                    }
                 },
                 error: function(data) {
                     alert("Ocorreu um erro!");
+                }
+            });
+        }
+
+        function excluirTudo() {
+            $.ajax({
+                method: 'POST',
+                url: 'cadastrar/excluir_tudo.php',
+                data: $('#form_excluirTudo').serialize(),
+                async: false,
+                success: function(data) {
+                    alert(data);
+                },
+                error: function(data) {
+                    alert(data);
                 }
             });
         }
@@ -65,50 +96,66 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
             </form>
         </div>
-    </nav><br>
+    </nav>
+    <?php if ($numero_produtos == "0") { ?>
+        <header class="jumbotron" style="padding: 2.5em;">
+            <h1 class="text-center">Validades</h1>
+            <button type="button" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="float: right; margin-top: -55px; display: none;">Excluir tudo</button>
+        </header>
+    <?php } else { ?>
+        <header class="jumbotron" style="padding: 2.5em;">
+            <h1 class="text-center">Validades</h1>
+            <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="float: right; margin-top: -55px">Excluir tudo</button>
+        </header>
+    <?php } ?>
     <main class="container">
-        <h1 class="text-center">Validades</h1>
-        <form action="cadastrar/excluir_tudo.php" method="POST">
-            <?php if ($numero_produtos == "0") { ?>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="float: right; margin-top: -50px; display: none;">Excluir tudo</button>
-            <?php } else { ?>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="float: right; margin-top: -50px;">Excluir tudo</button>
-                <div class="modal fade" id="modalExcluirTudo" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTudoTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="modalTitle">
-                                    <font color="#dc3545">Deseja realmente excluir todos os (<?php echo $numero_produtos ?>) registros?</font>
-                                </h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-9">
-                                        <h6 style="color: #ffc107;">Você excluirá todos os <?php echo $numero_produtos ?> registros!</h6>
-                                    </div>
+        <form id="form_excluirTudo" method="POST">
+            <div class="modal fade" id="modalExcluirTudo" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTudoTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modalTitle">
+                                <?php if ($numero_produtos == 1) { ?>
+                                    <font class="text-danger">Deseja realmente excluir o registro?</font>
+                                <?php } else { ?>
+                                    <font class="text-danger" id="contagem">Deseja realmente excluir todos(<?php echo $numero_produtos ?>) os registros?</font>
+                                <?php } ?>
+                            </h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-9">
+                                    <?php if ($numero_produtos == 1) { ?>
+                                        <h6 class="text-warning">Você excluirá 1 registro!</h6>
+                                    <?php } else { ?>
+                                        <h6 class="text-warning" id="contagem2">Você excluirá <?php echo $numero_produtos ?> registros!</h6>
+                                    <?php } ?>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-danger">Excluir tudo</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-danger" onclick="excluirTudo()">Excluir tudo</button>
                         </div>
                     </div>
                 </div>
-            </form><br>
-        <?php }
-    if ($numero_produtos == 0) { ?>
-            <br><h3 class="text-secondary text-center">Não há nenhum registro!</h3>
+            </div>
+        </form>
+        <?php
+        if ($numero_produtos == 0) { ?>
+            <h3 class="text-secondary text-center">Não há nenhum registro!</h3>
         <?php } else { ?>
-            <table class="table table-bordered">
+            <h3 class="text-secondary text-center" id="sem_dados" style="display: none;"></h3>
+            <table id="tabela" class="table table-bordered">
                 <thead class="thead-light" style="font-size:20px">
                     <tr class="text-center">
                         <th scope="col" width="10%">#</th>
                         <th scope="col">Produto</th>
-                        <th scope="col" width="20%">Validade</th>
+                        <th scope="col" width="15%">Validade</th>
+                        <th scope="col" width="18%">Data do cadastro</th>
                         <th scope="col" width="5%"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
@@ -118,6 +165,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                         $vetor = mysqli_fetch_assoc($pesquisar_produtos);
                         $vetor_produto = $vetor['nome_produto'];
                         $vetor_validade = $vetor['validade'];
+                        $vetor_hora_cadastro = $vetor['hora_cadastro'];
                         $vetor_id = $vetor['id'];
                         date_default_timezone_set('America/Sao_Paulo');
                         // echo 'Agora em São Paulo é: <strong>'. date('d/m/Y H:i:s').'</strong><br /><br />'
@@ -128,7 +176,8 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                 <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
                                     <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                                     <td><?php echo $vetor_produto ?></td>
-                                    <td class="text-center"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></td>
+                                    <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                    <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                                     <td align="center">
                                         <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i></a>
                                     </td>
@@ -173,7 +222,8 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                 <tr id="linha-<?php echo $vetor_id ?>">
                                     <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                                     <td><?php echo $vetor_produto ?></td>
-                                    <td class="text-center"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></td>
+                                    <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                    <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                                     <td align="center">
                                         <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i></a>
                                     </td>

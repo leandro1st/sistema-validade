@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Abr-2019 às 20:40
+-- Generation Time: 24-Abr-2019 às 19:47
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -31,6 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `produtos` (
   `nome_produto` varchar(300) NOT NULL,
   `validade` date NOT NULL,
+  `hora_cadastro` datetime NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

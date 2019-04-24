@@ -13,7 +13,7 @@
     <script type="text/javascript">
         function cadastrar() {
             $.ajax({
-                method: "post",
+                type: "post",
                 url: "form_validades.php",
                 data: $("#form_cadastrar").serialize(),
                 success: function(data) {
@@ -47,7 +47,7 @@
     </nav><br>
     <main class="container">
         <h1 class="text-center">Cadastrar produtos</h1><br>
-        <form id="form_cadastrar" class="needs-validation" novalidate>
+        <form id="form_cadastrar" method="post" class="needs-validation" novalidate>
             <div class="form-row">
                 <div class="col">
                     <div id="div-nome">

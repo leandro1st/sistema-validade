@@ -40,7 +40,10 @@ $numero_produto = mysqli_num_rows($pesquisar);
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
             </form>
         </div>
-    </nav><br>
+    </nav>
+    <header class="jumbotron" style="padding: 2.5em">
+        <h1 class="text-center">Validades</h1>
+    </header>
     <main class="container">
         <h4>Resultados: <small><?php echo $produto ?></small></h4>
         <?php
@@ -56,6 +59,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
                     <th scope="col" width="10%">#</th>
                     <th scope="col">Produto</th>
                     <th scope="col" width="20%">Validade</th>
+                    <th scope="col" width="20%">Data do cadastro</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,19 +69,22 @@ $numero_produto = mysqli_num_rows($pesquisar);
                         $vetor = mysqli_fetch_array($pesquisar);
                         $vetor_produto = $vetor['nome_produto'];
                         $vetor_validade = $vetor['validade'];
+                        $vetor_hora_cadastro = $vetor['hora_cadastro'];
                         $vetor_id = $vetor['id'];
                         if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
                             <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
                                 <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                                 <td><?php echo $vetor_produto ?></td>
-                                <td class="text-center"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></td>
+                                <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                             </tr>
                         <?php
                     } else { ?>
                             <tr id="linha-<?php echo $vetor_id ?>">
                                 <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                                 <td><?php echo $vetor_produto ?></td>
-                                <td class="text-center"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></td>
+                                <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                             </tr>
                             </form>
                         <?php }
