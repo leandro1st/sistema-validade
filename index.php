@@ -267,7 +267,44 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 ?>
                 </tbody>
             </table>
-        <?php } ?>
+        <?php }
+    // $hoje = date('Y-m-d');
+    // $vence_hoje = mysqli_query($connect, "SELECT * FROM $produtos WHERE validade = '$hoje'");
+    // $num_hoje = mysqli_num_rows($vence_hoje);
+    // $resto = mysqli_query($connect, "SELECT * FROM $produtos WHERE validade != '$hoje'");
+    // $num_resto = mysqli_num_rows($resto);
+    ?>
+        <!-- <script src="chartjs/dist/Chart.bundle.min.js"></script> -->
+        <!-- <canvas id="doughnut-chart" width="400" height="150" style="margin-bottom: 80px"></canvas>
+        <script type="text/javascript">
+            var produtos_hoje = "<?php echo $num_hoje ?>";
+            var produtos_resto = "<?php echo $num_resto ?>";
+            new Chart(document.getElementById("doughnut-chart"), {
+                type: 'doughnut',
+                data: {
+                    labels: ["Hoje", "Outros"],
+                    datasets: [{
+                        label: "Vencimento",
+                        backgroundColor: ["#dc3545", "#15A4F2"],
+                        data: [produtos_hoje, produtos_resto]
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Vencimentos',
+                        fontSize: 24,
+                        fontColor: "black"
+                    },
+                    legend: {
+                        labels: {
+                            fontSize: 15,
+                            fontColor: "black"
+                        }
+                    },
+                }
+            });
+        </script> -->
     </main>
 </body>
 
