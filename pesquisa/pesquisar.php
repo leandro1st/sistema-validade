@@ -21,18 +21,23 @@ $numero_produto = mysqli_num_rows($pesquisar);
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="../"><i class="far fa-calendar-alt" style="font-size: 35px;"></i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="../">
+            <img src="../imagens/logo.png" alt="logo" width="35px">
+            <!-- <i class="far fa-calendar-alt" style="font-size: 35px;"></i> -->
+        </a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="../">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../cadastrar/cadastrar.php">Cadastrar</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="fas fa-search" style="font-size: 18px"></i></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="pesquisar.php" method="POST">

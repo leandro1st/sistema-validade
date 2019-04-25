@@ -77,7 +77,10 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"><i class="far fa-calendar-alt" style="font-size: 35px;"></i></a>
+        <a class="navbar-brand" href="#">
+        <img src="imagens/logo.png" alt="logo" width="35px">
+            <!-- <i class="far fa-calendar-alt" style="font-size: 35px;"></i> -->
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

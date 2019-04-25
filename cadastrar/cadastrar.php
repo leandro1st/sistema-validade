@@ -26,16 +26,19 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="../"><i class="far fa-calendar-alt" style="font-size: 35px;"></i></a>
+        <a class="navbar-brand" href="../">
+            <img src="../imagens/logo.png" alt="logo" width="35px">
+            <!-- <i class="far fa-calendar-alt" style="font-size: 35px;"></i> -->
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="../">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="#">Cadastrar</a>
                 </li>
             </ul>
@@ -44,9 +47,11 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
             </form>
         </div>
-    </nav><br>
+    </nav>
+    <header class="jumbotron" style="padding: 2.5em;">
+        <h1 class="text-center">Cadastrar produtos</h1>
+    </header>
     <main class="container">
-        <h1 class="text-center">Cadastrar produtos</h1><br>
         <form id="form_cadastrar" method="post" class="needs-validation" novalidate>
             <div class="form-row">
                 <div class="col">
