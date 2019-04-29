@@ -17,7 +17,9 @@
                 url: "form_validades.php",
                 data: $("#form_cadastrar").serialize(),
                 success: function(data) {
-                    alert(data);
+                    if (data == "1") {
+                        alert("Cadastrado com sucesso!");
+                    }
                 },
             });
         }
