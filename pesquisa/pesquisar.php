@@ -12,7 +12,15 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo "Pesquisa | " . $produto ?></title>
+    <title>
+        <?php
+            if ($produto != "" || $produto != null) {
+                echo "Pesquisa | " . $produto;
+            } else{
+                echo "Pesquisa";
+            }
+        ?>
+    </title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">

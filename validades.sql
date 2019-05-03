@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 01-Maio-2019 às 20:49
+-- Generation Time: 03-Maio-2019 às 21:25
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -62,7 +62,18 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('LÃ¡men Sapporo Shoyu', '2019-05-28', '2019-04-30 12:07:05', 25),
 ('LÃ¡men Sapporo Shoyu', '2019-05-19', '2019-04-30 12:08:41', 27),
 ('Hersheys', '2019-05-30', '2019-04-30 12:09:15', 29),
-('PaÃ§oquita Diet', '2019-05-25', '2019-04-30 12:09:25', 30);
+('PaÃ§oquita Diet', '2019-05-25', '2019-04-30 12:09:25', 30),
+('Rosquinha Amendoim Satsumaya 250g', '2019-10-05', '2019-05-03 16:04:49', 32),
+('Glico Frango', '2019-08-10', '2019-05-03 16:05:06', 33),
+('Ãgar Ãgar 10g', '2020-04-02', '2019-05-03 16:05:32', 34),
+('Rice Stick (macarrÃ£o arroz)', '2020-08-24', '2019-05-03 16:05:59', 35),
+('Okoshi Hikage 200g', '2019-10-10', '2019-05-03 16:06:18', 36),
+('Wasabi Taichi 1kg', '2020-07-02', '2019-05-03 16:07:00', 37),
+('Hidiki 35g', '2020-12-31', '2019-05-03 16:07:26', 38),
+('Extrato de soja 300g', '2020-04-01', '2019-05-03 16:08:00', 39),
+('Iriko nÂº 0 50g', '2020-02-21', '2019-05-03 16:08:19', 40),
+('Iriko nÂº 2 100g', '2020-04-25', '2019-05-03 16:08:42', 41),
+('Karinto Yoko', '2019-10-10', '2019-05-03 16:08:51', 42);
 
 --
 -- Indexes for dumped tables
@@ -82,7 +93,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
