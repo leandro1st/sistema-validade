@@ -12,7 +12,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pesquisar</title>
+    <title><?php echo "Pesquisa | " . $produto ?></title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
@@ -46,30 +46,30 @@ $numero_produto = mysqli_num_rows($pesquisar);
             </form>
         </div>
     </nav>
-    <header class="jumbotron" style="padding: 2.5em">
-        <h1 class="text-center">Validades</h1>
-    </header>
-    <main class="container">
-        <h4>Resultados: <small><?php echo $produto ?></small></h4>
-        <?php
-        if ($numero_produto == 1) {
-            echo "<b>" . $numero_produto . "</b> encontrado";
-        } else {
-            echo "<b>" . $numero_produto . "</b> encontrados";
-        }
-        ?><br><br>
-        <table class="table table-bordered">
-            <thead class="thead-light" style="font-size:20px">
-                <tr class="text-center">
-                    <th scope="col" width="10%">#</th>
-                    <th scope="col">Produto</th>
-                    <th scope="col" width="20%">Validade</th>
-                    <th scope="col" width="20%">Data do cadastro</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($numero_produto > 0) {
+    <?php
+    if ($numero_produto > 0) { ?>
+        <header class="jumbotron" style="padding: 2.5em">
+            <h1 class="text-center">Validades</h1>
+        </header>
+        <main class="container">
+            <h4>Resultados: <small><?php echo $produto ?></small></h4>
+            <?php if ($numero_produto == 1) {
+                echo "<b>" . $numero_produto . "</b> encontrado";
+            } else {
+                echo "<b>" . $numero_produto . "</b> encontrados";
+            }
+            ?><br><br>
+            <table class="table table-bordered">
+                <thead class="thead-light" style="font-size:20px">
+                    <tr class="text-center">
+                        <th scope="col" width="10%">#</th>
+                        <th scope="col">Produto</th>
+                        <th scope="col" width="20%">Validade</th>
+                        <th scope="col" width="20%">Data do cadastro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                     for ($i = 0; $i < $numero_produto; $i++) {
                         $vetor = mysqli_fetch_array($pesquisar);
                         $vetor_produto = $vetor['nome_produto'];
@@ -93,17 +93,15 @@ $numero_produto = mysqli_num_rows($pesquisar);
                             </tr>
                             </form>
                         <?php }
-                }
-            } else { ?>
-                    <script>
-                        alert("Nada encontrado!");
-                        document.location.href = "../";
-                    </script>
-                <?php }
-            ?>
-            </tbody>
-        </table>
-    </main>
+                    } ?>
+                </tbody>
+            </table>
+        </main>
+    <?php } else { ?>
+        <script>
+            alert("Nada encontrado!");
+            document.location.href = "../";
+        </script>
+    <?php } ?>
 </body>
-
 </html>
