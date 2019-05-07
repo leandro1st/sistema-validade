@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03-Maio-2019 às 21:25
+-- Generation Time: 07-Maio-2019 às 21:00
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -41,13 +41,11 @@ CREATE TABLE `produtos` (
 
 INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUES
 ('Somen AssaÃ­', '2019-05-17', '2019-04-30 11:53:19', 1),
-('Yokomizo Leite', '2019-05-07', '2019-04-30 11:53:36', 2),
 ('Pocky', '2019-05-31', '2019-04-30 11:54:14', 4),
 ('LÃ¡men MÃ´nica', '2019-05-24', '2019-04-30 11:54:33', 5),
 ('Misso Shiro Sakura', '2019-05-14', '2019-04-30 11:54:53', 6),
 ('Duchen Maria', '2019-05-13', '2019-04-30 11:57:43', 8),
 ('Mini Cookies AmÃªndoas/Castanha', '2019-05-20', '2019-04-30 11:59:33', 10),
-('Mini Cookies Castanha do ParÃ¡ e Caju', '2019-05-03', '2019-04-30 12:01:14', 11),
 ('Salcique', '2019-05-15', '2019-04-30 12:01:25', 12),
 ('Cookies Misto', '2019-05-20', '2019-04-30 12:01:36', 13),
 ('Chips Mexicana', '2019-05-18', '2019-04-30 12:01:44', 14),
@@ -73,7 +71,20 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Extrato de soja 300g', '2020-04-01', '2019-05-03 16:08:00', 39),
 ('Iriko nÂº 0 50g', '2020-02-21', '2019-05-03 16:08:19', 40),
 ('Iriko nÂº 2 100g', '2020-04-25', '2019-05-03 16:08:42', 41),
-('Karinto Yoko', '2019-10-10', '2019-05-03 16:08:51', 42);
+('Karinto Yoko', '2019-10-10', '2019-05-03 16:08:51', 42),
+('Rosquinha Amendoim Satsumaya 150g', '2019-11-22', '2019-05-07 14:19:37', 43),
+('Sembei Paulista 90g', '2019-10-26', '2019-05-07 14:20:12', 44),
+('Yakissoba Alfa 500g', '2020-05-01', '2019-05-07 14:20:38', 45),
+('Yakissoba Hirotani 500g', '2020-04-30', '2019-05-07 14:21:13', 46),
+('Amendoim King 400g', '2019-08-27', '2019-05-07 14:21:35', 47),
+('Molho de Ostra 255g', '2021-12-11', '2019-05-07 14:22:09', 48),
+('Ã“leo de Gergelim Hong Kong 500ml', '2022-03-13', '2019-05-07 14:22:57', 49),
+('Gergelim Preto Torrado 100g', '2020-03-15', '2019-05-07 14:23:15', 50),
+('Soboro 2g', '2020-08-16', '2019-05-07 14:23:47', 51),
+('Soboro 2g', '2020-12-10', '2019-05-07 14:23:55', 52),
+('Karinto Yoko', '2019-10-10', '2019-05-07 14:24:13', 53),
+('Amendoim King 150g', '2019-08-25', '2019-05-07 14:26:35', 54),
+('Azuma Mirin 500ml', '2020-04-05', '2019-05-07 14:27:08', 55);
 
 --
 -- Indexes for dumped tables
@@ -93,7 +104,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
