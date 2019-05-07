@@ -10,13 +10,16 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Validades</title>
+    <title>Validades | <?php echo $numero_produtos." cadastros" ?></title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="dataTables/css/dataTables.bootstrap4.min.css"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="jquery/jquery-3.4.0.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="dataTables/js/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="dataTables/js/dataTables.bootstrap4.min.js"></script> -->
     <script>
         function excluirProduto(id, produto, validade) {
             document.getElementById("cod_produto").value = id;
@@ -72,13 +75,40 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 }
             });
         }
+        // $(document).ready(function() {
+        //     $('#tabela').DataTable({
+        //         "language": {
+        //             "sEmptyTable": "Nenhum registro encontrado",
+        //             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        //             "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+        //             "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+        //             "sInfoPostFix": "",
+        //             "sInfoThousands": ".",
+        //             "sLengthMenu": "_MENU_ resultados por página",
+        //             "sLoadingRecords": "Carregando...",
+        //             "sProcessing": "Processando...",
+        //             "sZeroRecords": "Nenhum registro encontrado",
+        //             "sSearch": "Pesquisar",
+        //             "oPaginate": {
+        //                 "sNext": "Próximo",
+        //                 "sPrevious": "Anterior",
+        //                 "sFirst": "Primeiro",
+        //                 "sLast": "Último"
+        //             },
+        //             "oAria": {
+        //                 "sSortAscending": ": Ordenar colunas de forma ascendente",
+        //                 "sSortDescending": ": Ordenar colunas de forma descendente"
+        //             }
+        //         }
+        //     });
+        // });
     </script>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
-        <img src="imagens/logo.png" alt="logo" width="35px">
+            <img src="imagens/logo.png" alt="logo" width="35px">
             <!-- <i class="far fa-calendar-alt" style="font-size: 35px;"></i> -->
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -158,7 +188,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                         <th scope="col" width="10%">#</th>
                         <th scope="col">Produto</th>
                         <th scope="col" width="15%">Validade</th>
-                        <th scope="col" width="18%">Data do cadastro</th>
+                        <th scope="col" width="20%">Data do cadastro</th>
                         <th scope="col" width="5%"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
