@@ -87,7 +87,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
                         if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
                             <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
                                 <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                                <td><?php echo $vetor_produto ?></td>
+                                <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
                                 <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
                                 <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                             </tr>

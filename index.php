@@ -10,7 +10,17 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Validades | <?php echo $numero_produtos . " cadastros" ?></title>
+    <title>
+        <?php
+        if ($numero_produtos == 0) {
+            echo "Validades | Nenhum cadastro";
+        } else if ($numero_produtos == 1) {
+            echo "Validades | " . $numero_produtos . " cadastro";
+        } else if ($numero_produtos > 1) {
+            echo "Validades | " . $numero_produtos . " cadastros";
+        }
+        ?>
+    </title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="dataTables/css/dataTables.bootstrap4.min.css"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -211,11 +221,11 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                             <form id="form_excluir-<?php echo $vetor_id ?>">
                                 <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
                                     <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                                    <td><?php echo $vetor_produto ?></td>
+                                    <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
                                     <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                                     <td align="center">
-                                        <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i></a>
+                                        <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                     </td>
                                 </tr>
                                 <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
