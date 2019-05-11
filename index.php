@@ -10,7 +10,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Validades | <?php echo $numero_produtos." cadastros" ?></title>
+    <title>Validades | <?php echo $numero_produtos . " cadastros" ?></title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="dataTables/css/dataTables.bootstrap4.min.css"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -43,9 +43,11 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     if (num > 1) {
                         document.getElementById("contagem").innerHTML = 'Deseja realmente excluir todos (' + num + ') os registros?';
                         document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num + ' registros!';
+                        document.title = "Validades | " + num + " cadastros";
                     } else if (num == 1) {
                         document.getElementById("contagem").innerHTML = 'Deseja realmente excluir o registro?';
                         document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num + ' registro!';
+                        document.title = "Validades | " + num + " cadastro";
                     } else if (num == 0) {
                         document.getElementById("sem_dados").innerHTML = 'Não há nenhum registro!';
                         document.getElementById("sem_dados").style.display = 'block';
@@ -53,6 +55,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                         document.getElementById("botao_excluir").disabled = 'true';
                         document.getElementById("botao_excluir").style.cursor = 'not-allowed';
                         document.getElementById("botao_excluir").title = 'Não há nada para ser excluído!';
+                        document.title = "Validades | Nenhum cadastro";
                     }
                 },
                 error: function(data) {

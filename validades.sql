@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 07-Maio-2019 às 21:00
+-- Generation Time: 11-Maio-2019 às 18:11
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -52,9 +52,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Look Chocolate', '2019-05-24', '2019-04-30 12:02:15', 15),
 ('Polvilho Cebola', '2019-05-19', '2019-04-30 12:02:30', 16),
 ('Polvilho Queijo', '2019-05-19', '2019-04-30 12:03:08', 18),
-('Sembei Kyakuni Choga', '2019-05-09', '2019-04-30 12:03:38', 19),
-('Sembei Kyakuni Gergelim', '2019-05-09', '2019-04-30 12:06:23', 20),
-('Suspiro', '2019-05-10', '2019-04-30 12:06:30', 21),
 ('FeijÃ£o Kicaldo', '2019-05-29', '2019-04-30 12:06:48', 23),
 ('Tonkatsu', '2019-05-28', '2019-04-30 12:06:55', 24),
 ('LÃ¡men Sapporo Shoyu', '2019-05-28', '2019-04-30 12:07:05', 25),
@@ -84,7 +81,9 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Soboro 2g', '2020-12-10', '2019-05-07 14:23:55', 52),
 ('Karinto Yoko', '2019-10-10', '2019-05-07 14:24:13', 53),
 ('Amendoim King 150g', '2019-08-25', '2019-05-07 14:26:35', 54),
-('Azuma Mirin 500ml', '2020-04-05', '2019-05-07 14:27:08', 55);
+('Azuma Mirin 500ml', '2020-04-05', '2019-05-07 14:27:08', 55),
+('Sembei Sankio', '2019-09-15', '2019-05-07 16:23:21', 56),
+('Saque Azuma 500ml', '2020-03-13', '2019-05-07 16:23:35', 57);
 
 --
 -- Indexes for dumped tables
@@ -104,7 +103,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
