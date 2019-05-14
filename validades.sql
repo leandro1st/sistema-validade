@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11-Maio-2019 às 18:11
+-- Generation Time: 14-Maio-2019 às 17:16
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -44,7 +44,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Pocky', '2019-05-31', '2019-04-30 11:54:14', 4),
 ('LÃ¡men MÃ´nica', '2019-05-24', '2019-04-30 11:54:33', 5),
 ('Misso Shiro Sakura', '2019-05-14', '2019-04-30 11:54:53', 6),
-('Duchen Maria', '2019-05-13', '2019-04-30 11:57:43', 8),
 ('Mini Cookies AmÃªndoas/Castanha', '2019-05-20', '2019-04-30 11:59:33', 10),
 ('Salcique', '2019-05-15', '2019-04-30 12:01:25', 12),
 ('Cookies Misto', '2019-05-20', '2019-04-30 12:01:36', 13),
@@ -83,7 +82,21 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Amendoim King 150g', '2019-08-25', '2019-05-07 14:26:35', 54),
 ('Azuma Mirin 500ml', '2020-04-05', '2019-05-07 14:27:08', 55),
 ('Sembei Sankio', '2019-09-15', '2019-05-07 16:23:21', 56),
-('Saque Azuma 500ml', '2020-03-13', '2019-05-07 16:23:35', 57);
+('Saque Azuma 500ml', '2020-03-13', '2019-05-07 16:23:35', 57),
+('Canjica de Milho Doce 50g', '2019-10-08', '2019-05-14 12:09:00', 58),
+('Glico Tomate', '2019-08-10', '2019-05-14 12:09:51', 59),
+('Canjica de Milho Salgada 50g', '2019-10-06', '2019-05-14 12:10:01', 60),
+('Ebicen Cebola 60g', '2019-10-05', '2019-05-14 12:10:48', 61),
+('Rosquinha Coco Satsumaya 150g', '2019-11-03', '2019-05-14 12:11:03', 62),
+('Sweet Jelly Morango 200g', '2020-04-12', '2019-05-14 12:11:38', 63),
+('Okaki Apimentado 100g', '2019-09-20', '2019-05-14 12:12:00', 64),
+('Dashinomoto 200g', '2020-02-04', '2019-05-14 12:12:24', 65),
+('Dashinomoto 200g', '2020-04-02', '2019-05-14 12:12:29', 66),
+('Ebicen CamarÃ£o 60g', '2019-10-05', '2019-05-14 12:12:54', 67),
+('Shiitake Slice Fujiyama 50g', '2020-07-20', '2019-05-14 12:13:23', 68),
+('Sembei Satsumaya Leite 280g', '2019-11-29', '2019-05-14 12:14:17', 69),
+('Mupy Morango', '2019-11-26', '2019-05-14 12:14:39', 70),
+('Mupy Uva', '2019-11-30', '2019-05-14 12:14:47', 71);
 
 --
 -- Indexes for dumped tables
@@ -103,7 +116,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
