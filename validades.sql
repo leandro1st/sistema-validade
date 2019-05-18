@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 14-Maio-2019 às 17:16
+-- Generation Time: 18-Maio-2019 às 17:40
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -40,12 +40,9 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUES
-('Somen AssaÃ­', '2019-05-17', '2019-04-30 11:53:19', 1),
 ('Pocky', '2019-05-31', '2019-04-30 11:54:14', 4),
 ('LÃ¡men MÃ´nica', '2019-05-24', '2019-04-30 11:54:33', 5),
-('Misso Shiro Sakura', '2019-05-14', '2019-04-30 11:54:53', 6),
 ('Mini Cookies AmÃªndoas/Castanha', '2019-05-20', '2019-04-30 11:59:33', 10),
-('Salcique', '2019-05-15', '2019-04-30 12:01:25', 12),
 ('Cookies Misto', '2019-05-20', '2019-04-30 12:01:36', 13),
 ('Chips Mexicana', '2019-05-18', '2019-04-30 12:01:44', 14),
 ('Look Chocolate', '2019-05-24', '2019-04-30 12:02:15', 15),
@@ -96,7 +93,27 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Shiitake Slice Fujiyama 50g', '2020-07-20', '2019-05-14 12:13:23', 68),
 ('Sembei Satsumaya Leite 280g', '2019-11-29', '2019-05-14 12:14:17', 69),
 ('Mupy Morango', '2019-11-26', '2019-05-14 12:14:39', 70),
-('Mupy Uva', '2019-11-30', '2019-05-14 12:14:47', 71);
+('Mupy Uva', '2019-11-30', '2019-05-14 12:14:47', 71),
+('Sembei Kyakuni Gergelim', '2019-07-26', '2019-05-17 14:54:26', 72),
+('Sembei Kyakuni Gergelim Chato', '2019-08-01', '2019-05-17 14:54:54', 73),
+('Yakissoba Alfa 500g', '2020-05-15', '2019-05-17 14:56:34', 74),
+('ChÃ¡ Verde Yamamotoyama 200g', '2020-02-24', '2019-05-17 14:58:10', 75),
+('Sweet Jelly Original 60g', '2020-03-20', '2019-05-17 14:58:46', 76),
+('Sweet Jelly Original 60g', '2020-04-10', '2019-05-17 14:58:52', 77),
+('Ã“leo de Gergelim Hong Kong 100ml', '2022-03-07', '2019-05-17 14:59:18', 78),
+('Tempurako WoomTree 500g', '2021-01-14', '2019-05-17 14:59:55', 79),
+('Tempurako WoomTree 500g', '2021-02-11', '2019-05-17 15:00:01', 80),
+('Panko WoomTree 200g', '2021-02-11', '2019-05-17 15:00:34', 81),
+('Karinto Yoko', '2019-10-10', '2019-05-17 15:00:51', 82),
+('Kare Bom Curry', '2020-04-01', '2019-05-17 15:03:11', 83),
+('Panko Alfa 200g', '2020-04-15', '2019-05-17 15:03:37', 84),
+('Cookies Misto Ichiban', '2019-08-21', '2019-05-17 15:04:09', 85),
+('Sembei Sankio', '2019-09-29', '2019-05-17 15:04:26', 86),
+('Okoshi Hikage 100g', '2019-11-08', '2019-05-17 15:05:05', 87),
+('Biscoito da Sorte', '2019-07-11', '2019-05-17 15:06:09', 88),
+('Biscoito da Sorte', '2019-07-24', '2019-05-17 15:06:19', 89),
+('Yokomizo Coco', '2019-06-25', '2019-05-17 15:06:38', 90),
+('Yokomizo Leite', '2019-06-17', '2019-05-17 15:06:50', 91);
 
 --
 -- Indexes for dumped tables
@@ -116,7 +133,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
