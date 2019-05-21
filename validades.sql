@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Maio-2019 às 17:40
+-- Generation Time: 21-Maio-2019 às 17:49
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -42,16 +42,10 @@ CREATE TABLE `produtos` (
 INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUES
 ('Pocky', '2019-05-31', '2019-04-30 11:54:14', 4),
 ('LÃ¡men MÃ´nica', '2019-05-24', '2019-04-30 11:54:33', 5),
-('Mini Cookies AmÃªndoas/Castanha', '2019-05-20', '2019-04-30 11:59:33', 10),
-('Cookies Misto', '2019-05-20', '2019-04-30 12:01:36', 13),
-('Chips Mexicana', '2019-05-18', '2019-04-30 12:01:44', 14),
 ('Look Chocolate', '2019-05-24', '2019-04-30 12:02:15', 15),
-('Polvilho Cebola', '2019-05-19', '2019-04-30 12:02:30', 16),
-('Polvilho Queijo', '2019-05-19', '2019-04-30 12:03:08', 18),
 ('FeijÃ£o Kicaldo', '2019-05-29', '2019-04-30 12:06:48', 23),
 ('Tonkatsu', '2019-05-28', '2019-04-30 12:06:55', 24),
 ('LÃ¡men Sapporo Shoyu', '2019-05-28', '2019-04-30 12:07:05', 25),
-('LÃ¡men Sapporo Shoyu', '2019-05-19', '2019-04-30 12:08:41', 27),
 ('Hersheys', '2019-05-30', '2019-04-30 12:09:15', 29),
 ('PaÃ§oquita Diet', '2019-05-25', '2019-04-30 12:09:25', 30),
 ('Rosquinha Amendoim Satsumaya 250g', '2019-10-05', '2019-05-03 16:04:49', 32),
@@ -113,7 +107,25 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Biscoito da Sorte', '2019-07-11', '2019-05-17 15:06:09', 88),
 ('Biscoito da Sorte', '2019-07-24', '2019-05-17 15:06:19', 89),
 ('Yokomizo Coco', '2019-06-25', '2019-05-17 15:06:38', 90),
-('Yokomizo Leite', '2019-06-17', '2019-05-17 15:06:50', 91);
+('Yokomizo Leite', '2019-06-17', '2019-05-17 15:06:50', 91),
+('Sembei Want Want Nori', '2019-12-26', '2019-05-21 11:13:48', 92),
+('Gergelim Branco Torrado 100g', '2020-04-15', '2019-05-21 11:14:27', 93),
+('Gergelim Preto Torrado 100g', '2020-04-01', '2019-05-21 11:14:44', 94),
+('Molho Tare Sakura', '2020-03-31', '2019-05-21 11:15:59', 95),
+('Kombu Fujiyama', '2020-02-05', '2019-05-21 11:16:28', 96),
+('Okaki Bimi Original', '2019-11-06', '2019-05-21 11:22:36', 97),
+('Okaki Bimi Amendoim', '2019-11-06', '2019-05-21 11:23:14', 98),
+('Rosquinha Amendoim Satsumaya 250g', '2019-10-05', '2019-05-21 11:27:01', 99),
+('Furikake Nori Sake 30g', '2020-12-13', '2019-05-21 11:27:33', 100),
+('Furikake Nori Tamago 33g', '2020-12-13', '2019-05-21 11:27:46', 101),
+('Furikake Katsuomirin 30g', '2020-09-12', '2019-05-21 11:28:00', 102),
+('Missoshiru Wakame 12p', '2019-08-03', '2019-05-21 11:29:26', 103),
+('Sembei Kyakuni Gergelim', '2019-08-09', '2019-05-21 11:29:41', 104),
+('Mandiopan Cores', '2020-05-02', '2019-05-21 11:30:20', 105),
+('Misso Shiro Sakura 500g', '2020-01-29', '2019-05-21 11:31:08', 106),
+('Kare Golden MÃ©dio 220g', '2020-06-25', '2019-05-21 11:31:33', 107),
+('Kare Golden MÃ©dio 92g', '2020-07-29', '2019-05-21 11:31:53', 108),
+('Kare Golden Forte 220g', '2020-08-06', '2019-05-21 11:32:45', 109);
 
 --
 -- Indexes for dumped tables
@@ -133,7 +145,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
