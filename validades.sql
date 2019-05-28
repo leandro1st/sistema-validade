@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Maio-2019 às 17:12
+-- Generation Time: 28-Maio-2019 às 17:16
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -145,7 +145,8 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Ã“leo de Gergelim Natural Hong Kong 100ml', '2022-05-02', '2019-05-28 12:09:44', 126),
 ('Molho Yakisoba Alfa 500ml', '2020-05-13', '2019-05-28 12:10:10', 127),
 ('Udon Alfa 500g', '2020-05-13', '2019-05-28 12:10:42', 128),
-('Harussame', '2022-01-10', '2019-05-28 12:11:22', 129);
+('Harussame', '2022-01-10', '2019-05-28 12:11:22', 129),
+('Panko Alfa 1kg', '2020-05-23', '2019-05-28 12:16:27', 130);
 
 --
 -- Indexes for dumped tables
@@ -165,7 +166,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
