@@ -116,10 +116,15 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         //     });
         // });
     </script>
+    <style>
+        .underline {
+            border-bottom: 3px solid #4EBA6F;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
             <img src="imagens/logo.png" alt="logo" width="35px">
             <!-- <i class="far fa-calendar-alt" style="font-size: 35px;"></i> -->
@@ -130,11 +135,11 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                <li class="nav-item px-1 active underline">
+                    <a class="nav-link" href="#"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cadastrar/cadastrar.php">Cadastrar</a>
+                <li class="nav-item px-1">
+                    <a class="nav-link text-success" href="cadastrar/cadastrar.php">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="pesquisa/pesquisar.php" method="POST">

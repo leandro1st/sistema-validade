@@ -14,38 +14,46 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
         <?php
-            if ($produto != "" || $produto != null) {
-                echo "Pesquisa | " . $produto;
-            } else{
-                echo "Pesquisa";
-            }
+        if ($produto != "" || $produto != null) {
+            echo "Pesquisa | " . $produto;
+        } else {
+            echo "Pesquisa";
+        }
         ?>
     </title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
     <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../jquery/jquery-3.4.0.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .underline {
+            border-bottom: 3px solid #4EBA6F;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="../">
             <img src="../imagens/logo.png" alt="logo" width="35px">
             <!-- <i class="far fa-calendar-alt" style="font-size: 35px;"></i> -->
-        </a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../">Home</a>
+                <li class="nav-item px-1">
+                    <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../cadastrar/cadastrar.php">Cadastrar</a>
+                <li class="nav-item px-1">
+                    <a class="nav-link text-success" href="../cadastrar/cadastrar.php">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#"><i class="fas fa-search" style="font-size: 18px"></i></a>
+                <li class="nav-item px-1 active underline">
+                    <a class="nav-link" href="#"><i class="fas fa-search" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="pesquisar.php" method="POST">
@@ -101,7 +109,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
                             </tr>
                             </form>
                         <?php }
-                    } ?>
+                } ?>
                 </tbody>
             </table>
         </main>
@@ -112,4 +120,5 @@ $numero_produto = mysqli_num_rows($pesquisar);
         </script>
     <?php } ?>
 </body>
+
 </html>

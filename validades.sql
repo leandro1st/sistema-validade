@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 21-Maio-2019 às 17:49
+-- Generation Time: 28-Maio-2019 às 17:12
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -125,7 +125,27 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Misso Shiro Sakura 500g', '2020-01-29', '2019-05-21 11:31:08', 106),
 ('Kare Golden MÃ©dio 220g', '2020-06-25', '2019-05-21 11:31:33', 107),
 ('Kare Golden MÃ©dio 92g', '2020-07-29', '2019-05-21 11:31:53', 108),
-('Kare Golden Forte 220g', '2020-08-06', '2019-05-21 11:32:45', 109);
+('Kare Golden Forte 220g', '2020-08-06', '2019-05-21 11:32:45', 109),
+('Sembei Kyakuni Gengibre', '2019-08-29', '2019-05-28 12:01:37', 110),
+('Amendoim King 150g', '2019-09-22', '2019-05-28 12:01:59', 111),
+('Dashinomoto 200g', '2020-04-02', '2019-05-28 12:02:15', 112),
+('Sembei Shirayuki 120g', '2019-11-10', '2019-05-28 12:02:49', 113),
+('Sembei Satsumaya Amendoim 280g', '2019-12-07', '2019-05-28 12:03:10', 114),
+('Milk no Kuni', '2019-11-13', '2019-05-28 12:03:26', 115),
+('Super Lemon', '2019-10-31', '2019-05-28 12:03:43', 116),
+('Bala de Lichia', '2019-11-20', '2019-05-28 12:03:56', 117),
+('Wasabi Neri S&B', '2020-05-14', '2019-05-28 12:04:38', 118),
+('Kare Golden Fraco 220g', '2020-08-19', '2019-05-28 12:05:53', 119),
+('Sembei Paulista 90g', '2019-11-17', '2019-05-28 12:06:18', 120),
+('Sequilho Paulista 200g', '2019-11-10', '2019-05-28 12:07:21', 121),
+('Sweet Jelly Original 200g', '2020-05-15', '2019-05-28 12:07:46', 122),
+('Ebicen CamarÃ£o 60g', '2019-10-15', '2019-05-28 12:08:15', 123),
+('Wasabi Globo', '2019-12-20', '2019-05-28 12:08:37', 124),
+('Umeboshi Casa Forte 230g', '2020-05-16', '2019-05-28 12:09:06', 125),
+('Ã“leo de Gergelim Natural Hong Kong 100ml', '2022-05-02', '2019-05-28 12:09:44', 126),
+('Molho Yakisoba Alfa 500ml', '2020-05-13', '2019-05-28 12:10:10', 127),
+('Udon Alfa 500g', '2020-05-13', '2019-05-28 12:10:42', 128),
+('Harussame', '2022-01-10', '2019-05-28 12:11:22', 129);
 
 --
 -- Indexes for dumped tables
@@ -145,7 +165,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

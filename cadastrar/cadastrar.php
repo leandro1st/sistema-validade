@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
     <script src="../bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script src="../jquery/jquery-3.4.0.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
         function cadastrar() {
             $.ajax({
@@ -24,10 +25,15 @@
             });
         }
     </script>
+    <style>
+        .underline {
+            border-bottom: 3px solid #4EBA6F;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="../">
             <img src="../imagens/logo.png" alt="logo" width="35px">
             <!-- <i class="far fa-calendar-alt" style="font-size: 35px;"></i> -->
@@ -37,11 +43,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../">Home</a>
+                <li class="nav-item px-1">
+                    <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Cadastrar</a>
+                <li class="nav-item px-1 underline">
+                    <a class="nav-link text-success" href="#">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="../pesquisa/pesquisar.php" method="POST">
