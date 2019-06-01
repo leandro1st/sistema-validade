@@ -49,6 +49,9 @@
                 <li class="nav-item px-1 underline">
                     <a class="nav-link text-success" href="#">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
+                <li class="nav-item px-1">
+                    <a class="nav-link" href="excluidos.php"><i class="fas fa-trash-alt" style="font-size: 24px; vertical-align: middle"></i></a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="../pesquisa/pesquisar.php" method="POST">
                 <input class="form-control mr-sm-2" name="nome_pesquisa" type="search" placeholder="Pesquisar" aria-label="Search">

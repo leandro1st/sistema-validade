@@ -52,6 +52,9 @@ $numero_produto = mysqli_num_rows($pesquisar);
                 <li class="nav-item px-1">
                     <a class="nav-link text-success" href="../cadastrar/cadastrar.php">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
+                <li class="nav-item px-1">
+                    <a class="nav-link" href="../cadastrar/excluidos.php"><i class="fas fa-trash-alt" style="font-size: 24px; vertical-align: middle"></i></a>
+                </li>
                 <li class="nav-item px-1 active underline">
                     <a class="nav-link" href="#"><i class="fas fa-search" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>

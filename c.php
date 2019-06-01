@@ -4,5 +4,6 @@
 
 	$nome_produto = "nome_produto";
 	$validade = "validade";
-	$produtos = "produtos"
+	$produtos = "produtos";
+	$excluidos = "excluidos";
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Maio-2019 às 17:16
+-- Generation Time: 01-Jun-2019 às 20:14
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -25,6 +25,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `excluidos`
+--
+
+CREATE TABLE `excluidos` (
+  `nome_produto` varchar(300) NOT NULL,
+  `validade` date NOT NULL,
+  `hora_exclusao` datetime NOT NULL,
+  `id` int(11) NOT NULL,
+  `id_exclusao` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `excluidos`
+--
+
+INSERT INTO `excluidos` (`nome_produto`, `validade`, `hora_exclusao`, `id`, `id_exclusao`) VALUES
+('TESTE', '2019-06-01', '2019-06-01 15:10:44', 132, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `produtos`
 --
 
@@ -40,14 +61,6 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUES
-('Pocky', '2019-05-31', '2019-04-30 11:54:14', 4),
-('LÃ¡men MÃ´nica', '2019-05-24', '2019-04-30 11:54:33', 5),
-('Look Chocolate', '2019-05-24', '2019-04-30 12:02:15', 15),
-('FeijÃ£o Kicaldo', '2019-05-29', '2019-04-30 12:06:48', 23),
-('Tonkatsu', '2019-05-28', '2019-04-30 12:06:55', 24),
-('LÃ¡men Sapporo Shoyu', '2019-05-28', '2019-04-30 12:07:05', 25),
-('Hersheys', '2019-05-30', '2019-04-30 12:09:15', 29),
-('PaÃ§oquita Diet', '2019-05-25', '2019-04-30 12:09:25', 30),
 ('Rosquinha Amendoim Satsumaya 250g', '2019-10-05', '2019-05-03 16:04:49', 32),
 ('Glico Frango', '2019-08-10', '2019-05-03 16:05:06', 33),
 ('Ãgar Ãgar 10g', '2020-04-02', '2019-05-03 16:05:32', 34),
@@ -153,6 +166,12 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 --
 
 --
+-- Indexes for table `excluidos`
+--
+ALTER TABLE `excluidos`
+  ADD PRIMARY KEY (`id_exclusao`);
+
+--
 -- Indexes for table `produtos`
 --
 ALTER TABLE `produtos`
@@ -163,10 +182,16 @@ ALTER TABLE `produtos`
 --
 
 --
+-- AUTO_INCREMENT for table `excluidos`
+--
+ALTER TABLE `excluidos`
+  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
