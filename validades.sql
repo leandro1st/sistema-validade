@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03-Jun-2019 às 19:18
+-- Generation Time: 03-Jun-2019 às 22:23
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -36,13 +36,6 @@ CREATE TABLE `excluidos` (
   `id` int(11) NOT NULL,
   `id_exclusao` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `excluidos`
---
-
-INSERT INTO `excluidos` (`nome_produto`, `validade`, `hora_cadastro`, `hora_exclusao`, `id`, `id_exclusao`) VALUES
-('Teste 2', '2019-01-01', '2019-06-03 13:48:34', '2019-06-03 14:17:51', 138, 31);
 
 -- --------------------------------------------------------
 
@@ -83,7 +76,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Gergelim Preto Torrado 100g', '2020-03-15', '2019-05-07 14:23:15', 50),
 ('Soboro 2g', '2020-08-16', '2019-05-07 14:23:47', 51),
 ('Soboro 2g', '2020-12-10', '2019-05-07 14:23:55', 52),
-('Karinto Yoko', '2019-10-10', '2019-05-07 14:24:13', 53),
 ('Amendoim King 150g', '2019-08-25', '2019-05-07 14:26:35', 54),
 ('Azuma Mirin 500ml', '2020-04-05', '2019-05-07 14:27:08', 55),
 ('Sembei Sankio', '2019-09-15', '2019-05-07 16:23:21', 56),
@@ -112,7 +104,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Tempurako WoomTree 500g', '2021-01-14', '2019-05-17 14:59:55', 79),
 ('Tempurako WoomTree 500g', '2021-02-11', '2019-05-17 15:00:01', 80),
 ('Panko WoomTree 200g', '2021-02-11', '2019-05-17 15:00:34', 81),
-('Karinto Yoko', '2019-10-10', '2019-05-17 15:00:51', 82),
 ('Kare Bom Curry', '2020-04-01', '2019-05-17 15:03:11', 83),
 ('Panko Alfa 200g', '2020-04-15', '2019-05-17 15:03:37', 84),
 ('Cookies Misto Ichiban', '2019-08-21', '2019-05-17 15:04:09', 85),
@@ -161,7 +152,7 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Udon Alfa 500g', '2020-05-13', '2019-05-28 12:10:42', 128),
 ('Harussame', '2022-01-10', '2019-05-28 12:11:22', 129),
 ('Panko Alfa 1kg', '2020-05-23', '2019-05-28 12:16:27', 130),
-('Teste', '2019-06-03', '2019-06-03 13:48:26', 137);
+('Teste', '2019-06-03', '2019-06-03 17:21:17', 131);
 
 --
 -- Indexes for dumped tables
@@ -187,13 +178,13 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `excluidos`
 --
 ALTER TABLE `excluidos`
-  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

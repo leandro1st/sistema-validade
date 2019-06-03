@@ -13,16 +13,24 @@
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
         function cadastrar() {
+            var nome_input = $("#nome").val();
+            var validade_input = $("#vencimento").val();
             $.ajax({
                 type: "post",
                 url: "form_validades.php",
+                cache: false,
                 data: $("#form_cadastrar").serialize(),
                 success: function(data) {
-                    if (data == "1") {
-                        alert("Cadastrado com sucesso!");
+                    if (data == "0"){
+                        //pass
+                    } else if (data == "1"){
+                        // alert("Cadastrado com sucesso!");
+                    } else if (data == "Existente"){
+                        alert("Nome: " + nome_input + "\nValidade: " + validade_input + "\nCadastro já existe!");
                     }
                 },
             });
+            
         }
     </script>
     <style>
