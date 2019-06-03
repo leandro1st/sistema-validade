@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 01-Jun-2019 às 20:14
+-- Generation Time: 03-Jun-2019 às 19:18
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -31,6 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `excluidos` (
   `nome_produto` varchar(300) NOT NULL,
   `validade` date NOT NULL,
+  `hora_cadastro` datetime NOT NULL,
   `hora_exclusao` datetime NOT NULL,
   `id` int(11) NOT NULL,
   `id_exclusao` int(11) NOT NULL
@@ -40,8 +41,8 @@ CREATE TABLE `excluidos` (
 -- Extraindo dados da tabela `excluidos`
 --
 
-INSERT INTO `excluidos` (`nome_produto`, `validade`, `hora_exclusao`, `id`, `id_exclusao`) VALUES
-('TESTE', '2019-06-01', '2019-06-01 15:10:44', 132, 2);
+INSERT INTO `excluidos` (`nome_produto`, `validade`, `hora_cadastro`, `hora_exclusao`, `id`, `id_exclusao`) VALUES
+('Teste 2', '2019-01-01', '2019-06-03 13:48:34', '2019-06-03 14:17:51', 138, 31);
 
 -- --------------------------------------------------------
 
@@ -159,7 +160,8 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Molho Yakisoba Alfa 500ml', '2020-05-13', '2019-05-28 12:10:10', 127),
 ('Udon Alfa 500g', '2020-05-13', '2019-05-28 12:10:42', 128),
 ('Harussame', '2022-01-10', '2019-05-28 12:11:22', 129),
-('Panko Alfa 1kg', '2020-05-23', '2019-05-28 12:16:27', 130);
+('Panko Alfa 1kg', '2020-05-23', '2019-05-28 12:16:27', 130),
+('Teste', '2019-06-03', '2019-06-03 13:48:26', 137);
 
 --
 -- Indexes for dumped tables
@@ -185,13 +187,13 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `excluidos`
 --
 ALTER TABLE `excluidos`
-  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
