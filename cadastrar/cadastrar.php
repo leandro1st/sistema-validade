@@ -21,16 +21,16 @@
                 cache: false,
                 data: $("#form_cadastrar").serialize(),
                 success: function(data) {
-                    if (data == "0"){
+                    if (data == "0") {
                         //pass
-                    } else if (data == "1"){
+                    } else if (data == "1") {
                         // alert("Cadastrado com sucesso!");
-                    } else if (data == "Existente"){
+                    } else if (data == "Existente") {
                         alert("Nome: " + nome_input + "\nValidade: " + validade_input + "\nCadastro já existe!");
                     }
                 },
             });
-            
+
         }
     </script>
     <style>
@@ -76,16 +76,29 @@
                 <div class="col">
                     <div id="div-nome">
                         <label for="nome"><b>Nome do produto:</b></label>
-                        <input type="text" id="nome" name="nome_produto" class="form-control" placeholder="Nome do produto" autofocus required>
+                        <input type="text" id="nome" name="nome_produto" class="form-control" placeholder="Nome do produto" list="lista" autofocus required>
+                        <datalist id="lista">
+                            <?php
+                            require('lista_produtos.html');
+                            ?>
+                        </datalist>
                         <div class="invalid-feedback">
                             Por favor, digite o nome do produto!
                         </div><br>
                     </div>
+                    <?php
+                    date_default_timezone_set('America/Sao_Paulo');
+                    $hj = date("Y-m-d");
+                    ?>
                     <div id="div-vencimento">
                         <label for="vencimento"><b>Data do vencimento:</b></label>
-                        <input class="form-control" type="date" id="vencimento" name="data_vencimento" min="2019-01-01" max="2099-12-31" required>
+                        <input class="form-control" type="date" id="vencimento" name="data_vencimento" min="<?php echo $hj ?>" max="2099-12-31" required>
                         <div class="invalid-feedback">
-                            Por favor, digite o data de vencimento! (min: 01/01/2019 | máx: 31-12-2099)
+                            <?php
+                            date_default_timezone_set('America/Sao_Paulo');
+                            $hoje = date("d/m/Y");
+                            ?>
+                            Por favor, digite o data de vencimento! (min: <?php echo $hoje ?> | máx: 31-12-2099)
                         </div>
                     </div>
                 </div>

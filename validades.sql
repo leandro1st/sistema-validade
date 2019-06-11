@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03-Jun-2019 às 22:23
+-- Generation Time: 12-Jun-2019 às 00:22
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -152,7 +152,64 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Udon Alfa 500g', '2020-05-13', '2019-05-28 12:10:42', 128),
 ('Harussame', '2022-01-10', '2019-05-28 12:11:22', 129),
 ('Panko Alfa 1kg', '2020-05-23', '2019-05-28 12:16:27', 130),
-('Teste', '2019-06-03', '2019-06-03 17:21:17', 131);
+('Okaki Gergelim 200g', '2019-11-22', '2019-06-04 11:16:04', 132),
+('Ebicen Cebola 60g', '2019-10-25', '2019-06-04 11:24:01', 133),
+('Sembei Kyakuni Gergelim', '2019-09-03', '2019-06-04 11:24:16', 134),
+('Glico Tomate', '2019-09-25', '2019-06-04 11:24:38', 135),
+('Ebicen CamarÃ£o 60g', '2019-10-30', '2019-06-04 11:25:07', 136),
+('Choga Gari Pote Takaki', '2019-11-17', '2019-06-04 11:25:44', 137),
+('Choga Gari Pote Takaki', '2019-11-20', '2019-06-04 11:25:49', 138),
+('Okoshi Integral 200g', '2019-11-08', '2019-06-04 11:26:36', 139),
+('Karinto Yoko', '2019-11-30', '2019-06-04 11:26:54', 140),
+('Okaki Apimentado 100g', '2019-10-10', '2019-06-04 11:27:08', 141),
+('Gergelim Preto Torrado 100g', '2020-04-15', '2019-06-04 11:30:29', 142),
+('Dashinomoto 500g', '2020-05-02', '2019-06-04 11:33:28', 143),
+('Sembei Satsumaya Gergelim 280g', '2019-12-13', '2019-06-04 11:35:02', 144),
+('Gergelim Branco Torrado 100g', '2020-05-02', '2019-06-04 11:37:33', 145),
+('Okaki Nori 100g', '2019-10-08', '2019-06-04 11:39:14', 146),
+('Okaki Nori 100g', '2019-09-21', '2019-06-04 11:40:48', 147),
+('Rosquinha Coco Satsumaya 150g', '2020-01-08', '2019-06-04 11:43:28', 148),
+('Cookies Misto Ichiban', '2019-09-20', '2019-06-04 11:44:15', 149),
+('Sembei Paulista 90g', '2019-11-10', '2019-06-07 11:59:11', 150),
+('Sembei Sankio', '2019-10-08', '2019-06-07 12:00:01', 151),
+('Furikake Nori Tamago 33g', '2021-03-30', '2019-06-07 12:07:13', 152),
+('Furikake Kenko Yasai 30g', '2021-03-30', '2019-06-07 12:07:55', 153),
+('Shoyu MacrobiÃ³tico Daimaru', '2020-05-20', '2019-06-07 12:10:05', 154),
+('Umeboshi Casa Forte 500g', '2020-04-15', '2019-06-07 12:10:31', 155),
+('Yakissoba Hirotani 500g', '2020-05-30', '2019-06-07 12:11:24', 156),
+('Udon Alfa 500g', '2020-05-27', '2019-06-07 12:12:27', 157),
+('Somen Alfa 500g', '2020-04-29', '2019-06-07 12:13:13', 158),
+('Yakissoba Alfa 500g', '2020-05-28', '2019-06-07 12:13:23', 159),
+('Udon Assai 500g', '2020-01-17', '2019-06-07 12:13:51', 160),
+('Iriko nÂº 0 50g', '2020-02-22', '2019-06-07 12:16:24', 161),
+('Iriko Misto 50g', '2020-03-10', '2019-06-07 12:16:44', 162),
+('Iriko Misto 50g', '2020-03-07', '2019-06-07 12:16:50', 163),
+('Moti Gome Jipovura', '2020-05-31', '2019-06-07 12:17:44', 164),
+('Gelatina Sortida com Coco', '2019-12-15', '2019-06-07 12:18:46', 165),
+('Kare Ãndia', '2020-11-30', '2019-06-07 12:22:30', 166),
+('Yokan', '2020-01-14', '2019-06-07 12:23:00', 167),
+('Ãgar Ãgar 10g', '2020-05-02', '2019-06-11 10:37:45', 168),
+('Semente de Chia 200g', '2020-05-02', '2019-06-11 10:38:35', 169),
+('Gergelim Preto Cru 100g', '2020-05-16', '2019-06-11 10:39:00', 170),
+('Shiitake Seco Takaki 40g', '2020-02-19', '2019-06-11 10:40:17', 171),
+('Shiitake Seco Takaki 100g', '2020-02-19', '2019-06-11 10:40:35', 172),
+('Okaki Gergelim 200g', '2019-11-08', '2019-06-11 10:56:25', 173),
+('Udon Mezzani 500g', '2020-05-05', '2019-06-11 10:57:02', 174),
+('Ãgar Ãgar 100g', '2020-02-04', '2019-06-11 10:57:35', 175),
+('Missoshiru Wakame 12p', '2019-10-12', '2019-06-11 10:58:34', 176),
+('Amendoim King 400g', '2019-09-03', '2019-06-11 10:58:53', 177),
+('Dashinomoto 200g', '2020-05-02', '2019-06-11 10:59:32', 178),
+('Kimuchi no Moto', '2020-07-17', '2019-06-11 10:59:47', 179),
+('Sembei Kyakuni Gergelim Chato', '2019-09-09', '2019-06-11 11:00:17', 180),
+('Sembei Want Want Shelly', '2020-01-04', '2019-06-11 11:55:27', 181),
+('Torrada de Arroz Integral Chia/Gergelim', '2020-01-29', '2019-06-11 11:55:48', 182),
+('Torrada de Arroz Integral Quinoa/LinhaÃ§a', '2020-01-29', '2019-06-11 11:56:01', 183),
+('Yokomizo Coco', '2019-07-24', '2019-06-11 11:56:09', 184),
+('Rosquinha Gergelim Satsumaya 150g', '2019-12-09', '2019-06-11 11:56:38', 185),
+('Rosquinha Gergelim Satsumaya 150g', '2019-12-11', '2019-06-11 11:58:09', 186),
+('Okoshi Hikage 100g', '2019-11-27', '2019-06-11 11:59:37', 187),
+('Okoshi Hikage 200g', '2019-11-29', '2019-06-11 11:59:42', 188),
+('Sembei Satsumaya Gergelim 280g', '2019-12-26', '2019-06-11 11:59:53', 189);
 
 --
 -- Indexes for dumped tables
@@ -184,7 +241,7 @@ ALTER TABLE `excluidos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
