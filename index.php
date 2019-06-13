@@ -203,7 +203,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
             <h3 class="text-secondary text-center">Não há nenhum registro!</h3>
         <?php } else { ?>
             <h3 class="text-secondary text-center" id="sem_dados" style="display: none;"></h3>
-            <table id="tabela" class="table table-bordered">
+            <table id="tabela" class="table table-bordered table-hover">
                 <thead class="thead-light" style="font-size:20px">
                     <tr class="text-center">
                         <th scope="col" width="10%">#</th>

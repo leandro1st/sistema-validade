@@ -78,7 +78,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
                 echo "<b>" . $numero_produto . "</b> encontrados";
             }
             ?><br><br>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover">
                 <thead class="thead-light" style="font-size:20px">
                     <tr class="text-center">
                         <th scope="col" width="10%">#</th>
