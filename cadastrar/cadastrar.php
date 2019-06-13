@@ -41,6 +41,13 @@
         .pointer {
             cursor: pointer;
         }
+
+        .btn_transparente {
+            outline: none;
+            border: 0;
+            box-shadow: none;
+            background-color: transparent;
+        }
     </style>
 </head>
 
@@ -120,14 +127,14 @@
             <!-- <h4 class="text-primary" style="margin: 15px">Cadastros Recentes</h4> -->
             <div id="accordion">
                 <div class="card border-0">
-                    <div class="card-header pointer" id="header_ultimas24h" data-toggle="collapse" data-target="#ultimas_24h" aria-expanded="true" aria-controls="ultimas_24h">
-                        <button class="btn btn-outline-light text-primary">
+                    <div class="card-header pointer" id="header_ultimas24h" data-toggle="collapse" data-target="#ultimas_24h" aria-expanded="true" aria-controls="ultimas_24h" style="background-color: white">
+                        <button class="btn btn_transparente text-primary">
                             <h5 class="mb-0">
                                 Cadastros das últimas 24 horas
                             </h5>
                         </button>
                     </div>
-                    <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion">
+                    <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
                         <div class="card-body">
                             <table class="table table-hover">
                                 <thead class="thead-light" style="font-size:20px">
@@ -161,14 +168,14 @@
                     </div>
                 </div>
                 <div class="card border-0">
-                    <div class="card-header pointer" id="header_ultimos50" data-toggle="collapse" data-target="#ultimos50" aria-expanded="false" aria-controls="ultimos50">
-                        <button class="btn btn-outline-light text-primary">
+                    <div class="card-header pointer" id="header_ultimos50" data-toggle="collapse" data-target="#ultimos50" aria-expanded="false" aria-controls="ultimos50" style="background-color: white">
+                        <button class="btn btn_transparente text-primary">
                             <h5 class="mb-0">
                                 Últimos 50 cadastros
                             </h5>
                         </button>
                     </div>
-                    <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion">
+                    <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
                         <div class="card-body">
                             <table class="table table-hover">
                                 <thead class="thead-light" style="font-size:20px">
