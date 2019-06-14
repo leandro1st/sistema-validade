@@ -72,12 +72,13 @@ $numero_produto = mysqli_num_rows($pesquisar);
         </header>
         <main class="container">
             <h4>Resultados: <small><?php echo $produto ?></small></h4>
-            <?php if ($numero_produto == 1) {
-                echo "<b>" . $numero_produto . "</b> encontrado";
-            } else {
-                echo "<b>" . $numero_produto . "</b> encontrados";
-            }
-            ?><br><br>
+            <p class="lead">
+                <?php if ($numero_produto == 1) {
+                    echo "<b>" . $numero_produto . "</b> encontrado";
+                } else {
+                    echo "<b>" . $numero_produto . "</b> encontrados";
+                } ?>
+            </p>
             <table class="table table-bordered table-hover">
                 <thead class="thead-light" style="font-size:20px">
                     <tr class="text-center">
@@ -117,8 +118,16 @@ $numero_produto = mysqli_num_rows($pesquisar);
             </table>
         </main>
     <?php } else { ?>
+        <header class="jumbotron" style="padding: 2.5em">
+            <h1 class="text-center">Validades</h1>
+        </header>
+        <main class="container">
+            <h4>Resultados: <small><?php echo $produto ?></small></h4>
+            <p class="lead"><?php echo "<b>" . $numero_produto . "</b> encontrado" ?></p>
+        </main>
         <script>
-            alert("Nada encontrado!");
+            var nome = "<?php echo $produto ?>";
+            alert(nome + " não encontrado!");
             document.location.href = "../";
         </script>
     <?php } ?>

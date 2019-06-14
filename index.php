@@ -200,7 +200,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         </form>
         <?php
         if ($numero_produtos == 0) { ?>
-            <h3 class="text-secondary text-center">Não há nenhum registro!</h3>
+            <p class="text-center lead" style="font-size: 1.75rem;">Não há nenhum registro!</p>
         <?php } else { ?>
             <h3 class="text-secondary text-center" id="sem_dados" style="display: none;"></h3>
             <table id="tabela" class="table table-bordered table-hover">

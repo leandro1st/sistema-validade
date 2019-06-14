@@ -134,38 +134,47 @@
                             </h5>
                         </button>
                     </div>
-                    <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
-                        <div class="card-body">
-                            <table class="table table-hover">
-                                <thead class="thead-light" style="font-size:20px">
-                                    <tr class="text-center">
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Validade</th>
-                                        <th scope="col">Hora Cadastro</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for ($i = 0; $i < $qntd_pesquisa_recentes; $i++) {
-                                        $vetor_pesquisa = mysqli_fetch_array($pesquisar_recentes);
-                                        $vetor_nome = $vetor_pesquisa['nome_produto'];
-                                        $vetor_hora = $vetor_pesquisa['hora_cadastro'];
-                                        $vetor_validade = $vetor_pesquisa['validade'];
-                                        $data_hora = new DateTime($vetor_hora);
-                                        $hora = $data_hora->format('H:i:s');
-                                        ?>
-                                        <tr>
-                                            <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
-                                            <td width="65%"><?php echo $vetor_nome ?></td>
-                                            <td width="*" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
-                                            <td width="*" class="text-center"><?php echo $hora ?></td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                    <?php
+                    if ($qntd_pesquisa_recentes == 0) { ?>
+                        <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
+                            <div class="card-body">
+                                <p class="lead">Nenhum cadastro nas últimas 24 horas</p>
+                            </div>
                         </div>
-                    </div>
+                    <?php } else { ?>
+                        <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
+                            <div class="card-body">
+                                <table class="table table-hover">
+                                    <thead class="thead-light" style="font-size:20px">
+                                        <tr class="text-center">
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col">Validade</th>
+                                            <th scope="col">Hora Cadastro</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for ($i = 0; $i < $qntd_pesquisa_recentes; $i++) {
+                                            $vetor_pesquisa = mysqli_fetch_array($pesquisar_recentes);
+                                            $vetor_nome = $vetor_pesquisa['nome_produto'];
+                                            $vetor_hora = $vetor_pesquisa['hora_cadastro'];
+                                            $vetor_validade = $vetor_pesquisa['validade'];
+                                            $data_hora = new DateTime($vetor_hora);
+                                            $hora = $data_hora->format('H:i:s');
+                                            ?>
+                                            <tr>
+                                                <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
+                                                <td width="65%"><?php echo $vetor_nome ?></td>
+                                                <td width="*" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                                <td width="*" class="text-center"><?php echo $hora ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
                 <div class="card border-0">
                     <div class="card-header pointer" id="header_ultimos50" data-toggle="collapse" data-target="#ultimos50" aria-expanded="false" aria-controls="ultimos50" style="background-color: white">
@@ -175,41 +184,49 @@
                             </h5>
                         </button>
                     </div>
-                    <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
-                        <div class="card-body">
-                            <table class="table table-hover">
-                                <thead class="thead-light" style="font-size:20px">
-                                    <tr class="text-center">
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nome</th>
-                                        <th scope="col">Validade</th>
-                                        <th scope="col">Hora Cadastro</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    for ($i = 0; $i < $qntd_pesquisa_ultimos50; $i++) {
-                                        $vetor_pesquisa = mysqli_fetch_array($pesquisar_ultimos50);
-                                        $vetor_nome = $vetor_pesquisa['nome_produto'];
-                                        $vetor_hora = $vetor_pesquisa['hora_cadastro'];
-                                        $vetor_validade = $vetor_pesquisa['validade'];
-                                        $data_hora = new DateTime($vetor_hora);
-                                        $hora = $data_hora->format('H:i:s');
-                                        ?>
-                                        <tr>
-                                            <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
-                                            <td width="65%"><?php echo $vetor_nome ?></td>
-                                            <td width="*" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
-                                            <td width="*" class="text-center"><?php echo $hora ?></td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                    <?php if ($qntd_pesquisa_ultimos50 == 0) { ?>
+                        <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
+                            <div class="card-body">
+                                <p class="lead">Não há nenhum cadastro!</p>
+                            </div>
                         </div>
-                    </div>
+                    <?php } else { ?>
+                        <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
+                            <div class="card-body">
+                                <table class="table table-hover">
+                                    <thead class="thead-light" style="font-size:20px">
+                                        <tr class="text-center">
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col">Validade</th>
+                                            <th scope="col">Hora Cadastro</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        for ($i = 0; $i < $qntd_pesquisa_ultimos50; $i++) {
+                                            $vetor_pesquisa = mysqli_fetch_array($pesquisar_ultimos50);
+                                            $vetor_nome = $vetor_pesquisa['nome_produto'];
+                                            $vetor_hora = $vetor_pesquisa['hora_cadastro'];
+                                            $vetor_validade = $vetor_pesquisa['validade'];
+                                            $data_hora = new DateTime($vetor_hora);
+                                            $hora = $data_hora->format('H:i:s');
+                                            ?>
+                                            <tr>
+                                                <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
+                                                <td width="65%"><?php echo $vetor_nome ?></td>
+                                                <td width="*" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                                <td width="*" class="text-center"><?php echo $hora ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
-        </center><br><br>
+        </center><br>
         <script>
             // Example starter JavaScript for disabling form submissions if there are invalid fields
             (function() {

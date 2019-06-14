@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Jun-2019 às 00:13
+-- Generation Time: 14-Jun-2019 às 18:18
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -36,6 +36,13 @@ CREATE TABLE `excluidos` (
   `id` int(11) NOT NULL,
   `id_exclusao` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `excluidos`
+--
+
+INSERT INTO `excluidos` (`nome_produto`, `validade`, `hora_cadastro`, `hora_exclusao`, `id`, `id_exclusao`) VALUES
+('Biscoito Hits Salgado Original 40g', '2019-06-13', '2019-06-12 19:04:22', '2019-06-14 13:17:39', 242, 1);
 
 -- --------------------------------------------------------
 
@@ -262,7 +269,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Bisc.dãgua Na Boca Bambolãš 160g', '2019-07-30', '2019-06-12 19:03:22', 239),
 ('Trakinas Chocolate', '2019-08-03', '2019-06-12 19:03:42', 240),
 ('Trakinas Morango', '2019-07-08', '2019-06-12 19:03:53', 241),
-('Biscoito Hits Salgado Original 40g', '2019-06-13', '2019-06-12 19:04:22', 242),
 ('Refr Suco Pessego C/pdã‡s 240ml', '2019-07-14', '2019-06-12 19:04:46', 243),
 ('Lamem Misso Sapporo 84g', '2019-06-16', '2019-06-12 19:05:09', 244),
 ('Roll Cake Choc.baud.34g', '2019-06-26', '2019-06-12 19:05:29', 245),
@@ -271,7 +277,20 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Batata Frita Ondulada Ebicen 50g', '2019-06-30', '2019-06-12 19:06:27', 248),
 ('Farinha Linhaã‡a Moida Casa Forte 150g', '2019-06-17', '2019-06-12 19:07:02', 249),
 ('Dashinomoto 500g', '2019-08-02', '2019-06-12 19:07:21', 250),
-('Agar Agar 500mg 60 Caps', '2019-08-07', '2019-06-12 19:08:14', 251);
+('Agar Agar 500mg 60 Caps', '2019-08-07', '2019-06-12 19:08:14', 251),
+('Udon Japones Nagatanien 400g', '2020-04-02', '2019-06-14 12:39:12', 252),
+('Shoyu MacrobiÃ“tico Oshima 500ml', '2020-05-27', '2019-06-14 13:02:23', 253),
+('Karinto Yoko 200g', '2019-11-30', '2019-06-14 13:02:52', 254),
+('Mirim Saque Azuma 500ml', '2020-05-22', '2019-06-14 13:03:33', 255),
+('Cha De Amora 40g', '2020-09-07', '2019-06-14 13:04:27', 256),
+('AÃ‡ucar Mascavo 500g', '2020-05-16', '2019-06-14 13:04:42', 257),
+('Bisc Bolinho Yokomizo 270g', '2019-07-21', '2019-06-14 13:05:38', 258),
+('Kare Golden Forte 220g', '2020-09-13', '2019-06-14 13:06:07', 259),
+('Amendoim King 400g', '2019-10-16', '2019-06-14 13:10:22', 260),
+('Bala Jelly Sweet Morango 200g', '2020-05-16', '2019-06-14 13:10:43', 261),
+('Sembei Crocante Gengibre 290g', '2019-11-30', '2019-06-14 13:11:09', 262),
+('Gergelim Preto Torrado Casa Forte 100g', '2020-04-15', '2019-06-14 13:13:45', 263),
+('Kinako-soja Em PÃ“ 200g', '2020-05-17', '2019-06-14 13:14:51', 264);
 
 --
 -- Indexes for dumped tables
@@ -297,13 +316,13 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `excluidos`
 --
 ALTER TABLE `excluidos`
-  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=252;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=265;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

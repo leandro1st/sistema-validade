@@ -105,7 +105,7 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
     <main class="container">
         <?php
         if ($numero_excluidos == 0) { ?>
-            <h3 class="text-secondary text-center">Não há nenhum registro excluído!</h3>
+            <p class="text-center lead" style="font-size: 1.75rem;">Não há nenhum registro excluído!</p>
         <?php } else { ?>
             <h3 class="text-secondary text-center" id="sem_dados" style="display: none;"></h3>
             <table id="tabela" class="table table-bordered table-hover">
