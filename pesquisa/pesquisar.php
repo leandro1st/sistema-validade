@@ -31,6 +31,17 @@ $numero_produto = mysqli_num_rows($pesquisar);
         .underline {
             border-bottom: 3px solid #4EBA6F;
         }
+
+        .breadcrumb-item+.breadcrumb-item::before {
+            font-family: "Font Awesome 5 Free";
+            content: "\f105";
+            font-weight: 900;
+            color: #4EBA6F;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -64,6 +75,18 @@ $numero_produto = mysqli_num_rows($pesquisar);
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
             </form>
         </div>
+    </nav>
+    <nav aria-label="breadcrumb" style="position: absolute">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
+            <li class="breadcrumb-item active"><i class="fas fa-search"></i>
+                <?php if ($produto != "" || $produto != null) {
+                    echo "Pesquisa | " . $produto;
+                } else {
+                    echo "Pesquisa";
+                } ?>
+            </li>
+        </ol>
     </nav>
     <?php
     if ($numero_produto > 0) { ?>
