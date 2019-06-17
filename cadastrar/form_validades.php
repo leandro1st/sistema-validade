@@ -1,7 +1,15 @@
 <?php
 require("../c.php");
 
-$nome = ucwords(strtolower(trim($_POST['nome_produto'])));
+function convert_case_ptbr($string) {
+    $string = mb_convert_case(trim($string), MB_CASE_TITLE, 'utf-8');
+    $delimiters = ['de ', 'do ', 'da ', 'em ', 'na ', 'no ', 'ni ', 'c/', 'p/', 'ml', 'mg', 'kg', 'para ', 'com ', 'como '];
+    $string = str_ireplace($delimiters, $delimiters, $string);
+    return $string;
+    //this returns lowercase (or uppercase) delimiter word found in string using those same delimiters as a case insensitive search
+}
+
+$nome = convert_case_ptbr(trim($_POST['nome_produto']));
 $data = trim($_POST['data_vencimento']);
 date_default_timezone_set('America/Sao_Paulo');
 $hoje = date("Y-m-d");
@@ -20,4 +28,3 @@ if($numero_pesquisa == 0) {
     echo "Existente";
     // echo "Nome do produto: ".$nome."\nData do vencimento: ".date("d/m/Y", strtotime($data)). "\nCadastro já existe!";
 }
-?>

@@ -275,7 +275,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                             <form id="form_excluir-<?php echo $vetor_id ?>">
                                 <tr id="linha-<?php echo $vetor_id ?>">
                                     <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                                    <td><?php echo $vetor_produto ?></td>
+                                    <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
                                     <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                                     <td align="center">
