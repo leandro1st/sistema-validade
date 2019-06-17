@@ -3,7 +3,7 @@ require("../c.php");
 
 function convert_case_ptbr($string) {
     $string = mb_convert_case(trim($string), MB_CASE_TITLE, 'utf-8');
-    $delimiters = ['de ', 'do ', 'da ', 'em ', 'na ', 'no ', 'ni ', 'c/', 'p/', 'ml', 'mg', 'kg', 'para ', 'com ', 'como '];
+    $delimiters = ['de ', 'do ', 'da ', 'em ', 'na ', 'no ', 'ni ', 'c/', 's/', 'p/', 'ml', 'mg', 'kg', 'para ', 'com ', 'sem ', 'como '];
     $string = str_ireplace($delimiters, $delimiters, $string);
     return $string;
     //this returns lowercase (or uppercase) delimiter word found in string using those same delimiters as a case insensitive search
