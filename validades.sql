@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 17-Jun-2019 às 19:12
+-- Generation Time: 18-Jun-2019 às 00:48
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -43,7 +43,11 @@ CREATE TABLE `excluidos` (
 
 INSERT INTO `excluidos` (`nome_produto`, `validade`, `hora_cadastro`, `hora_exclusao`, `id`, `id_exclusao`) VALUES
 ('Biscoito Hits Salgado Original 40g', '2019-06-13', '2019-06-12 19:04:22', '2019-06-14 13:17:39', 242, 1),
-('Lamen Misso Sapporo 84g', '2019-06-16', '2019-06-12 19:05:09', '2019-06-17 10:22:48', 244, 2);
+('Lamen Misso Sapporo 84g', '2019-06-16', '2019-06-12 19:05:09', '2019-06-17 10:22:48', 244, 2),
+('Farinha LinhaÃ§a Moida Casa Forte 150g', '2019-06-17', '2019-06-12 19:07:02', '2019-06-17 19:47:04', 249, 3),
+('Look Morango 55g', '2019-06-17', '2019-06-12 13:02:47', '2019-06-17 19:47:06', 197, 4),
+('Suco de MaÃ§Ã£ Yakult 200ml', '2019-06-17', '2019-06-12 12:55:19', '2019-06-17 19:47:07', 195, 5),
+('Yokomizo Leite', '2019-06-17', '2019-05-17 15:06:50', '2019-06-17 19:47:10', 91, 6);
 
 -- --------------------------------------------------------
 
@@ -120,7 +124,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Biscoito da Sorte', '2019-07-11', '2019-05-17 15:06:09', 88),
 ('Biscoito da Sorte', '2019-07-24', '2019-05-17 15:06:19', 89),
 ('Yokomizo Coco', '2019-06-25', '2019-05-17 15:06:38', 90),
-('Yokomizo Leite', '2019-06-17', '2019-05-17 15:06:50', 91),
 ('Sembei Want Want Nori', '2019-12-26', '2019-05-21 11:13:48', 92),
 ('Gergelim Branco Torrado 100g', '2020-04-15', '2019-05-21 11:14:27', 93),
 ('Gergelim Preto Torrado 100g', '2020-04-01', '2019-05-21 11:14:44', 94),
@@ -223,9 +226,7 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Nectar Maguary Pessego 200ml', '2019-07-06', '2019-06-12 12:53:26', 192),
 ('Nectar Maguary Uva 200ml', '2019-06-23', '2019-06-12 12:53:37', 193),
 ('Nectar Maguary MaÃ§Ã£ 1l', '2019-08-12', '2019-06-12 12:53:51', 194),
-('Suco de MaÃ§Ã£ Yakult 200ml', '2019-06-17', '2019-06-12 12:55:19', 195),
 ('Suco de MaÃ§Ã£ Yakult 200ml', '2019-07-28', '2019-06-12 12:55:27', 196),
-('Look Morango 55g', '2019-06-17', '2019-06-12 13:02:47', 197),
 ('Look Chocolate 55g', '2019-07-30', '2019-06-12 13:04:09', 198),
 ('Ebicen Cebola 60g', '2019-06-20', '2019-06-12 13:09:15', 199),
 ('Glico Queijo 80g', '2019-07-25', '2019-06-12 13:11:58', 200),
@@ -275,7 +276,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Shoyu Sakura Tradicional 1l', '2019-06-30', '2019-06-12 19:06:10', 246),
 ('Pipoca Doce De Milho Clac 50g', '2019-07-08', '2019-06-12 19:06:19', 247),
 ('Batata Frita Ondulada Ebicen 50g', '2019-06-30', '2019-06-12 19:06:27', 248),
-('Farinha LinhaÃ§a Moida Casa Forte 150g', '2019-06-17', '2019-06-12 19:07:02', 249),
 ('Dashinomoto 500g', '2019-08-02', '2019-06-12 19:07:21', 250),
 ('Ãgar Ãgar 500mg 60 Caps', '2019-08-07', '2019-06-12 19:08:14', 251),
 ('Udon Japones Nagatanien 400g', '2020-04-02', '2019-06-14 12:39:12', 252),
@@ -302,7 +302,21 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('CafÃ© Tradicional PilÃ£o 500G', '2020-09-30', '2019-06-17 14:08:29', 273),
 ('CafÃ© Tradicional 3 CoraÃ§Ãµes 500G', '2020-10-11', '2019-06-17 14:09:15', 274),
 ('CafÃ© Tradicional 3 CoraÃ§Ãµes 250G', '2020-09-11', '2019-06-17 14:09:25', 275),
-('Molho Polpa de Tomate Quero 520G', '2020-09-30', '2019-06-17 14:11:15', 276);
+('Molho Polpa de Tomate Quero 520G', '2020-09-30', '2019-06-17 14:11:15', 276),
+('Pipoca Canjica de Milho Doce 50G', '2019-10-21', '2019-06-17 19:28:13', 277),
+('Tempero para Conserva de Pepino 45G', '2019-07-31', '2019-06-17 19:34:58', 278),
+('Curry Megamori Pronto 300G', '2020-05-22', '2019-06-17 19:35:10', 279),
+('Biscoito de Polvilho Pingo de Minas 80G', '2019-09-11', '2019-06-17 19:36:12', 280),
+('Batata Palha Point Chips 100G', '2019-11-22', '2019-06-17 19:36:29', 281),
+('Karinto Salgado Cebola 90G', '2019-07-20', '2019-06-17 19:37:09', 282),
+('Karinto Salgado Alho 90G', '2019-08-03', '2019-06-17 19:37:49', 283),
+('PÃ£o Rei do Trigo Leite 400G', '2019-07-02', '2019-06-17 19:40:53', 284),
+('PÃ£o Rei do Trigo Batata 400G', '2019-06-19', '2019-06-17 19:41:14', 285),
+('PÃ£o Rei do Trigo Mandioquinha 400G', '2019-06-18', '2019-06-17 19:41:34', 286),
+('PÃ£o Rei do Trigo Batata 400G', '2019-07-02', '2019-06-17 19:42:40', 287),
+('PÃ£o Rei do Trigo Milho 400G', '2019-07-02', '2019-06-17 19:42:50', 288),
+('GuaranÃ¡ Guaranita 2L', '2019-09-29', '2019-06-17 19:44:47', 289),
+('Coca Cola 2L', '2019-08-21', '2019-06-17 19:45:21', 290);
 
 --
 -- Indexes for dumped tables
@@ -328,13 +342,13 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `excluidos`
 --
 ALTER TABLE `excluidos`
-  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=277;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=291;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
