@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Jun-2019 às 00:48
+-- Generation Time: 18-Jun-2019 às 16:50
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -316,7 +316,38 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('PÃ£o Rei do Trigo Batata 400G', '2019-07-02', '2019-06-17 19:42:40', 287),
 ('PÃ£o Rei do Trigo Milho 400G', '2019-07-02', '2019-06-17 19:42:50', 288),
 ('GuaranÃ¡ Guaranita 2L', '2019-09-29', '2019-06-17 19:44:47', 289),
-('Coca Cola 2L', '2019-08-21', '2019-06-17 19:45:21', 290);
+('Coca Cola 2L', '2019-08-21', '2019-06-17 19:45:21', 290),
+('Bisc Bolinho Yokomizo 270G', '2019-07-31', '2019-06-18 10:11:15', 291),
+('Pipoca Canjica de Milho Doce 50G', '2019-11-12', '2019-06-18 10:12:17', 292),
+('Okaki Nori 100G', '2019-11-23', '2019-06-18 10:48:34', 293),
+('Tempurako 500G', '2021-03-04', '2019-06-18 10:50:14', 294),
+('Yakissoba Nissin 500G', '2019-12-25', '2019-06-18 10:50:33', 295),
+('Ã“leo La-Yu Chili Oil S&B 33ml', '2020-12-01', '2019-06-18 10:54:32', 296),
+('Gelatina de Alga Frutas Sortida c/ Coco 280G', '2019-12-12', '2019-06-18 10:55:57', 297),
+('Gelatina de Alga Lichia c/ Coco 280G', '2019-12-13', '2019-06-18 10:56:07', 298),
+('Torrada Arroz Integ Org Chia/Gerg 75G', '2020-01-29', '2019-06-18 10:57:10', 299),
+('Torrada Arroz Integ Org Quinoa/LinhaÃ§a 75G', '2020-01-29', '2019-06-18 10:57:54', 300),
+('Mandiopan 100G', '2021-04-05', '2019-06-18 10:59:03', 301),
+('Kare Golden Curry Medio 92G', '2020-07-29', '2019-06-18 10:59:37', 302),
+('Sembei Shelly Want Want 122G', '2020-01-04', '2019-06-18 11:00:09', 303),
+('Saque Azuma Kirim Dourado 175ml', '2019-09-21', '2019-06-18 11:00:55', 304),
+('Yaki Soba Hirotani 500G', '2020-05-31', '2019-06-18 11:02:58', 305),
+('Choga Gari Pote 230G Dren 100G', '2019-11-28', '2019-06-18 11:03:37', 306),
+('Choga Gari Pote 230G Dren 100G', '2019-12-04', '2019-06-18 11:03:49', 307),
+('Molho p/ Yakissoba Alfa 500ml', '2020-05-27', '2019-06-18 11:04:14', 308),
+('Rosquinha Satsumaya Amendoim Pote 250G', '2019-11-16', '2019-06-18 11:04:37', 309),
+('Okazunori Shinsen c/ 08 20G', '2019-10-15', '2019-06-18 11:06:24', 310),
+('Sembei Satsumaya Leite 280G', '2020-02-08', '2019-06-18 11:07:53', 311),
+('Cha Bancha Yamamotoyama c/ 15', '2021-02-28', '2019-06-18 11:08:26', 312),
+('Kareko Condimento India 57G', '2019-11-30', '2019-06-18 11:09:14', 313),
+('Kareko Condimento India 57G', '2019-12-31', '2019-06-18 11:09:51', 314),
+('Ã“leo de Gergelim Torrado Hong Kong 100ml', '2022-05-07', '2019-06-18 11:12:11', 315),
+('Ã“leo de Gergelim Torrado Kenko 100ml', '2020-10-31', '2019-06-18 11:12:42', 316),
+('Hitimi Togarashi S&B 15G', '2021-05-13', '2019-06-18 11:13:20', 317),
+('Rosquinha Satsumaya Coco Pote 250G', '2019-10-22', '2019-06-18 11:13:40', 318),
+('Nori Ab Edomae c/ 10F 23G', '2021-01-01', '2019-06-18 11:14:12', 319),
+('Banana Chips 100G', '2019-07-18', '2019-06-18 11:20:23', 320),
+('Pipoca Doce de Milho Clac 170G', '2019-10-11', '2019-06-18 11:21:02', 321);
 
 --
 -- Indexes for dumped tables
@@ -348,7 +379,7 @@ ALTER TABLE `excluidos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=291;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
