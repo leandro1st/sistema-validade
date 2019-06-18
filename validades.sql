@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Jun-2019 às 16:50
+-- Generation Time: 19-Jun-2019 às 00:24
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -47,7 +47,9 @@ INSERT INTO `excluidos` (`nome_produto`, `validade`, `hora_cadastro`, `hora_excl
 ('Farinha LinhaÃ§a Moida Casa Forte 150g', '2019-06-17', '2019-06-12 19:07:02', '2019-06-17 19:47:04', 249, 3),
 ('Look Morango 55g', '2019-06-17', '2019-06-12 13:02:47', '2019-06-17 19:47:06', 197, 4),
 ('Suco de MaÃ§Ã£ Yakult 200ml', '2019-06-17', '2019-06-12 12:55:19', '2019-06-17 19:47:07', 195, 5),
-('Yokomizo Leite', '2019-06-17', '2019-05-17 15:06:50', '2019-06-17 19:47:10', 91, 6);
+('Yokomizo Leite', '2019-06-17', '2019-05-17 15:06:50', '2019-06-17 19:47:10', 91, 6),
+('PÃ£o Rei do Trigo Mandioquinha 400G', '2019-06-18', '2019-06-17 19:41:34', '2019-06-18 19:16:50', 286, 7),
+('Suco de Uva Maguary 900ml', '2019-06-18', '2019-06-12 12:52:55', '2019-06-18 19:16:53', 190, 8);
 
 -- --------------------------------------------------------
 
@@ -221,7 +223,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Okoshi Hikage 100g', '2019-11-27', '2019-06-11 11:59:37', 187),
 ('Okoshi Hikage 200g', '2019-11-29', '2019-06-11 11:59:42', 188),
 ('Sembei Satsumaya Gergelim 280g', '2019-12-26', '2019-06-11 11:59:53', 189),
-('Suco de Uva Maguary 900ml', '2019-06-18', '2019-06-12 12:52:55', 190),
 ('Cream Cheese Ipanema 150g', '2019-08-09', '2019-06-12 12:53:09', 191),
 ('Nectar Maguary Pessego 200ml', '2019-07-06', '2019-06-12 12:53:26', 192),
 ('Nectar Maguary Uva 200ml', '2019-06-23', '2019-06-12 12:53:37', 193),
@@ -312,7 +313,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Karinto Salgado Alho 90G', '2019-08-03', '2019-06-17 19:37:49', 283),
 ('PÃ£o Rei do Trigo Leite 400G', '2019-07-02', '2019-06-17 19:40:53', 284),
 ('PÃ£o Rei do Trigo Batata 400G', '2019-06-19', '2019-06-17 19:41:14', 285),
-('PÃ£o Rei do Trigo Mandioquinha 400G', '2019-06-18', '2019-06-17 19:41:34', 286),
 ('PÃ£o Rei do Trigo Batata 400G', '2019-07-02', '2019-06-17 19:42:40', 287),
 ('PÃ£o Rei do Trigo Milho 400G', '2019-07-02', '2019-06-17 19:42:50', 288),
 ('GuaranÃ¡ Guaranita 2L', '2019-09-29', '2019-06-17 19:44:47', 289),
@@ -373,7 +373,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `excluidos`
 --
 ALTER TABLE `excluidos`
-  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `produtos`
