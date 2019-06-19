@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19-Jun-2019 às 00:24
+-- Generation Time: 20-Jun-2019 às 01:15
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -347,7 +347,23 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Rosquinha Satsumaya Coco Pote 250G', '2019-10-22', '2019-06-18 11:13:40', 318),
 ('Nori Ab Edomae c/ 10F 23G', '2021-01-01', '2019-06-18 11:14:12', 319),
 ('Banana Chips 100G', '2019-07-18', '2019-06-18 11:20:23', 320),
-('Pipoca Doce de Milho Clac 170G', '2019-10-11', '2019-06-18 11:21:02', 321);
+('Pipoca Doce de Milho Clac 170G', '2019-10-11', '2019-06-18 11:21:02', 321),
+('Chocolate Snickers 52,7G', '2020-01-31', '2019-06-19 12:12:56', 322),
+('Veggie Bife de Soja 320G', '2019-10-18', '2019-06-19 19:48:04', 323),
+('Veggie Empanadinho de Soja (Nugget) 300G', '2019-07-23', '2019-06-19 19:48:20', 324),
+('Veggie Hamburguer de Soja 300G', '2019-11-03', '2019-06-19 19:49:50', 325),
+('Veggie Linguica de Soja 300G', '2019-08-07', '2019-06-19 19:50:18', 326),
+('Tofu Imperial \"defumado\" 500G', '2019-11-02', '2019-06-19 19:50:30', 327),
+('Veggie Salsicha de Soja 320G', '2019-08-11', '2019-06-19 19:50:40', 328),
+('Veggy Hamburguer de Ervilha 360G', '2019-12-05', '2019-06-19 19:51:09', 329),
+('Veggy Hamburguer de Milho 360G', '2019-11-20', '2019-06-19 19:51:25', 330),
+('Veggy Quibe de Abobora 350G', '2019-08-02', '2019-06-19 19:51:34', 331),
+('Veggy Hamburguer de GrÃ£o de Bico 400G', '2019-11-30', '2019-06-19 19:51:45', 332),
+('Veggy Hamburguer de Legumes 400G', '2019-11-13', '2019-06-19 19:51:59', 333),
+('Veggy Hamburguer de Lentilha 360G', '2019-12-06', '2019-06-19 19:53:25', 334),
+('Veggy Coxinha de Legumes 300G', '2019-09-28', '2019-06-19 20:10:08', 335),
+('Molho de Tomate Predilecta 340G', '2020-10-31', '2019-06-19 20:10:50', 336),
+('Bombom Sonho de Valsa Leite', '2020-05-01', '2019-06-19 20:12:04', 337);
 
 --
 -- Indexes for dumped tables
@@ -379,7 +395,7 @@ ALTER TABLE `excluidos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
