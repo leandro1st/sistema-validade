@@ -145,7 +145,7 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                         $vetor_hora_exclusao = $vetor['hora_exclusao'];
                         $vetor_id = $vetor['id'];
                         date_default_timezone_set('America/Sao_Paulo');
-                        // echo 'Agora em São Paulo é: <strong>'. date('d/m/Y H:i:s').'</strong><br /><br />'
+                        // echo 'Agora em São Paulo é: <strong>'. date('d/m/Y H:i:s').'</strong><br /><br />';
                         // echo date('d-m-Y')."<br>";
                         // echo date("d-m-Y", strtotime($vetor_validade));
                         if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
