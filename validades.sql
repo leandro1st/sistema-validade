@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Jun-2019 às 00:10
+-- Generation Time: 22-Jun-2019 às 20:36
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -56,7 +56,10 @@ INSERT INTO `excluidos` (`nome_produto`, `validade`, `hora_cadastro`, `hora_excl
 ('Ebicen Cebola 60g', '2019-06-20', '2019-06-12 13:09:15', '2019-06-21 10:06:58', 199, 12),
 ('Recheadinho Goiabinha Bauducco 112g', '2019-06-21', '2019-06-12 18:46:56', '2019-06-21 19:02:13', 206, 13),
 ('Custard C/06 138g', '2019-06-21', '2019-06-12 17:41:47', '2019-06-21 19:02:15', 202, 14),
-('Sembei Kyakuni Gengibre 200g', '2019-06-21', '2019-06-12 19:02:17', '2019-06-21 19:02:17', 236, 15);
+('Sembei Kyakuni Gengibre 200g', '2019-06-21', '2019-06-12 19:02:17', '2019-06-21 19:02:17', 236, 15),
+('Aonori Powder Yamahide 15g', '2019-06-22', '2019-06-12 18:50:08', '2019-06-22 15:04:34', 210, 16),
+('Duo Duplo Chocolate 34g', '2019-06-23', '2019-06-12 19:02:50', '2019-06-22 15:05:05', 238, 17),
+('Nectar Maguary Uva 200ml', '2019-06-23', '2019-06-12 12:53:37', '2019-06-22 15:09:37', 193, 18);
 
 -- --------------------------------------------------------
 
@@ -232,7 +235,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Sembei Satsumaya Gergelim 280g', '2019-12-26', '2019-06-11 11:59:53', 189),
 ('Cream Cheese Ipanema 150g', '2019-08-09', '2019-06-12 12:53:09', 191),
 ('Nectar Maguary Pessego 200ml', '2019-07-06', '2019-06-12 12:53:26', 192),
-('Nectar Maguary Uva 200ml', '2019-06-23', '2019-06-12 12:53:37', 193),
 ('Nectar Maguary MaÃ§Ã£ 1l', '2019-08-12', '2019-06-12 12:53:51', 194),
 ('Suco de MaÃ§Ã£ Yakult 200ml', '2019-07-28', '2019-06-12 12:55:27', 196),
 ('Look Chocolate 55g', '2019-07-30', '2019-06-12 13:04:09', 198),
@@ -244,7 +246,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Udon Assai 500gr', '2019-07-22', '2019-06-12 18:47:18', 207),
 ('Torrada Integral Bauducco 160g', '2019-06-26', '2019-06-12 18:48:03', 208),
 ('Missoshiru Wakame 12p', '2019-07-27', '2019-06-12 18:49:41', 209),
-('Aonori Powder Yamahide 15g', '2019-06-22', '2019-06-12 18:50:08', 210),
 ('Otsumami C/ Iriko 200g', '2019-08-01', '2019-06-12 18:51:18', 211),
 ('Molho Tonkatsu Maruiti 500ml', '2019-07-17', '2019-06-12 18:51:40', 212),
 ('Batata Frita Ondulada Ebicen 50g', '2019-07-20', '2019-06-12 18:51:53', 213),
@@ -269,7 +270,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Chips Mexicana Original', '2019-07-21', '2019-06-12 19:01:36', 234),
 ('Amendoim Doce Pote Castella 170g', '2019-07-17', '2019-06-12 19:01:52', 235),
 ('Bacon Listrado Salcique 65g', '2019-07-21', '2019-06-12 19:02:30', 237),
-('Duo Duplo Chocolate 34g', '2019-06-23', '2019-06-12 19:02:50', 238),
 ('Bisc.dÃ¡gua Na Boca BambolÃª 160g', '2019-07-30', '2019-06-12 19:03:22', 239),
 ('Trakinas Chocolate', '2019-08-03', '2019-06-12 19:03:42', 240),
 ('Trakinas Morango', '2019-07-08', '2019-06-12 19:03:53', 241),
@@ -398,7 +398,15 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Bala Castella Gengibre 60G', '2020-09-05', '2019-06-21 13:36:11', 369),
 ('Bala Castella Canela 60G', '2020-08-25', '2019-06-21 13:36:25', 370),
 ('Sembei Kyakuni Gengibre 200G', '2019-09-12', '2019-06-21 13:45:23', 371),
-('Sembei Kyakuni Gergelim 200 G', '2019-09-09', '2019-06-21 13:45:43', 372);
+('Sembei Kyakuni Gergelim 200 G', '2019-09-09', '2019-06-21 13:45:43', 372),
+('Kirimoti 400G', '2019-07-03', '2019-06-22 15:08:58', 373),
+('Bolo PÃ£o de LÃ³ Pq UnipÃ£o 300G', '2019-06-27', '2019-06-22 15:14:32', 374),
+('Cheetos Queijo ParmesÃ£o Lua Pepsico 51G', '2019-07-01', '2019-06-22 15:16:21', 375),
+('Eqlibri MultigrÃ£os Tomate E Cebolinha 45G', '2019-07-08', '2019-06-22 15:16:34', 376),
+('Doritos Queijo Nacho Pepsico 55G', '2019-07-08', '2019-06-22 15:16:44', 377),
+('Yokan Azuki 400G', '2019-07-24', '2019-06-22 15:17:05', 378),
+('Fandango Presunto Pepsico 59G', '2019-07-15', '2019-06-22 15:17:16', 379),
+('Doritos Cool Ranch Pepsico 55G', '2019-07-15', '2019-06-22 15:17:29', 380);
 
 --
 -- Indexes for dumped tables
@@ -424,13 +432,13 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `excluidos`
 --
 ALTER TABLE `excluidos`
-  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=381;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
