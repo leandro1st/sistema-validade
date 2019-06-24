@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Jun-2019 às 20:36
+-- Generation Time: 24-Jun-2019 às 23:57
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -406,7 +406,16 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Doritos Queijo Nacho Pepsico 55G', '2019-07-08', '2019-06-22 15:16:44', 377),
 ('Yokan Azuki 400G', '2019-07-24', '2019-06-22 15:17:05', 378),
 ('Fandango Presunto Pepsico 59G', '2019-07-15', '2019-06-22 15:17:16', 379),
-('Doritos Cool Ranch Pepsico 55G', '2019-07-15', '2019-06-22 15:17:29', 380);
+('Doritos Cool Ranch Pepsico 55G', '2019-07-15', '2019-06-22 15:17:29', 380),
+('Yakult 80G', '2019-07-19', '2019-06-24 10:33:31', 381),
+('Taff Man Ex 110ml', '2019-11-10', '2019-06-24 10:33:46', 382),
+('Amendoim MÃ©dio Torrado c/ Sal 200G', '2019-11-10', '2019-06-24 12:52:26', 383),
+('Otsumami c/ Iriko 200G', '2019-11-17', '2019-06-24 12:52:43', 384),
+('Bisc DÃ¡gua na Boca BeliscÃ£o 160G', '2019-10-01', '2019-06-24 12:53:10', 385),
+('Biscoito de Polvilho Cebola 80G', '2019-09-18', '2019-06-24 12:53:32', 386),
+('Palito Ao Leite 160G', '2019-12-03', '2019-06-24 12:53:57', 387),
+('Karikari Ovinhos de Amendoim 300G', '2019-09-06', '2019-06-24 12:54:30', 388),
+('Farinha de Maca Peruana 150G Gran Fibras', '2019-09-25', '2019-06-24 18:37:51', 389);
 
 --
 -- Indexes for dumped tables
@@ -438,7 +447,7 @@ ALTER TABLE `excluidos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=381;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=390;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

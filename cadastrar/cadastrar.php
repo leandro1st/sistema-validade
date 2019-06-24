@@ -166,9 +166,9 @@
                                     <thead class="thead-light" style="font-size:20px">
                                         <tr class="text-center">
                                             <th scope="col">#</th>
-                                            <th scope="col">Nome</th>
+                                            <th scope="col">Produto</th>
                                             <th scope="col">Validade</th>
-                                            <th scope="col">Hora Cadastro</th>
+                                            <th scope="col">Hora do cadastro</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -215,9 +215,9 @@
                                     <thead class="thead-light" style="font-size:20px">
                                         <tr class="text-center">
                                             <th scope="col">#</th>
-                                            <th scope="col">Nome</th>
+                                            <th scope="col">Produto</th>
                                             <th scope="col">Validade</th>
-                                            <th scope="col">Hora Cadastro</th>
+                                            <th scope="col">Hora do cadastro</th>
                                         </tr>
                                     </thead>
                                     <tbody>
