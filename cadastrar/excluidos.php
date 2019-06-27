@@ -63,6 +63,41 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                 }
             });
         }
+
+        function excluirProduto(id, produto, validade) {
+            document.getElementById("cod_produto2").value = id;
+            // document.getElementById("nome_produto").value = produto;
+            document.getElementById("nome2").innerHTML = produto;
+            document.getElementById("vencimento2").innerHTML = validade;
+        }
+
+        function excluir(id) {
+            // alert(id);
+            $.ajax({
+                method: 'POST',
+                url: 'excluir_def.php',
+                data: $('#form_recuperar-' + id + '').serialize(),
+                success: function(data) {
+                    $('#linha-' + id).fadeOut(300, function() {
+                        $('#linha-' + id).remove();
+                    });
+                    num -= 1;
+                    if (num > 1) {
+                        document.title = "Excluídos | " + num + " registros";
+                    } else if (num == 1) {
+                        document.title = "Excluídos | " + num + " registro";
+                    } else if (num == 0) {
+                        document.getElementById("sem_dados").innerHTML = 'Não há nenhum registro excluído!';
+                        document.getElementById("sem_dados").style.display = 'block';
+                        document.getElementById("tabela").innerHTML = '';
+                        document.title = "Excluídos | Nenhum registro";
+                    }
+                },
+                error: function(data) {
+                    alert("Ocorreu um erro!");
+                }
+            });
+        }
     </script>
     <style>
         .underline {
@@ -133,7 +168,7 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                         <th scope="col">Produto</th>
                         <th scope="col" width="15%">Validade</th>
                         <th scope="col" width="20%">Data da exclusão</th>
-                        <th scope="col" width="5%"><i class="fas fa-cogs"></i></th>
+                        <th scope="col" width="5%" colspan="2"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -157,6 +192,9 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_exclusao)) ?></td>
                                     <td align="center">
                                         <i class="fas fa-history" data-toggle="modal" data-target="#modalRecuperar" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                     </td>
                                 </tr>
                                 <div class="modal fade" id="modalRecuperar" tabindex="-1" role="dialog" aria-labelledby="modalRecuperarTitle" aria-hidden="true">
@@ -192,6 +230,39 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                         </div>
                                     </div>
                                 </div>
+                                <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="modalTitle">
+                                                    <font color="#dc3545">Deseja realmente excluir?</font>
+                                                </h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="hidden" id="cod_produto2" class="form-control" name="cod_produto2" value="<?php echo $vetor_id ?>" readonly>
+                                                <!-- <input type="hidden" id="nome_produto" class="form-control" name="nome_produto" value="" readonly> -->
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <b>Nome do produto: </b>
+                                                        <nome id="nome2" style="overflow-wrap: break-word;"></nome>
+                                                    </div>
+                                                    <div class="col">
+                                                        <b>
+                                                            <validade id="vencimento2" style="color: firebrick;"></validade>
+                                                        </b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-danger" onclick="excluir(document.getElementById('cod_produto2').value)" data-dismiss="modal">Excluir</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         <?php
                     } else { ?>
@@ -203,6 +274,9 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_exclusao)) ?></td>
                                     <td align="center">
                                         <i class="fas fa-history" data-toggle="modal" data-target="#modalRecuperar" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                     </td>
                                 </tr>
                                 <div class="modal fade" id="modalRecuperar" tabindex="-1" role="dialog" aria-labelledby="modalRecuperarTitle" aria-hidden="true">
@@ -234,6 +308,39 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                                 <button type="submit" class="btn btn-success" onclick="recuperar(document.getElementById('cod_produto').value)" data-dismiss="modal">Recuperar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="modalTitle">
+                                                    <font color="#dc3545">Deseja realmente excluir?</font>
+                                                </h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="hidden" id="cod_produto2" class="form-control" name="cod_produto2" value="<?php echo $vetor_id ?>" readonly>
+                                                <!-- <input type="hidden" id="nome_produto" class="form-control" name="nome_produto" value="" readonly> -->
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <b>Nome do produto: </b>
+                                                        <nome id="nome2" style="overflow-wrap: break-word;"></nome>
+                                                    </div>
+                                                    <div class="col">
+                                                        <b>
+                                                            <validade id="vencimento2" style="color: firebrick;"></validade>
+                                                        </b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-danger" onclick="excluir(document.getElementById('cod_produto2').value)" data-dismiss="modal">Excluir</button>
                                             </div>
                                         </div>
                                     </div>
