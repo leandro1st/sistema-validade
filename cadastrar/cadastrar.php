@@ -217,7 +217,7 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Produto</th>
                                             <th scope="col">Validade</th>
-                                            <th scope="col">Hora do cadastro</th>
+                                            <th scope="col">Data do cadastro</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -227,14 +227,14 @@
                                             $vetor_nome = $vetor_pesquisa['nome_produto'];
                                             $vetor_hora = $vetor_pesquisa['hora_cadastro'];
                                             $vetor_validade = $vetor_pesquisa['validade'];
-                                            $data_hora = new DateTime($vetor_hora);
-                                            $hora = $data_hora->format('H:i:s');
+                                            // $data_hora = new DateTime($vetor_hora);
+                                            // $hora = $data_hora->format('H:i:s');
                                             ?>
                                             <tr>
                                                 <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
-                                                <td width="65%"><?php echo $vetor_nome ?></td>
-                                                <td width="*" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
-                                                <td width="*" class="text-center"><?php echo $hora ?></td>
+                                                <td width="*"><?php echo $vetor_nome ?></td>
+                                                <td width="15%" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                                <td width="20%" class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora)) ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

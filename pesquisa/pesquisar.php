@@ -106,7 +106,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
             <table class="table table-bordered table-hover">
                 <thead class="thead-light" style="font-size:20px">
                     <tr class="text-center">
-                        <th scope="col" width="10%">#</th>
+                        <th scope="col" width="8%">#</th>
                         <th scope="col">Produto</th>
                         <th scope="col" width="20%">Validade</th>
                         <th scope="col" width="20%">Data do cadastro</th>

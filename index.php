@@ -55,11 +55,14 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                         document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num + ' registros!';
                         document.title = "Validades | " + num + " cadastros";
                     } else if (num == 1) {
+                        document.getElementById("botao_excluir").innerHTML = 'Excluir';
                         document.getElementById("contagem").innerHTML = 'Deseja realmente excluir o registro?';
                         document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num + ' registro!';
+                        document.getElementById("btn_modal_excluir").innerHTML = 'Excluir';
                         document.title = "Validades | " + num + " cadastro";
                     } else if (num == 0) {
                         document.getElementById("sem_dados").innerHTML = 'Não há nenhum registro!';
+                        document.getElementById("sem_dados").className = 'text-center lead';
                         document.getElementById("sem_dados").style.display = 'block';
                         document.getElementById("tabela").innerHTML = '';
                         document.getElementById("botao_excluir").disabled = 'true';
@@ -154,7 +157,12 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
     <?php if ($numero_produtos == "0") { ?>
         <header class="jumbotron" style="padding: 2.5em;">
             <h1 class="text-center">Validades</h1>
-            <button type="button" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="float: right; margin-top: -55px; display: none;">Excluir tudo</button>
+            <button type="button" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="float: right; margin-top: -55px; display: none;">Excluir</button>
+        </header>
+    <?php } else if ($numero_produtos == "1") { ?>
+        <header class="jumbotron" style="padding: 2.5em;">
+            <h1 class="text-center">Validades</h1>
+            <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="float: right; margin-top: -55px;">Excluir</button>
         </header>
     <?php } else { ?>
         <header class="jumbotron" style="padding: 2.5em;">
@@ -192,7 +200,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-danger" onclick="excluirTudo()">Excluir tudo</button>
+                            <button type="submit" id="btn_modal_excluir" class="btn btn-danger" onclick="excluirTudo()">Excluir tudo</button>
                         </div>
                     </div>
                 </div>
@@ -202,11 +210,11 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         if ($numero_produtos == 0) { ?>
             <p class="text-center lead" style="font-size: 1.75rem;">Não há nenhum registro!</p>
         <?php } else { ?>
-            <h3 class="text-secondary text-center" id="sem_dados" style="display: none;"></h3>
+            <h3 class="text-secondary text-center" id="sem_dados" style="display: none; font-size: 1.75rem;"></h3>
             <table id="tabela" class="table table-bordered table-hover">
                 <thead class="thead-light" style="font-size:20px">
                     <tr class="text-center">
-                        <th scope="col" width="10%">#</th>
+                        <th scope="col" width="8%">#</th>
                         <th scope="col">Produto</th>
                         <th scope="col" width="15%">Validade</th>
                         <th scope="col" width="20%">Data do cadastro</th>
@@ -271,7 +279,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                 </div>
                             </form>
                         <?php
-                    } else { ?>
+                        } else { ?>
                             <form id="form_excluir-<?php echo $vetor_id ?>">
                                 <tr id="linha-<?php echo $vetor_id ?>">
                                     <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
@@ -317,17 +325,17 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                 </div>
                             </form>
                         <?php }
-                }
-                ?>
+                    }
+                    ?>
                 </tbody>
             </table>
         <?php }
-    // $hoje = date('Y-m-d');
-    // $vence_hoje = mysqli_query($connect, "SELECT * FROM $produtos WHERE validade = '$hoje'");
-    // $num_hoje = mysqli_num_rows($vence_hoje);
-    // $resto = mysqli_query($connect, "SELECT * FROM $produtos WHERE validade != '$hoje'");
-    // $num_resto = mysqli_num_rows($resto);
-    ?>
+        // $hoje = date('Y-m-d');
+        // $vence_hoje = mysqli_query($connect, "SELECT * FROM $produtos WHERE validade = '$hoje'");
+        // $num_hoje = mysqli_num_rows($vence_hoje);
+        // $resto = mysqli_query($connect, "SELECT * FROM $produtos WHERE validade != '$hoje'");
+        // $num_resto = mysqli_num_rows($resto);
+        ?>
         <!-- <script src="chartjs/dist/Chart.bundle.min.js"></script> -->
         <!-- <canvas id="doughnut-chart" width="400" height="150" style="margin-bottom: 80px"></canvas>
         <script type="text/javascript">
