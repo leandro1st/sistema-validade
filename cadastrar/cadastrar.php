@@ -15,6 +15,7 @@
         function cadastrar() {
             var nome_input = $("#nome").val();
             var validade_input = $("#vencimento").val();
+            var arr = validade_input.split("-");
             $.ajax({
                 type: "post",
                 url: "form_validades.php",
@@ -26,11 +27,10 @@
                     } else if (data == "1") {
                         // alert("Cadastrado com sucesso!");
                     } else if (data == "Existente") {
-                        alert("Nome: " + nome_input + "\nValidade: " + validade_input + "\nCadastro já existe!");
+                        alert("Nome: " + nome_input + "\nValidade: " + arr[2] + "/" + arr[1] + "/" + arr[0] + "\nCadastro já existe!");
                     }
                 },
             });
-
         }
     </script>
     <style>
