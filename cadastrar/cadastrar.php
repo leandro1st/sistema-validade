@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../style.css">
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../jquery/jquery-3.4.0.min.js"></script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -244,7 +245,7 @@
                     <?php } ?>
                 </div>
             </div>
-        </center><br>
+        </center>
         <script>
             // Example starter JavaScript for disabling form submissions if there are invalid fields
             (function() {
@@ -265,7 +266,29 @@
                 }, false);
             })();
         </script>
-    </main>
+    </main><br><br><br><br><br><br><br><br><br>
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Footer Elements -->
+        <div style="background-color: #3e4551; padding: 16px">
+            <center>
+                <div class="row" style="display: inline-block">
+                    <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook" style="margin-right: 40px;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://github.com/leandro1st" class="btn-social btn-github" style="margin-right: 40px;"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram" style="margin-right: 40px;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </center>
+        </div>
+        <!-- Footer Elements -->
+        <!-- Copyright -->
+        <div class="text-center" style="background-color: #323741; padding: 16px; color: #dddddd">©
+            2019 Copyright –
+            <a href="https://sakamototen.com.br/" style="text-decoration: none"> SakamotoTen – Produtos Orientais e
+                Naturais</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
 </body>
 
 </html>

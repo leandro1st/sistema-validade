@@ -25,6 +25,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../style.css">
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../jquery/jquery-3.4.0.min.js"></script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -128,7 +129,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
                                 <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                             </tr>
                         <?php
-                    } else { ?>
+                        } else { ?>
                             <tr id="linha-<?php echo $vetor_id ?>">
                                 <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                                 <td><?php echo $vetor_produto ?></td>
@@ -137,10 +138,10 @@ $numero_produto = mysqli_num_rows($pesquisar);
                             </tr>
                             </form>
                         <?php }
-                } ?>
+                    } ?>
                 </tbody>
             </table>
-        </main>
+        </main><br><br><br><br><br><br><br>
     <?php } else { ?>
         <header class="jumbotron" style="padding: 2.5em">
             <h1 class="text-center">Validades</h1>
@@ -155,6 +156,29 @@ $numero_produto = mysqli_num_rows($pesquisar);
             document.location.href = "../";
         </script>
     <?php } ?>
+    <br>
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Footer Elements -->
+        <div style="background-color: #3e4551; padding: 16px">
+            <center>
+                <div class="row" style="display: inline-block">
+                    <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook" style="margin-right: 40px;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://github.com/leandro1st" class="btn-social btn-github" style="margin-right: 40px;"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram" style="margin-right: 40px;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </center>
+        </div>
+        <!-- Footer Elements -->
+        <!-- Copyright -->
+        <div class="text-center" style="background-color: #323741; padding: 16px; color: #dddddd">©
+            2019 Copyright –
+            <a href="https://sakamototen.com.br/" style="text-decoration: none"> SakamotoTen – Produtos Orientais e
+                Naturais</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
 </body>
 
 </html>
