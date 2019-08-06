@@ -81,13 +81,13 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <nav aria-label="breadcrumb" style="position: absolute">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
-            <li class="breadcrumb-item active"><i class="fas fa-search"></i>
+            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="fas fa-search"></i>
                 <?php if ($produto != "" || $produto != null) {
                     echo "Pesquisa | " . $produto;
                 } else {
                     echo "Pesquisa";
                 } ?>
-            </li>
+            </a></li>
         </ol>
     </nav>
     <?php

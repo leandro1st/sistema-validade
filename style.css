@@ -82,3 +82,8 @@ a.btn-social, .btn-social {
     bottom: 0;
     left: 0;
 }
+
+.none_li {
+    color: inherit !important;
+    text-decoration: none;
+}

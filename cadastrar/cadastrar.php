@@ -94,7 +94,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
             <li class="breadcrumb-item"><a href="#"><i class="far fa-file-alt"></i> Cadastro</a></li>
-            <li class="breadcrumb-item active"><i class="fas fa-plus-circle"></i> Cadastrar Produtos</li>
+            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="fas fa-plus-circle"></i> Cadastrar Produtos</a></li>
         </ol>
     </nav>
     <header class="jumbotron" style="padding: 2.5em;">

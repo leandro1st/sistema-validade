@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05-Ago-2019 às 15:43
+-- Generation Time: 06-Ago-2019 às 21:52
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -670,7 +670,44 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Pipoca Canjica de Milho Salgada 50G', '2019-12-24', '2019-08-02 10:36:43', 744),
 ('Pipoca Canjica de Milho Doce 50G', '2019-12-24', '2019-08-02 10:37:14', 745),
 ('Rosquinha Satsumaya Gergelim Pote 250G', '2019-11-25', '2019-08-02 10:37:53', 746),
-('Banana Chips 100G', '2019-09-17', '2019-08-02 11:31:10', 747);
+('Banana Chips 100G', '2019-09-17', '2019-08-02 11:31:10', 747),
+('Sembei Kyakuni Gergelim 200G', '2019-11-06', '2019-08-06 11:35:54', 748),
+('Rosquinha Satsumaya Coco Pote 250G', '2019-12-01', '2019-08-06 11:40:36', 749),
+('Yakissoba Alfa Fino 500G', '2020-07-29', '2019-08-06 11:41:19', 750),
+('Molho de Ostra Panda 255ml', '2022-03-08', '2019-08-06 11:46:59', 751),
+('Kombu Dashi Shimaya 42G', '2020-06-05', '2019-08-06 11:48:07', 752),
+('Molho de Ostra Panda 510ml', '2022-05-10', '2019-08-06 11:48:32', 753),
+('Misso Aka Sakura 500G', '2020-04-17', '2019-08-06 11:49:01', 754),
+('Misso Aka Sakura 1kg', '2020-04-03', '2019-08-06 11:49:45', 755),
+('Kare Bom Curry 120G', '2020-07-01', '2019-08-06 11:50:08', 756),
+('Kare Golden Forte 220G', '2020-09-22', '2019-08-06 11:50:38', 757),
+('Bisc Palito Pepero Choco Cookie 32G', '2019-11-21', '2019-08-06 11:51:07', 758),
+('Shoyu Sakura Tradicional 150ml', '2020-12-31', '2019-08-06 11:51:54', 759),
+('Ã“leo de Gergelim Torrado Hong Kong 100ml', '2022-06-04', '2019-08-06 11:52:24', 760),
+('Hitimi Togarashi S&b 15G', '2021-08-15', '2019-08-06 11:52:53', 761),
+('Azuki Casa Forte 1kg', '2020-07-01', '2019-08-06 11:53:07', 762),
+('Ebicen Cebola 60G', '2019-12-30', '2019-08-06 11:53:41', 763),
+('Choga Gari Pote 230G Dren 100G', '2020-01-01', '2019-08-06 11:54:03', 764),
+('Choga Gari Pote 230G Dren 100G', '2020-01-19', '2019-08-06 11:54:11', 765),
+('Bisc Bolinho Yokomizo Coco 270G', '2019-09-18', '2019-08-06 11:58:11', 766),
+('Shitake Fatiado (Sliced) 50G', '2020-11-14', '2019-08-06 11:58:57', 767),
+('Sembei Sankio 200G', '2019-12-15', '2019-08-06 11:59:23', 768),
+('Azuki Casa Forte 500G', '2020-07-16', '2019-08-06 11:59:41', 769),
+('Sembei Paulista Goma 90G', '2020-02-29', '2019-08-06 12:00:06', 770),
+('Amendoim King 400G', '2019-12-19', '2019-08-06 12:05:33', 771),
+('Molho Tare Sakura 180ml', '2020-07-31', '2019-08-06 12:05:55', 772),
+('Tempurako Wt 500G', '2021-04-15', '2019-08-06 12:07:18', 773),
+('Gergelim Preto Casa Forte 100G', '2020-07-01', '2019-08-06 12:07:35', 774),
+('Misso Aka Hinomoto 1kg', '2020-06-05', '2019-08-06 12:08:04', 775),
+('Misso Aka Hinomoto 1kg', '2020-07-02', '2019-08-06 12:08:19', 776),
+('Moti Gome Jipovura 1kg', '2020-07-31', '2019-08-06 12:08:47', 777),
+('Moti Gome Nebaru 1kg', '2020-07-31', '2019-08-06 12:09:11', 778),
+('Sembei Cookies Ichiban Misto Pote 380G', '2019-11-17', '2019-08-06 15:12:45', 779),
+('Amendoim Doce Pote Castella 170G', '2020-02-01', '2019-08-06 15:13:18', 780),
+('Amendoim Doce Pote Castella 170G', '2019-12-27', '2019-08-06 15:13:26', 781),
+('Yokan Azuki 400G', '2020-03-26', '2019-08-06 15:13:48', 782),
+('Sembei Kyakuni Gergelim Chato 400G', '2019-11-06', '2019-08-06 15:14:22', 783),
+('Pocky Glico Chocolate 42G', '2020-01-09', '2019-08-06 15:14:48', 784);
 
 --
 -- Indexes for dumped tables
@@ -696,13 +733,13 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `excluidos`
 --
 ALTER TABLE `excluidos`
-  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=748;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=785;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

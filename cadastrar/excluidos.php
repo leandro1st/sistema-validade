@@ -190,7 +190,7 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
             <li class="breadcrumb-item"><a href="./cadastrar.php"><i class="far fa-file-alt"></i> Cadastro</a></li>
-            <li class="breadcrumb-item active"><i class="fas fa-trash-alt"></i> Produtos Excluídos</li>
+            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="fas fa-trash-alt"></i> Produtos Excluídos</a></li>
         </ol>
     </nav>
     <?php if ($numero_excluidos == "0") { ?>
