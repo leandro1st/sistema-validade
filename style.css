@@ -87,3 +87,17 @@ a.btn-social, .btn-social {
     color: inherit !important;
     text-decoration: none;
 }
+
+.carousel .item {
+    height: 450px;
+}
+
+.carousel-item img {
+    height: 450px;
+}
+
+.carousel-caption {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+}
