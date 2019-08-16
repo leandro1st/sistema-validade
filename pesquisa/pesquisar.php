@@ -78,43 +78,83 @@ $numero_produto = mysqli_num_rows($pesquisar);
             </form>
         </div>
     </nav>
-    <nav aria-label="breadcrumb" style="position: absolute">
-        <ol class="breadcrumb">
+    <nav aria-label="breadcrumb" style="position: absolute; z-index: 1;">
+        <ol class="breadcrumb" style="background: none; margin: 0">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
-            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="fas fa-search"></i>
-                <?php if ($produto != "" || $produto != null) {
-                    echo "Pesquisa | " . $produto;
-                } else {
-                    echo "Pesquisa";
-                } ?>
-            </a></li>
+            <li class="breadcrumb-item active">
+                <a href="#" class="none_li"><i class="fas fa-search"></i>
+                    <?php if ($produto != "" || $produto != null) {
+                        echo "Pesquisa | " . $produto;
+                    } else {
+                        echo "Pesquisa";
+                    } ?>
+                </a>
+            </li>
         </ol>
     </nav>
+    <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <div class="view">
+                    <img class="d-block w-100" src="../imagens/mountain.jpg" alt="First slide">
+                </div>
+                <div class="carousel-caption">
+                    <h1 style="padding-bottom: 10px">Validades</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="view">
+                    <img class="d-block w-100" src="../imagens/emilia.png" alt="Second slide">
+                </div>
+                <div class="carousel-caption">
+                    <h1 style="padding-bottom: 10px">Validades</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="view">
+                    <img class="d-block w-100" src="../imagens/kimi_no_na.jpg" alt="Third slide">
+                </div>
+                <div class="carousel-caption">
+                    <h1 style="padding-bottom: 10px">Validades</h1>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div><br>
     <?php
     if ($numero_produto > 0) { ?>
-        <header class="jumbotron" style="padding: 2.5em">
-            <h1 class="text-center">Validades</h1>
-        </header>
-        <main class="container">
-            <h4>Resultados: <small><?php echo $produto ?></small></h4>
-            <p class="lead">
-                <?php if ($numero_produto == 1) {
+    <main class="container">
+        <h4>Resultados: <small><a href="#" class="none_li"><?php echo $produto ?></a></small></h4>
+        <p class="lead">
+            <?php if ($numero_produto == 1) {
                     echo "<b>" . $numero_produto . "</b> encontrado";
                 } else {
                     echo "<b>" . $numero_produto . "</b> encontrados";
                 } ?>
-            </p>
-            <table class="table table-bordered table-hover">
-                <thead class="thead-light" style="font-size:20px">
-                    <tr class="text-center">
-                        <th scope="col" width="8%">#</th>
-                        <th scope="col">Produto</th>
-                        <th scope="col" width="20%">Validade</th>
-                        <th scope="col" width="20%">Data do cadastro</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
+        </p>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-light" style="font-size:20px">
+                <tr class="text-center">
+                    <th scope="col" width="8%">#</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col" width="20%">Validade</th>
+                    <th scope="col" width="20%">Data do cadastro</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
                     for ($i = 0; $i < $numero_produto; $i++) {
                         $vetor = mysqli_fetch_array($pesquisar);
                         $vetor_produto = $vetor['nome_produto'];
@@ -122,41 +162,37 @@ $numero_produto = mysqli_num_rows($pesquisar);
                         $vetor_hora_cadastro = $vetor['hora_cadastro'];
                         $vetor_id = $vetor['id'];
                         if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
-                            <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
-                                <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                                <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
-                                <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
-                                <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
-                            </tr>
-                        <?php
+                <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
+                    <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
+                    <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
+                    <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                    <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
+                </tr>
+                <?php
                         } else { ?>
-                            <tr id="linha-<?php echo $vetor_id ?>">
-                                <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                                <td><?php echo $vetor_produto ?></td>
-                                <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
-                                <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
-                            </tr>
-                            </form>
-                        <?php }
+                <tr id="linha-<?php echo $vetor_id ?>">
+                    <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
+                    <td><?php echo $vetor_produto ?></td>
+                    <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                    <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
+                </tr>
+                </form>
+                <?php }
                     } ?>
-                </tbody>
-            </table>
-        </main><br><br><br><br><br><br><br>
+            </tbody>
+        </table>
+    </main><br><br><br><br><br><br><br><br><br>
     <?php } else { ?>
-        <header class="jumbotron" style="padding: 2.5em">
-            <h1 class="text-center">Validades</h1>
-        </header>
-        <main class="container">
-            <h4>Resultados: <small><?php echo $produto ?></small></h4>
-            <p class="lead"><?php echo "<b>" . $numero_produto . "</b> encontrado" ?></p>
-        </main>
-        <script>
-            var nome = "<?php echo $produto ?>";
-            alert(nome + " não encontrado!");
-            document.location.href = "../";
-        </script>
+    <main class="container">
+        <h4>Resultados: <small><a href="#" class="none_li"><?php echo $produto ?></a></small></h4>
+        <p class="lead"><?php echo "<b>" . $numero_produto . "</b> encontrado" ?></p>
+    </main>
+    <script>
+        var nome = "<?php echo $produto ?>";
+        alert(nome + " não encontrado!");
+        document.location.href = "../";
+    </script>
     <?php } ?>
-    <br>
     <!-- Footer -->
     <footer class="footer">
         <!-- Footer Elements -->

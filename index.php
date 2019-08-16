@@ -63,6 +63,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                         document.title = "Validades | " + num + " cadastro";
                     } else if (num == 0) {
                         document.getElementById("sem_dados").innerHTML = 'Não há nenhum registro!';
+                        document.getElementById("sem_dados").style.margin = '70px';
                         document.getElementById("sem_dados").className = 'text-center lead';
                         document.getElementById("sem_dados").style.display = 'block';
                         document.getElementById("tabela").innerHTML = '';
@@ -164,7 +165,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <div class="view">
-                    <img class="d-block w-100" src="imagens/mountain.jpg">
+                    <img class="d-block w-100" src="imagens/mountain.jpg" alt="First slide">
                 </div>
                 <div class="carousel-caption">
                     <h1 style="padding-bottom: 10px">Validades</h1>
@@ -179,7 +180,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
             </div>
             <div class="carousel-item">
                 <div class="view">
-                    <img class="d-block w-100" src="imagens/tenki_no_ko.jpg" alt="Second slide">
+                    <img class="d-block w-100" src="imagens/emilia.png" alt="Second slide">
                 </div>
                 <div class="carousel-caption">
                     <h1 style="padding-bottom: 10px">Validades</h1>
@@ -255,7 +256,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         </form>
         <?php
         if ($numero_produtos == 0) { ?>
-        <p class="text-center lead" style="font-size: 1.75rem;">Não há nenhum registro!</p>
+        <p class="text-center lead" style="font-size: 1.75rem; margin: 70px;">Não há nenhum registro!</p>
         <?php } else { ?>
         <h3 class="text-secondary text-center" id="sem_dados" style="display: none; font-size: 1.75rem;"></h3>
         <table id="tabela" class="table table-bordered table-hover">
@@ -414,7 +415,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 }
             });
         </script> -->
-    </main><br><br><br><br><br><br><br><br>
+    </main><br><br><br><br><br><br><br><br><br>
     <!-- Footer -->
     <footer class="footer">
         <!-- Footer Elements -->

@@ -90,16 +90,54 @@
             </form>
         </div>
     </nav>
-    <nav aria-label="breadcrumb" style="position: absolute">
-        <ol class="breadcrumb">
+    <nav aria-label="breadcrumb" style="position: absolute; z-index: 1;">
+        <ol class="breadcrumb" style="background: none; margin: 0">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
             <li class="breadcrumb-item"><a href="#"><i class="far fa-file-alt"></i> Cadastro</a></li>
             <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="fas fa-plus-circle"></i> Cadastrar Produtos</a></li>
         </ol>
     </nav>
-    <header class="jumbotron" style="padding: 2.5em;">
-        <h1 class="text-center">Cadastrar produtos</h1>
-    </header>
+    <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <div class="view">
+                    <img class="d-block w-100" src="../imagens/mountain.jpg" alt="First slide">
+                </div>
+                <div class="carousel-caption">
+                    <h1 style="padding-bottom: 10px">Cadastrar produtos</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="view">
+                    <img class="d-block w-100" src="../imagens/emilia.png" alt="Second slide">
+                </div>
+                <div class="carousel-caption">
+                    <h1 style="padding-bottom: 10px">Cadastrar produtos</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="view">
+                    <img class="d-block w-100" src="../imagens/kimi_no_na.jpg" alt="Third slide">
+                </div>
+                <div class="carousel-caption">
+                    <h1 style="padding-bottom: 10px">Cadastrar produtos</h1>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div><br>
     <main class="container">
         <form id="form_cadastrar" method="post" class="needs-validation" novalidate>
             <div class="form-row">
@@ -155,25 +193,25 @@
                     </div>
                     <?php
                     if ($qntd_pesquisa_recentes == 0) { ?>
-                        <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
-                            <div class="card-body">
-                                <p class="lead">Nenhum cadastro nas últimas 24 horas</p>
-                            </div>
+                    <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
+                        <div class="card-body">
+                            <p class="lead">Nenhum cadastro nas últimas 24 horas</p>
                         </div>
+                    </div>
                     <?php } else { ?>
-                        <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
-                            <div class="card-body">
-                                <table class="table table-hover">
-                                    <thead class="thead-light" style="font-size:20px">
-                                        <tr class="text-center">
-                                            <th scope="col">#</th>
-                                            <th scope="col">Produto</th>
-                                            <th scope="col">Validade</th>
-                                            <th scope="col">Hora do cadastro</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                    <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead class="thead-light" style="font-size:20px">
+                                    <tr class="text-center">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Produto</th>
+                                        <th scope="col">Validade</th>
+                                        <th scope="col">Hora do cadastro</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
                                         for ($i = 0; $i < $qntd_pesquisa_recentes; $i++) {
                                             $vetor_pesquisa = mysqli_fetch_array($pesquisar_recentes);
                                             $vetor_nome = $vetor_pesquisa['nome_produto'];
@@ -182,17 +220,17 @@
                                             $data_hora = new DateTime($vetor_hora);
                                             $hora = $data_hora->format('H:i:s');
                                             ?>
-                                            <tr>
-                                                <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
-                                                <td width="65%"><?php echo $vetor_nome ?></td>
-                                                <td width="*" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
-                                                <td width="*" class="text-center"><?php echo $hora ?></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    <tr>
+                                        <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
+                                        <td width="65%"><?php echo $vetor_nome ?></td>
+                                        <td width="*" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                        <td width="*" class="text-center"><?php echo $hora ?></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
                     <?php } ?>
                 </div>
                 <div class="card border-0">
@@ -204,25 +242,25 @@
                         </button>
                     </div>
                     <?php if ($qntd_pesquisa_ultimos50 == 0) { ?>
-                        <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
-                            <div class="card-body">
-                                <p class="lead">Não há nenhum cadastro!</p>
-                            </div>
+                    <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
+                        <div class="card-body">
+                            <p class="lead">Não há nenhum cadastro!</p>
                         </div>
+                    </div>
                     <?php } else { ?>
-                        <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
-                            <div class="card-body">
-                                <table class="table table-hover">
-                                    <thead class="thead-light" style="font-size:20px">
-                                        <tr class="text-center">
-                                            <th scope="col">#</th>
-                                            <th scope="col">Produto</th>
-                                            <th scope="col">Validade</th>
-                                            <th scope="col">Data do cadastro</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                    <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead class="thead-light" style="font-size:20px">
+                                    <tr class="text-center">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Produto</th>
+                                        <th scope="col">Validade</th>
+                                        <th scope="col">Data do cadastro</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
                                         for ($i = 0; $i < $qntd_pesquisa_ultimos50; $i++) {
                                             $vetor_pesquisa = mysqli_fetch_array($pesquisar_ultimos50);
                                             $vetor_nome = $vetor_pesquisa['nome_produto'];
@@ -231,17 +269,17 @@
                                             // $data_hora = new DateTime($vetor_hora);
                                             // $hora = $data_hora->format('H:i:s');
                                             ?>
-                                            <tr>
-                                                <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
-                                                <td width="*"><?php echo $vetor_nome ?></td>
-                                                <td width="15%" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
-                                                <td width="20%" class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora)) ?></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    <tr>
+                                        <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
+                                        <td width="*"><?php echo $vetor_nome ?></td>
+                                        <td width="15%" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                        <td width="20%" class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora)) ?></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
                     <?php } ?>
                 </div>
             </div>
