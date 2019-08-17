@@ -135,6 +135,9 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                 }
             });
         }
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
     <style>
         .underline {
@@ -327,10 +330,14 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                         <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
                         <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_exclusao)) ?></td>
                         <td align="center" class="td_53x53">
-                            <i class="fas fa-history" data-toggle="modal" data-target="#modalRecuperar" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                            <span data-toggle="modal" data-target="#modalRecuperar">
+                                <i class="fas fa-history" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='#25d366'>Recuperar</font></b>" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                            </span>
                         </td>
                         <td align="center" class="td_53x53">
-                            <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                            <span data-toggle="modal" data-target="#modalExcluir">
+                                <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='red'>Excluir</font></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                            </span>
                         </td>
                     </tr>
                     <div class="modal fade" id="modalRecuperar" tabindex="-1" role="dialog" aria-labelledby="modalRecuperarTitle" aria-hidden="true">
@@ -409,10 +416,14 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                         <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
                         <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_exclusao)) ?></td>
                         <td align="center" class="td_53x53">
-                            <i class="fas fa-history" data-toggle="modal" data-target="#modalRecuperar" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                            <span data-toggle="modal" data-target="#modalRecuperar">
+                                <i class="fas fa-history" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='#25d366'>Recuperar</font></b>"" title="<b><font color='#25d366'>Recuperar</font></b>" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                            </span>
                         </td>
                         <td align="center" class="td_53x53">
-                            <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                            <span data-toggle="modal" data-target="#modalExcluir">
+                                <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='red'>Excluir</font></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                            </span>
                         </td>
                     </tr>
                     <div class="modal fade" id="modalRecuperar" tabindex="-1" role="dialog" aria-labelledby="modalRecuperarTitle" aria-hidden="true">
