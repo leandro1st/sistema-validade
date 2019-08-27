@@ -190,7 +190,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <script>
         var nome = "<?php echo $produto ?>";
         alert(nome + " não encontrado!");
-        document.location.href = "../";
+        window.history.go(-1);
     </script>
     <?php } ?>
     <!-- Footer -->
