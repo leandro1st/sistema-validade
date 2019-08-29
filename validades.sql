@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Ago-2019 às 20:26
+-- Generation Time: 29-Ago-2019 às 16:10
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -817,7 +817,8 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Ebicen CamarÃ£o 60G', '2020-01-16', '2019-08-27 12:19:20', 912),
 ('Kombu Dashi 56G', '2020-09-03', '2019-08-27 12:21:19', 913),
 ('Missoshiru Wakame 12P 18G', '2020-03-20', '2019-08-27 12:21:37', 914),
-('Chiclete Top Dragon Ball Soda 5,2G', '2020-08-16', '2019-08-27 12:22:03', 915);
+('Chiclete Top Dragon Ball Soda 5,2G', '2020-08-16', '2019-08-27 12:22:03', 915),
+('Alfort Bisc c/ Cobert Choco Ao Leite 55G', '2020-02-29', '2019-08-29 11:05:11', 916);
 
 --
 -- Indexes for dumped tables
@@ -843,13 +844,13 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `excluidos`
 --
 ALTER TABLE `excluidos`
-  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=916;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=917;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
