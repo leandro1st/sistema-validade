@@ -101,3 +101,34 @@ a.btn-social, .btn-social {
     transform: translateY(-50%);
     bottom: initial;
 }
+
+.underline {
+    border-bottom: 3px solid #4EBA6F;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.btn_transparente {
+    outline: none;
+    border: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f105";
+    font-weight: 900;
+    color: #4EBA6F;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.td_53x53 {
+    width: 53px;
+    height: 53px;
+}

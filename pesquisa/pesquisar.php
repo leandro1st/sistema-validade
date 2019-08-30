@@ -29,22 +29,6 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../jquery/jquery-3.4.0.min.js"></script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
-    <style>
-        .underline {
-            border-bottom: 3px solid #4EBA6F;
-        }
-
-        .breadcrumb-item+.breadcrumb-item::before {
-            font-family: "Font Awesome 5 Free";
-            content: "\f105";
-            font-weight: 900;
-            color: #4EBA6F;
-        }
-
-        a:link {
-            text-decoration: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -135,63 +119,63 @@ $numero_produto = mysqli_num_rows($pesquisar);
     </div><br>
     <?php
     if ($numero_produto > 0) { ?>
-    <main class="container">
-        <h4>Resultados: <small><a href="#" class="none_li"><?php echo $produto ?></a></small></h4>
-        <p class="lead">
-            <?php if ($numero_produto == 1) {
-                    echo "<b>" . $numero_produto . "</b> encontrado";
-                } else {
-                    echo "<b>" . $numero_produto . "</b> encontrados";
-                } ?>
-        </p>
-        <table class="table table-bordered table-hover">
-            <thead class="thead-light" style="font-size:20px">
-                <tr class="text-center">
-                    <th scope="col" width="8%">#</th>
-                    <th scope="col">Produto</th>
-                    <th scope="col" width="20%">Validade</th>
-                    <th scope="col" width="20%">Data do cadastro</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    for ($i = 0; $i < $numero_produto; $i++) {
-                        $vetor = mysqli_fetch_array($pesquisar);
-                        $vetor_produto = $vetor['nome_produto'];
-                        $vetor_validade = $vetor['validade'];
-                        $vetor_hora_cadastro = $vetor['hora_cadastro'];
-                        $vetor_id = $vetor['id'];
-                        if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
-                <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
-                    <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                    <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
-                    <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
-                    <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
-                </tr>
-                <?php
-                        } else { ?>
-                <tr id="linha-<?php echo $vetor_id ?>">
-                    <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                    <td><?php echo $vetor_produto ?></td>
-                    <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
-                    <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
-                </tr>
-                </form>
-                <?php }
+        <main class="container">
+            <h4>Resultados: <small><a href="#" class="none_li"><?php echo $produto ?></a></small></h4>
+            <p class="lead">
+                <?php if ($numero_produto == 1) {
+                        echo "<b>" . $numero_produto . "</b> encontrado";
+                    } else {
+                        echo "<b>" . $numero_produto . "</b> encontrados";
                     } ?>
-            </tbody>
-        </table>
-    </main><br><br><br><br><br><br><br><br><br>
+            </p>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light" style="font-size:20px">
+                    <tr class="text-center">
+                        <th scope="col" width="8%">#</th>
+                        <th scope="col">Produto</th>
+                        <th scope="col" width="20%">Validade</th>
+                        <th scope="col" width="20%">Data do cadastro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        for ($i = 0; $i < $numero_produto; $i++) {
+                            $vetor = mysqli_fetch_array($pesquisar);
+                            $vetor_produto = $vetor['nome_produto'];
+                            $vetor_validade = $vetor['validade'];
+                            $vetor_hora_cadastro = $vetor['hora_cadastro'];
+                            $vetor_id = $vetor['id'];
+                            if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
+                            <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
+                                <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
+                                <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
+                                <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
+                            </tr>
+                        <?php
+                                } else { ?>
+                            <tr id="linha-<?php echo $vetor_id ?>">
+                                <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
+                                <td><?php echo $vetor_produto ?></td>
+                                <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
+                            </tr>
+                            </form>
+                    <?php }
+                        } ?>
+                </tbody>
+            </table>
+        </main><br><br><br><br><br><br><br><br><br>
     <?php } else { ?>
-    <main class="container">
-        <h4>Resultados: <small><a href="#" class="none_li"><?php echo $produto ?></a></small></h4>
-        <p class="lead"><?php echo "<b>" . $numero_produto . "</b> encontrado" ?></p>
-    </main>
-    <script>
-        var nome = "<?php echo $produto ?>";
-        alert(nome + " não encontrado!");
-        window.history.go(-1);
-    </script>
+        <main class="container">
+            <h4>Resultados: <small><a href="#" class="none_li"><?php echo $produto ?></a></small></h4>
+            <p class="lead"><?php echo "<b>" . $numero_produto . "</b> encontrado" ?></p>
+        </main>
+        <script>
+            var nome = "<?php echo $produto ?>";
+            alert(nome + " não encontrado!");
+            window.history.go(-1);
+        </script>
     <?php } ?>
     <!-- Footer -->
     <footer class="footer">
