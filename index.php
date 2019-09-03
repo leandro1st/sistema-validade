@@ -96,6 +96,72 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 }
             });
         } /* Excluir todos produtos pelo index */
+
+        /* Ao clicar no ícone de editar, executa a seguinte função que oculta a validade antiga e mostra um input */
+        function editar(id) {
+            // alert(id);
+            document.getElementById('editar_validade-' + id + '').style.display = 'inline';
+            document.getElementById('editar_validade-' + id + '').focus();
+            document.getElementById('validade_editada-' + id + '').style.display = 'none';
+        } /* Ao clicar no ícone de editar, executa a seguinte função que oculta a validade antiga e mostra um input */
+
+        /* Data de hoje */
+        var hoje = new Date();
+        var dd = String(hoje.getDate()).padStart(2, '0');
+        var mm = String(hoje.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = hoje.getFullYear();
+        hoje = yyyy + '-' + mm + '-' + dd; /* Data de hoje */
+
+        /* Função que ao perder o foco do input, oculta o input e retorna a validade editada, ao final executa o ajax */
+        function mouse(id, produto, validade_antiga) {
+            var validade_nova = $('#editar_validade-' + id).val();
+            if (validade_nova == hoje) {
+                var arr = validade_nova.split("-");
+                document.getElementById('editar_validade-' + id + '').style.display = 'none';
+                document.getElementById('editar_validade-' + id + '').className = 'form-control is-valid';
+                document.getElementById('validade_editada-' + id + '').style.display = 'inline';
+                document.getElementById('validade_editada-' + id + '').value = arr[2] + "/" + arr[1] + "/" + arr[0];
+                document.getElementById('linha-' + id + '').className = 'bg-warning';
+                $.ajax({
+                    method: 'POST',
+                    url: 'cadastrar/editar.php',
+                    data: $('#form_excluir-' + id + '').serialize(),
+                    success: function(data) {
+                        document.getElementById("produto_editado").innerHTML = produto;
+                        document.getElementById("validade_antiga").innerHTML = validade_antiga;
+                        document.getElementById('validade_nova').innerHTML = arr[2] + "/" + arr[1] + "/" + arr[0];
+                        $("#modalEditado").modal('show');
+                    },
+                    error: function(data) {
+                        alert("Ocorreu um erro!");
+                    }
+                });
+            } else if (validade_nova > hoje) {
+                var arr = validade_nova.split("-");
+                document.getElementById('editar_validade-' + id + '').style.display = 'none';
+                document.getElementById('editar_validade-' + id + '').className = 'form-control is-valid';
+                document.getElementById('validade_editada-' + id + '').style.display = 'inline';
+                document.getElementById('validade_editada-' + id + '').value = arr[2] + "/" + arr[1] + "/" + arr[0];
+                document.getElementById('linha-' + id + '').className = '';
+                $.ajax({
+                    method: 'POST',
+                    url: 'cadastrar/editar.php',
+                    data: $('#form_excluir-' + id + '').serialize(),
+                    success: function(data) {
+                        document.getElementById("produto_editado").innerHTML = produto;
+                        document.getElementById("validade_antiga").innerHTML = validade_antiga;
+                        document.getElementById('validade_nova').innerHTML = arr[2] + "/" + arr[1] + "/" + arr[0];
+                        $("#modalEditado").modal('show');
+                    },
+                    error: function(data) {
+                        alert("Ocorreu um erro!");
+                    }
+                });
+            } else {
+                document.getElementById('editar_validade-' + id + '').className = 'form-control is-invalid';
+                editar(id);
+            };
+        } /* Função que ao perder o foco do input, oculta o input e retorna a validade editada, ao final executa o ajax */
     </script>
 </head>
 
@@ -190,41 +256,6 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         </a>
     </div><br>
     <main class="container">
-        <form id="form_excluirTudo" method="POST">
-            <div class="modal fade" id="modalExcluirTudo" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTudoTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modalTitle">
-                                <?php if ($numero_produtos == 1) { ?>
-                                    <font class="text-danger">Deseja realmente excluir o registro?</font>
-                                <?php } else { ?>
-                                    <font class="text-danger" id="contagem">Deseja realmente excluir todos(<?php echo $numero_produtos ?>) os registros?</font>
-                                <?php } ?>
-                            </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-9">
-                                    <?php if ($numero_produtos == 1) { ?>
-                                        <h6 class="text-warning">Você excluirá 1 registro!</h6>
-                                    <?php } else { ?>
-                                        <h6 class="text-warning" id="contagem2">Você excluirá <?php echo $numero_produtos ?> registros!</h6>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" id="btn_modal_excluir" class="btn btn-danger" onclick="excluirTudo()">Excluir tudo</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
         <?php
         if ($numero_produtos == 0) { ?>
             <p class="text-center lead" style="font-size: 1.75rem; margin: 70px;">Não há nenhum registro!</p>
@@ -237,7 +268,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                         <th scope="col">Produto</th>
                         <th scope="col" width="15%">Validade</th>
                         <th scope="col" width="20%">Data do cadastro</th>
-                        <th scope="col" width="5%"><i class="fas fa-cogs"></i></th>
+                        <th scope="col" width="5%" colspan="2"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -252,104 +283,181 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                             // echo 'Agora em São Paulo é: <strong>'. date('d/m/Y H:i:s').'</strong><br /><br />'
                             // echo date('d-m-Y')."<br>";
                             // echo date("d-m-Y", strtotime($vetor_validade));
+
                             if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
+                            <!-- Se data de vencimento for hoje, mostra a linha com cor de fundo -->
                             <form id="form_excluir-<?php echo $vetor_id ?>">
                                 <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
                                     <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                                     <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
-                                    <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                    <td class="text-center">
+                                        <?php $hj = date("Y-m-d"); ?>
+                                        <b id="teste" class="text-danger">
+                                            <input id="validade_editada-<?php echo $vetor_id ?>" value="<?php echo date("d/m/Y", strtotime($vetor_validade)) ?>" style="all: unset; cursor: text;" readonly>
+                                            <div id="div-vencimento">
+                                                <input type="hidden" id="id_produto" name="cod_produto" value="<?php echo $vetor_id ?>">
+                                                <input id="editar_validade-<?php echo $vetor_id ?>" name="validade" type="date" class="form-control" min="<?php echo $hj ?>" max="2099-12-31" style="display: none; width: 175px;" required onblur="mouse(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')" onkeydown="return event.key != 'Enter';">
+                                                <div class="invalid-feedback">
+                                                    <?php $hoje = date("d/m/Y"); ?>
+                                                    Por favor, digite o data de vencimento! (min: <?php echo $hoje ?> | máx: 31-12-2099)
+                                                </div>
+                                            </div>
+                                        </b>
+                                    </td>
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
-                                    <td align="center">
+                                    <td align="center" class="td_53x53">
+                                        <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='green'>Editar</font></b>" style="cursor: pointer; color: green; font-size: 25px;" onclick="editar(<?php echo $vetor_id ?>)"></i>
+                                    </td>
+                                    <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalExcluir">
                                             <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='red'>Excluir</font></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                         </span>
                                     </td>
                                 </tr>
-                                <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="modalTitle">
-                                                    <font color="#dc3545">Deseja realmente excluir?</font>
-                                                </h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <input type="hidden" id="cod_produto" class="form-control" name="cod_produto" value="<?php echo $vetor_id ?>" readonly>
-                                                <!-- <input type="hidden" id="nome_produto" class="form-control" name="nome_produto" value="" readonly> -->
-                                                <div class="row">
-                                                    <div class="col-9">
-                                                        <b>Nome do produto: </b>
-                                                        <nome id="nome" style="overflow-wrap: break-word;"></nome>
-                                                    </div>
-                                                    <div class="col">
-                                                        <b>
-                                                            <validade id="vencimento" style="color: firebrick;"></validade>
-                                                        </b>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" class="btn btn-danger" onclick="excluir(document.getElementById('cod_produto').value)" data-dismiss="modal">Excluir</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        <?php
-                                } else { ?>
+                            </form><!-- Se data de vencimento for hoje, mostra a linha com cor de fundo -->
+                        <?php } else { ?>
+                            <!-- Se data de vencimento for diferente de hoje, mostra a linha sem cor de fundo -->
                             <form id="form_excluir-<?php echo $vetor_id ?>">
                                 <tr id="linha-<?php echo $vetor_id ?>">
                                     <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
                                     <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
-                                    <td class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                    <td class="text-center">
+                                        <?php $hj = date("Y-m-d"); ?>
+                                        <b id="teste" class="text-danger">
+                                            <input id="validade_editada-<?php echo $vetor_id ?>" value="<?php echo date("d/m/Y", strtotime($vetor_validade)) ?>" style="all: unset; cursor: text;" readonly>
+                                            <div id="div-vencimento">
+                                                <input type="hidden" id="id_produto" name="cod_produto" value="<?php echo $vetor_id ?>">
+                                                <input id="editar_validade-<?php echo $vetor_id ?>" name="validade" type="date" class="form-control" min="<?php echo $hj ?>" max="2099-12-31" style="display: none; width: 175px;" required onblur="mouse(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')" onkeydown="return event.key != 'Enter';">
+                                                <div class="invalid-feedback">
+                                                    <?php $hoje = date("d/m/Y"); ?>
+                                                    Por favor, digite o data de vencimento! (min: <?php echo $hoje ?> | máx: 31-12-2099)
+                                                </div>
+                                            </div>
+                                        </b>
+                                    </td>
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
-                                    <td align="center">
+                                    <td align="center" class="td_53x53">
+                                        <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='green'>Editar</font></b>" style="cursor: pointer; color: green; font-size: 25px;" onclick="editar(<?php echo $vetor_id ?>)"></i>
+                                    </td>
+                                    <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalExcluir">
                                             <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='red'>Excluir</font></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                         </span>
                                     </td>
                                 </tr>
-                                <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
+                            </form><!-- Se data de vencimento for diferente de hoje, mostra a linha sem cor de fundo -->
+
+                            <!--Modal: modalEditado-->
+                            <div class="modal fade" id="modalEditado" tabindex="-1" role="dialog" aria-labelledby="modalEditadoTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header text-center bg-success">
+                                            <h3 class="modal-title w-100 lead" id="exampleModalLongTitle" style="font-size: 26px"><b>Validade alterada</b></h3>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body text-justify lead">
+                                            <!-- Mostra mensagem no modal -->
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-4" style="padding-right: 0">Produto:</div>
+                                                    <div class="col-8" style="padding: 0"><b id="produto_editado"><?php echo $vetor_produto ?></b></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4" style="padding-right: 0">Validade antiga:</div>
+                                                    <div class="col-8" style="padding: 0"><b id="validade_antiga"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4" style="padding-right: 0">Validade nova:</div>
+                                                    <div class="col-8" style="padding: 0"><b><span id='validade_nova' class='text-success'></span></b></div>
+                                                </div>
+                                            </div>
+                                            <?php // echo "Produto: <b>" . $vetor_produto . " </b><br>Validade antiga: <b>" . date("d/m/Y", strtotime($vetor_validade)) . " </b><br>Validade nova: <b><span id='mostraValidade' class='text-success'></span></b>" 
+                                                        ?>
+                                            <!-- Mostra mensagem no modal -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Confirmar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Modal: modalEditado-->
+
+                            <!-- Modal excluir Produto -->
+                            <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="modalTitle">
+                                                <font color="#dc3545">Deseja realmente excluir?</font>
+                                            </h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" id="cod_produto" class="form-control" name="cod_produto" value="<?php echo $vetor_id ?>" readonly>
+                                            <!-- <input type="hidden" id="nome_produto" class="form-control" name="nome_produto" value="" readonly> -->
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <b>Nome do produto: </b>
+                                                    <nome id="nome" style="overflow-wrap: break-word;"></nome>
+                                                </div>
+                                                <div class="col">
+                                                    <b>
+                                                        <validade id="vencimento" style="color: firebrick;"></validade>
+                                                    </b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-danger" onclick="excluir(document.getElementById('cod_produto').value)" data-dismiss="modal">Excluir</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- Modal excluir Produto -->
+
+                            <!-- Modal excluir tudo -->
+                            <form id="form_excluirTudo" method="POST">
+                                <div class="modal fade" id="modalExcluirTudo" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTudoTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 class="modal-title" id="modalTitle">
-                                                    <font color="#dc3545">Deseja realmente excluir?</font>
+                                                    <?php if ($numero_produtos == 1) { ?>
+                                                        <font class="text-danger">Deseja realmente excluir o registro?</font>
+                                                    <?php } else { ?>
+                                                        <font class="text-danger" id="contagem">Deseja realmente excluir todos(<?php echo $numero_produtos ?>) os registros?</font>
+                                                    <?php } ?>
                                                 </h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="hidden" id="cod_produto" class="form-control" name="cod_produto" value="<?php echo $vetor_id ?>" readonly>
-                                                <!-- <input type="hidden" id="nome_produto" class="form-control" name="nome_produto" value="" readonly> -->
                                                 <div class="row">
                                                     <div class="col-9">
-                                                        <b>Nome do produto: </b>
-                                                        <nome id="nome" style="overflow-wrap: break-word;"></nome>
-                                                    </div>
-                                                    <div class="col">
-                                                        <b>
-                                                            <validade id="vencimento" style="color: firebrick;"></validade>
-                                                        </b>
+                                                        <?php if ($numero_produtos == 1) { ?>
+                                                            <h6 class="text-warning">Você excluirá 1 registro!</h6>
+                                                        <?php } else { ?>
+                                                            <h6 class="text-warning" id="contagem2">Você excluirá <?php echo $numero_produtos ?> registros!</h6>
+                                                        <?php } ?>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" class="btn btn-danger" onclick="excluir(document.getElementById('cod_produto').value)" data-dismiss="modal">Excluir</button>
+                                                <button type="submit" id="btn_modal_excluir" class="btn btn-danger" onclick="excluirTudo()">Excluir tudo</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </form><!-- Modal excluir tudo -->
                     <?php }
-                        }
-                        ?>
+                        } ?>
                 </tbody>
             </table>
         <?php }
@@ -390,6 +498,26 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 }
             });
         </script> -->
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function() {
+                'use strict';
+                window.addEventListener('load', function() {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function(form) {
+                        form.addEventListener('submit', function(event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+        </script>
     </main><br><br><br><br><br><br><br><br><br>
     <!-- Footer -->
     <footer class="footer">

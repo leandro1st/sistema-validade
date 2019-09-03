@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Ago-2019 às 17:09
+-- Generation Time: 03-Set-2019 às 15:24
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -36,6 +36,17 @@ CREATE TABLE `excluidos` (
   `id` int(11) NOT NULL,
   `id_exclusao` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `excluidos`
+--
+
+INSERT INTO `excluidos` (`nome_produto`, `validade`, `hora_cadastro`, `hora_exclusao`, `id`, `id_exclusao`) VALUES
+('Sembei Kyakuni Gergelim', '2019-09-03', '2019-06-04 11:24:16', '2019-09-02 09:32:40', 134, 1),
+('Amendoim King 400g', '2019-09-03', '2019-06-11 10:58:53', '2019-09-02 09:32:54', 177, 2),
+('Bisc Bolinho Yokomizo 270G', '2019-09-04', '2019-07-26 11:02:46', '2019-09-02 09:33:02', 702, 3),
+('Doce Castella Anpan Azuki (Unit)', '2019-09-05', '2019-08-27 12:14:52', '2019-09-02 10:36:46', 905, 4),
+('Marshmallow Chocolate 100G', '2019-09-06', '2019-07-12 12:50:07', '2019-09-02 10:37:01', 563, 5);
 
 -- --------------------------------------------------------
 
@@ -140,7 +151,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Panko Alfa 1kg', '2020-05-23', '2019-05-28 12:16:27', 130),
 ('Okaki Gergelim 200g', '2019-11-22', '2019-06-04 11:16:04', 132),
 ('Ebicen Cebola 60g', '2019-10-25', '2019-06-04 11:24:01', 133),
-('Sembei Kyakuni Gergelim', '2019-09-03', '2019-06-04 11:24:16', 134),
 ('Glico Tomate', '2019-09-25', '2019-06-04 11:24:38', 135),
 ('Ebicen CamarÃ£o 60g', '2019-10-30', '2019-06-04 11:25:07', 136),
 ('Choga Gari Pote Takaki', '2019-11-17', '2019-06-04 11:25:44', 137),
@@ -183,7 +193,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Udon Mezzani 500g', '2020-05-05', '2019-06-11 10:57:02', 174),
 ('Ãgar Ãgar 100g', '2020-02-04', '2019-06-11 10:57:35', 175),
 ('Missoshiru Wakame 12p', '2019-10-12', '2019-06-11 10:58:34', 176),
-('Amendoim King 400g', '2019-09-03', '2019-06-11 10:58:53', 177),
 ('Dashinomoto 200g', '2020-05-02', '2019-06-11 10:59:32', 178),
 ('Kimuchi no Moto', '2020-07-17', '2019-06-11 10:59:47', 179),
 ('Sembei Kyakuni Gergelim Chato', '2019-09-09', '2019-06-11 11:00:17', 180),
@@ -470,7 +479,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Shitake Seco 40G', '2020-02-19', '2019-07-12 12:48:14', 560),
 ('Shitake Seco 100G', '2020-02-19', '2019-07-12 12:48:29', 561),
 ('Sembei Sankio 200G', '2019-11-10', '2019-07-12 12:49:19', 562),
-('Marshmallow Chocolate 100G', '2019-09-06', '2019-07-12 12:50:07', 563),
 ('Marshmallow Morango 100G', '2020-01-09', '2019-07-12 12:50:19', 564),
 ('Farinha Panko Alfa 200G', '2020-07-08', '2019-07-12 12:50:31', 565),
 ('Sembei Kyakuni Gengibre 200G', '2019-10-03', '2019-07-12 12:51:20', 566),
@@ -604,7 +612,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Farinha Panko Alfa 1kg', '2020-07-11', '2019-07-26 11:00:12', 699),
 ('Ebicen Glico Queijo 80G', '2019-11-05', '2019-07-26 11:00:27', 700),
 ('Ebicen CamarÃ£o 60G', '2019-12-20', '2019-07-26 11:02:22', 701),
-('Bisc Bolinho Yokomizo 270G', '2019-09-04', '2019-07-26 11:02:46', 702),
 ('Mirim Saque Azuma 500ml', '2020-06-20', '2019-07-26 11:03:10', 703),
 ('Mirim Saque Azuma 500ml', '2020-07-17', '2019-07-26 11:03:17', 704),
 ('Misso Aka Sakura 1kg', '2020-03-26', '2019-07-26 11:03:39', 705),
@@ -748,11 +755,11 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Azuki Casa Forte 500G', '2020-08-01', '2019-08-19 15:02:05', 846),
 ('Udon Alfa 500G', '2020-07-29', '2019-08-19 15:02:45', 847),
 ('Bala Nodonisukiri Frutas', '2020-03-31', '2019-08-19 15:03:05', 848),
-('Gergelim Preto Casa Forte 100G', '2020-07-16', '2019-08-19 15:03:19', 849);
-INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUES
+('Gergelim Preto Casa Forte 100G', '2020-07-16', '2019-08-19 15:03:19', 849),
 ('Gergelim Branco Torrado Casa Forte 100G', '2020-08-01', '2019-08-19 15:03:30', 850),
 ('Shoyu MacrobiÃ³tico Oshima 500ml', '2020-07-15', '2019-08-19 15:04:04', 851),
-('Yakissoba Alfa Fino 500G', '2020-07-31', '2019-08-19 15:04:23', 852),
+('Yakissoba Alfa Fino 500G', '2020-07-31', '2019-08-19 15:04:23', 852);
+INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUES
 ('Torrada Arroz Integ Org Chia/gerg 75 G', '2020-03-22', '2019-08-20 13:19:57', 853),
 ('Edomae', '2021-05-09', '2019-08-20 13:20:19', 854),
 ('Bala Nodonisukiri Frutas+', '2020-03-31', '2019-08-20 13:20:57', 855),
@@ -805,7 +812,6 @@ INSERT INTO `produtos` (`nome_produto`, `validade`, `hora_cadastro`, `id`) VALUE
 ('Cha de Gengibre InstantÃ¢neo 150G', '2020-07-26', '2019-08-27 12:13:45', 902),
 ('Karikari Ovinhos de Amendoim 300G', '2019-11-19', '2019-08-27 12:13:57', 903),
 ('Wakame Cut 100G', '2021-12-24', '2019-08-27 12:14:25', 904),
-('Doce Castella Anpan Azuki (Unit)', '2019-09-05', '2019-08-27 12:14:52', 905),
 ('MacarrÃ£o Inst Neoguri Hot 120G', '2019-12-26', '2019-08-27 12:15:07', 906),
 ('Sembei Satsumaya Gergelim 280G', '2020-03-06', '2019-08-27 12:16:02', 907),
 ('Bala Jelly Sweet Morango 200G', '2020-07-02', '2019-08-27 12:16:21', 908),
@@ -860,7 +866,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT for table `excluidos`
 --
 ALTER TABLE `excluidos`
-  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_exclusao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `produtos`

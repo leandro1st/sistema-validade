@@ -3,7 +3,7 @@ require("../c.php");
 
 date_default_timezone_set('America/Sao_Paulo');
 $produto = trim($_POST['nome_pesquisa']);
-$pesquisar = mysqli_query($connect, "SELECT * FROM $produtos WHERE $nome_produto like '%" . $produto . "%' or DATE_FORMAT(validade, '%d/%m/%Y') like '%" . $produto . "%' ORDER BY validade ASC");
+$pesquisar = mysqli_query($connect, "SELECT * FROM $produtos WHERE $nome_produto like '%" . $produto . "%' or DATE_FORMAT(validade, '%d/%m/%Y') like '%" . $produto . "%' or id like '%" . $produto . "%' ORDER BY validade ASC");
 $numero_produto = mysqli_num_rows($pesquisar);
 ?>
 
