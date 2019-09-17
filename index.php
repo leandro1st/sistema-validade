@@ -157,10 +157,14 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                         alert("Ocorreu um erro!");
                     }
                 });
+            } else if (validade_nova == '') {
+                document.getElementById('editar_validade-' + id + '').style.display = 'none';
+                document.getElementById('editar_validade-' + id + '').className = 'form-control is-valid';
+                document.getElementById('validade_editada-' + id + '').style.display = 'inline';
             } else {
                 document.getElementById('editar_validade-' + id + '').className = 'form-control is-invalid';
                 editar(id);
-            };
+            }
         } /* Função que ao perder o foco do input, oculta o input e retorna a validade editada, ao final executa o ajax */
     </script>
 </head>
@@ -306,7 +310,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                     </td>
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                                     <td align="center" class="td_53x53">
-                                        <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='green'>Editar</font></b>" style="cursor: pointer; color: green; font-size: 25px;" onclick="editar(<?php echo $vetor_id ?>)"></i>
+                                        <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='green'>Editar <br><font color='red'>Atual: <?php echo date('d/m/Y', strtotime($vetor_validade)) ?></font></font></b>" style="cursor: pointer; color: green; font-size: 25px;" onclick="editar(<?php echo $vetor_id ?>)"></i>
                                     </td>
                                     <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalExcluir">
@@ -337,7 +341,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                     </td>
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                                     <td align="center" class="td_53x53">
-                                        <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='green'>Editar</font></b>" style="cursor: pointer; color: green; font-size: 25px;" onclick="editar(<?php echo $vetor_id ?>)"></i>
+                                        <i class="fas fa-edit" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='green'>Editar <br><font color='red'>Atual: <?php echo date('d/m/Y', strtotime($vetor_validade)) ?></font></font></b>" style="cursor: pointer; color: green; font-size: 25px;" onclick="editar(<?php echo $vetor_id ?>)"></i>
                                     </td>
                                     <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalExcluir">

@@ -12,6 +12,7 @@
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../jquery/jquery-3.4.0.min.js"></script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../funcoes.js"></script>
     <script>
         /* Cadastrar produto */
         function cadastrar() {
@@ -25,6 +26,10 @@
                 data: $("#form_cadastrar").serialize(),
                 success: function(data) {
                     if (data == "0") {
+                        document.getElementById('btn_enviar').className = 'btn btn-danger';
+                        // document.getElementById('btn_enviar').disabled = true;
+                        document.getElementById('btn_enviar').title = 'Preencha os campos corretamente!';
+                        document.getElementById('btn_enviar').style.cursor = 'not-allowed';
                         //pass
                     } else if (data == "1") {
                         // alert("Cadastrado com sucesso!");
