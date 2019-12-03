@@ -160,13 +160,13 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                     <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
                 <li class="nav-item px-1">
-                    <a class="nav-link text-success" href="../cadastrar/cadastrar.php">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+                    <a class="nav-link text-success" href="../cadastrar/">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
                 <li class="nav-item px-1 active underline">
                     <a class="nav-link" href="#"><i class="fas fa-trash-alt" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" action="../pesquisa/pesquisar.php" method="POST">
+            <form class="form-inline my-2 my-lg-0" action="../pesquisa/" method="POST">
                 <input class="form-control mr-sm-2" name="nome_pesquisa" type="search" placeholder="Pesquisar" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
             </form>

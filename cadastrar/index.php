@@ -60,10 +60,10 @@
                     <a class="nav-link text-success" href="#">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a class="nav-link" href="excluidos.php"><i class="fas fa-trash-alt" style="font-size: 24px; vertical-align: middle"></i></a>
+                    <a class="nav-link" href="../excluir/"><i class="fas fa-trash-alt" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" action="../pesquisa/pesquisar.php" method="POST">
+            <form class="form-inline my-2 my-lg-0" action="../pesquisa/" method="POST">
                 <input class="form-control mr-sm-2" name="nome_pesquisa" type="search" placeholder="Pesquisar" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
             </form>
