@@ -232,7 +232,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                                     <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalExcluir">
-                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='red'>Excluir</font></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='red'>Excluir</font></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto('<?php echo $vetor_id; ?>', '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                         </span>
                                     </td>
                                 </tr>
