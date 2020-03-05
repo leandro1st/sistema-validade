@@ -49,7 +49,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 url: 'excluir/excluir.php',
                 data: $('#form_excluir-' + id + '').serialize(),
                 success: function(data) {
-                    alert(data);
+                    //alert(data);
                     $('#linha-' + id).fadeOut(300, function() {
                         $('#linha-' + id).remove();
                     });
