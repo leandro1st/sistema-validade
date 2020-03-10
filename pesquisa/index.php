@@ -135,22 +135,22 @@ $numero_produto = mysqli_num_rows($pesquisar);
                     <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
                 <li class="nav-item px-1">
-                    <a class="nav-link text-success" href="../cadastrar/">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+                    <a class="nav-link text-success" href="../cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a class="nav-link" href="../excluir/"><i class="fas fa-trash-alt" style="font-size: 24px; vertical-align: middle"></i></a>
+                    <a class="nav-link" href="../excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
-                <li class="nav-item px-1 active underline">
-                    <a class="nav-link" href="#"><i class="fas fa-search" style="font-size: 24px; vertical-align: middle"></i></a>
+                <li class="nav-item px-1 active">
+                    <a class="nav-link underline" href="#"><i class="fas fa-search" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="./" method="POST">
-                <input class="form-control mr-sm-2" name="nome_pesquisa" type="search" placeholder="Pesquisar" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+                <input class="form-control mr-sm-2" name="nome_pesquisa" type="search" placeholder="Nome do produto" aria-label="Search" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
+                <button type="submit" style="position: absolute; margin-left: 259px; border: none; cursor: pointer"><i class="fas fa-search text-success"></i></button>
             </form>
         </div>
     </nav>
-    <nav aria-label="breadcrumb" style="position: absolute; z-index: 1;">
+    <nav aria-label="breadcrumb" style="position: absolute; z-index: 10;">
         <ol class="breadcrumb" style="background: none; margin: 0">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
             <li class="breadcrumb-item active">

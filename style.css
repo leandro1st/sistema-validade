@@ -84,7 +84,7 @@ a.btn-social, .btn-social {
 }
 
 .none_li {
-    color: inherit !important;
+    color: white !important;
     text-decoration: none;
 }
 
@@ -131,4 +131,24 @@ a:link {
 .td_53x53 {
     width: 53px;
     height: 53px;
+}
+
+/* Largura do scrollbar */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background-color: #535867;
+    border-radius: 0px;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .5);
+    border-radius: 4px;
 }

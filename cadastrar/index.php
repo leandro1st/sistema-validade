@@ -56,24 +56,24 @@
                 <li class="nav-item px-1">
                     <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
-                <li class="nav-item px-1 underline">
-                    <a class="nav-link text-success" href="#">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+                <li class="nav-item px-1">
+                    <a class="nav-link underline" href="#"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
                 <li class="nav-item px-1">
-                    <a class="nav-link" href="../excluir/"><i class="fas fa-trash-alt" style="font-size: 24px; vertical-align: middle"></i></a>
+                    <a class="nav-link" href="../excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="../pesquisa/" method="POST">
-                <input class="form-control mr-sm-2" name="nome_pesquisa" type="search" placeholder="Pesquisar" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+                <input class="form-control mr-sm-2" name="nome_pesquisa" type="search" placeholder="Nome do produto" aria-label="Search" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
+                <button type="submit" style="position: absolute; margin-left: 259px; border: none; cursor: pointer"><i class="fas fa-search text-success"></i></button>
             </form>
         </div>
     </nav>
-    <nav aria-label="breadcrumb" style="position: absolute; z-index: 1;">
+    <nav aria-label="breadcrumb" style="position: absolute; z-index: 10;">
         <ol class="breadcrumb" style="background: none; margin: 0">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
             <li class="breadcrumb-item"><a href="#"><i class="far fa-file-alt"></i> Cadastro</a></li>
-            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="fas fa-plus-circle"></i> Cadastrar Produtos</a></li>
+            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="fas fa-edit"></i> Cadastrar Produtos</a></li>
         </ol>
     </nav>
     <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -122,36 +122,40 @@
             <div class="form-row">
                 <div class="col">
                     <div id="div-nome">
-                        <label for="nome"><b>Nome do produto:</b></label>
-                        <input type="text" id="nome" name="nome_produto" class="form-control" placeholder="Nome do produto" list="lista" autofocus required>
-                        <datalist id="lista">
-                            <?php
-                            require('lista_produtos.html');
-                            ?>
-                        </datalist>
-                        <div class="invalid-feedback">
-                            Por favor, digite o nome do produto!
-                        </div><br>
+                        <div class="form-group">
+                            <label for="nome"><b>Nome do produto:</b></label>
+                            <input type="text" id="nome" name="nome_produto" class="form-control" placeholder="Nome do produto" list="lista" autofocus required>
+                            <datalist id="lista">
+                                <?php
+                                require('lista_produtos.html');
+                                ?>
+                            </datalist>
+                            <div class="invalid-feedback">
+                                Por favor, digite o nome do produto!
+                            </div>
+                        </div>
                     </div>
                     <?php
                     date_default_timezone_set('America/Sao_Paulo');
                     $hj = date("Y-m-d");
                     ?>
                     <div id="div-vencimento">
-                        <label for="vencimento"><b>Data do vencimento:</b></label>
-                        <input class="form-control" type="date" id="vencimento" name="data_vencimento" min="<?php echo $hj ?>" max="2099-12-31" required>
-                        <div class="invalid-feedback">
-                            <?php
-                            date_default_timezone_set('America/Sao_Paulo');
-                            $hoje = date("d/m/Y");
-                            ?>
-                            Por favor, digite o data de vencimento! (min: <?php echo $hoje ?> | máx: 31-12-2099)
+                        <div class="form-group">
+                            <label for="vencimento"><b>Data do vencimento:</b></label>
+                            <input class="form-control" type="date" id="vencimento" name="data_vencimento" min="<?php echo $hj ?>" max="2099-12-31" required>
+                            <div class="invalid-feedback">
+                                <?php
+                                date_default_timezone_set('America/Sao_Paulo');
+                                $hoje = date("d/m/Y");
+                                ?>
+                                Por favor, digite o data de vencimento! (min: <?php echo $hoje ?> | máx: 31-12-2099)
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div><br>
-            <button type="submit" id="btn_enviar" class="btn btn-success" onclick="cadastrar()" style="float: right;">Cadastrar</button>
-        </form><br><br><br>
+            </div>
+            <button type="submit" id="btn_enviar" class="btn btn-success" onclick="cadastrar()" style="float: right">Cadastrar</button>
+        </form>
         <?php
         require('../c.php');
         $pesquisar_recentes = mysqli_query($connect, "SELECT * FROM $produtos WHERE hora_cadastro >= DATE_SUB(NOW(),INTERVAL 24 HOUR) ORDER BY hora_cadastro DESC");
@@ -161,7 +165,7 @@
         ?>
         <center>
             <!-- <h4 class="text-primary" style="margin: 15px">Cadastros Recentes</h4> -->
-            <div id="accordion">
+            <div id="accordion" style="margin-top: 65px">
                 <div class="card border-0">
                     <div class="card-header pointer" id="header_ultimas24h" data-toggle="collapse" data-target="#ultimas_24h" aria-expanded="true" aria-controls="ultimas_24h" style="background-color: white">
                         <button class="btn btn_transparente text-primary">
@@ -191,14 +195,14 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            for ($i = 0; $i < $qntd_pesquisa_recentes; $i++) {
-                                                $vetor_pesquisa = mysqli_fetch_array($pesquisar_recentes);
-                                                $vetor_nome = $vetor_pesquisa['nome_produto'];
-                                                $vetor_hora = $vetor_pesquisa['hora_cadastro'];
-                                                $vetor_validade = $vetor_pesquisa['validade'];
-                                                $data_hora = new DateTime($vetor_hora);
-                                                $hora = $data_hora->format('H:i:s');
-                                                ?>
+                                        for ($i = 0; $i < $qntd_pesquisa_recentes; $i++) {
+                                            $vetor_pesquisa = mysqli_fetch_array($pesquisar_recentes);
+                                            $vetor_nome = $vetor_pesquisa['nome_produto'];
+                                            $vetor_hora = $vetor_pesquisa['hora_cadastro'];
+                                            $vetor_validade = $vetor_pesquisa['validade'];
+                                            $data_hora = new DateTime($vetor_hora);
+                                            $hora = $data_hora->format('H:i:s');
+                                        ?>
                                             <tr>
                                                 <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
                                                 <td width="65%"><?php echo $vetor_nome ?></td>
@@ -240,14 +244,14 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            for ($i = 0; $i < $qntd_pesquisa_ultimos50; $i++) {
-                                                $vetor_pesquisa = mysqli_fetch_array($pesquisar_ultimos50);
-                                                $vetor_nome = $vetor_pesquisa['nome_produto'];
-                                                $vetor_hora = $vetor_pesquisa['hora_cadastro'];
-                                                $vetor_validade = $vetor_pesquisa['validade'];
-                                                // $data_hora = new DateTime($vetor_hora);
-                                                // $hora = $data_hora->format('H:i:s');
-                                                ?>
+                                        for ($i = 0; $i < $qntd_pesquisa_ultimos50; $i++) {
+                                            $vetor_pesquisa = mysqli_fetch_array($pesquisar_ultimos50);
+                                            $vetor_nome = $vetor_pesquisa['nome_produto'];
+                                            $vetor_hora = $vetor_pesquisa['hora_cadastro'];
+                                            $vetor_validade = $vetor_pesquisa['validade'];
+                                            // $data_hora = new DateTime($vetor_hora);
+                                            // $hora = $data_hora->format('H:i:s');
+                                        ?>
                                             <tr>
                                                 <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
                                                 <td width="*"><?php echo $vetor_nome ?></td>
