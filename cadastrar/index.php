@@ -1,3 +1,9 @@
+<?php
+require('../externo/c.php');
+
+$pesquisar_produtos = mysqli_query($connect, "SELECT * FROM $todos_produtos ORDER BY $nome");
+$numero_produtos = mysqli_num_rows($pesquisar_produtos);
+?>
 <!DOCTYPE html>
 
 <head>
@@ -5,41 +11,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cadastro de validades</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../externo/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../style.css">
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-    <script src="../jquery/jquery-3.4.0.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../funcoes.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../externo/style.css">
+    <script src="../externo/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../externo/jquery/jquery-3.4.0.min.js"></script>
+    <script src="../externo/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-pt_BR.min.js"></script>
+    <script src="../externo/funcoes.js"></script>
     <script>
         /* Cadastrar produto */
         function cadastrar() {
-            var nome_input = $("#nome").val();
+            var nome_input = $("#nome option:selected").text();
             var validade_input = $("#vencimento").val();
-            var arr = validade_input.split("-");
+            var validade_formatado = validade_input.split("-")[2] + "/" + validade_input.split("-")[1] + "/" + validade_input.split("-")[0];
             $.ajax({
-                type: "post",
-                url: "form_validades.php",
-                cache: false,
+                method: "post",
+                url: "cadastrar.php",
                 data: $("#form_cadastrar").serialize(),
                 success: function(data) {
                     if (data == "0") {
                         document.getElementById('btn_enviar').className = 'btn btn-danger';
-                        // document.getElementById('btn_enviar').disabled = true;
-                        document.getElementById('btn_enviar').title = 'Preencha os campos corretamente!';
+                        document.getElementById('btn_enviar').disabled = true;
                         document.getElementById('btn_enviar').style.cursor = 'not-allowed';
-                        //pass
                     } else if (data == "1") {
+                        location.reload();
+                        // document.getElementById("form_cadastrar").reset();
                         // alert("Cadastrado com sucesso!");
                     } else if (data == "Existente") {
-                        alert("Nome: " + nome_input + "\nValidade: " + arr[2] + "/" + arr[1] + "/" + arr[0] + "\nCadastro já existe!");
+                        $('#modalExistente').modal('show');
+                        document.getElementById('span_nome').innerHTML = nome_input;
+                        document.getElementById('span_validade').innerHTML = validade_formatado;
                     }
                 },
             });
         } /* Cadastrar produto */
+
+        function validar_inputs() {
+            var nome_input = $("#nome").val().trim();
+            var validade_input = $("#vencimento").val().trim();
+
+            var today = new Date();
+            var date = today.getFullYear() + '-' + ("0" + (today.getMonth() + 1)).slice(-2) + '-' + ("0" + today.getDate()).slice(-2);
+
+            if ((nome_input && validade_input) && (validade_input > date)) {
+                document.getElementById('btn_enviar').className = 'btn btn-success';
+                document.getElementById('btn_enviar').disabled = false;
+                document.getElementById('btn_enviar').style.cursor = 'pointer';
+            } else {
+                document.getElementById('btn_enviar').className = 'btn btn-danger';
+                document.getElementById('btn_enviar').disabled = true;
+                document.getElementById('btn_enviar').style.cursor = 'not-allowed';
+            }
+        }
     </script>
+    <style>
+        li.no-results {
+            padding: .25rem 1.5rem !important;
+            margin: 0 !important;
+            background-color: transparent !important;
+        }
+
+        /* custom cancel button */
+        input[type="search"]::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+            margin: 0px;
+            height: 20px;
+            width: 20px;
+            background: #d9534f;
+            -webkit-mask: url(../imagens/times-solid.svg) center / contain no-repeat;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -57,14 +103,14 @@
                     <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
                 <li class="nav-item px-1">
-                    <a class="nav-link underline" href="#"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+                    <a class="nav-link underline" href="javascript:void(0)"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
                 <li class="nav-item px-1">
                     <a class="nav-link" href="../excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="../pesquisa/" method="POST">
-                <input class="form-control mr-sm-2" name="nome_pesquisa" type="search" placeholder="Nome do produto" aria-label="Search" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
+                <input class="form-control mr-sm-2" name="nome_pesquisa" placeholder="Nome do produto" aria-label="Search" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
                 <button type="submit" style="position: absolute; margin-left: 259px; border: none; cursor: pointer"><i class="fas fa-search text-success"></i></button>
             </form>
         </div>
@@ -72,8 +118,7 @@
     <nav aria-label="breadcrumb" style="position: absolute; z-index: 10;">
         <ol class="breadcrumb" style="background: none; margin: 0">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
-            <li class="breadcrumb-item"><a href="#"><i class="far fa-file-alt"></i> Cadastro</a></li>
-            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="fas fa-edit"></i> Cadastrar Produtos</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)" class="none_li"><i class="fas fa-edit"></i> Cadastrar Produtos</a></li>
         </ol>
     </nav>
     <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -116,48 +161,50 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div><br>
-    <main class="container">
+    </div>
+    <main class="container" style="margin-top: 1.5rem">
         <form id="form_cadastrar" method="post" class="needs-validation" novalidate>
             <div class="form-row">
                 <div class="col">
                     <div id="div-nome">
                         <div class="form-group">
                             <label for="nome"><b>Nome do produto:</b></label>
-                            <input type="text" id="nome" name="nome_produto" class="form-control" placeholder="Nome do produto" list="lista" autofocus required>
-                            <datalist id="lista">
+                            <select id="nome" name="nome_produto" class="selectpicker show-tick" data-live-search="true" data-width="100%" data-size="6" title="Selecione um produto" data-none-results-text="Nenhum resultado encontrado!" required autofocus onchange="validar_inputs()">
                                 <?php
-                                require('lista_produtos.html');
+                                for ($i = 0; $i < $numero_produtos; $i++) {
+                                    $vetor_produto = mysqli_fetch_array($pesquisar_produtos);
+                                    $produto = $vetor_produto['nome'];
+                                    $codigo_banco = $vetor_produto['id'];
+                                    echo "<option value='" . $codigo_banco . "'>" . $produto . " </option>";
+                                }
                                 ?>
-                            </datalist>
+                            </select>
                             <div class="invalid-feedback">
-                                Por favor, digite o nome do produto!
+                                Por favor, selecione o nome do produto!
                             </div>
                         </div>
                     </div>
                     <?php
                     date_default_timezone_set('America/Sao_Paulo');
-                    $hj = date("Y-m-d");
+                    $amanha = date("Y-m-d", strtotime("+1 days"));
                     ?>
                     <div id="div-vencimento">
                         <div class="form-group">
                             <label for="vencimento"><b>Data do vencimento:</b></label>
-                            <input class="form-control" type="date" id="vencimento" name="data_vencimento" min="<?php echo $hj ?>" max="2099-12-31" required>
+                            <input class="form-control" type="date" id="vencimento" name="data_vencimento" min="<?php echo $amanha ?>" max="2099-12-31" required onkeyup="validar_inputs()" onchange="validar_inputs()">
                             <div class="invalid-feedback">
                                 <?php
-                                date_default_timezone_set('America/Sao_Paulo');
-                                $hoje = date("d/m/Y");
+                                $amanha2 = date("d/m/Y", strtotime("+1 days"));
                                 ?>
-                                Por favor, digite o data de vencimento! (min: <?php echo $hoje ?> | máx: 31-12-2099)
+                                Por favor, digite a data de vencimento! (min: <?php echo $amanha2 ?> | máx: 31/12/2099)
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button type="submit" id="btn_enviar" class="btn btn-success" onclick="cadastrar()" style="float: right">Cadastrar</button>
+            <button type="button" id="btn_enviar" class="btn btn-success" onclick="cadastrar()" style="float: right">Cadastrar</button>
         </form>
         <?php
-        require('../c.php');
         $pesquisar_recentes = mysqli_query($connect, "SELECT * FROM $produtos WHERE hora_cadastro >= DATE_SUB(NOW(),INTERVAL 24 HOUR) ORDER BY hora_cadastro DESC");
         $qntd_pesquisa_recentes = mysqli_num_rows($pesquisar_recentes);
         $pesquisar_ultimos50 = mysqli_query($connect, "SELECT * FROM $produtos ORDER BY hora_cadastro DESC limit 50");
@@ -267,29 +314,33 @@
                 </div>
             </div>
         </center>
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function() {
-                'use strict';
-                window.addEventListener('load', function() {
-                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                    var forms = document.getElementsByClassName('needs-validation');
-                    // Loop over them and prevent submission
-                    var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-                            form.classList.add('was-validated');
-                        }, false);
-                    });
-                }, false);
-            })();
-        </script>
-    </main><br><br><br><br><br><br><br><br><br>
+    </main>
+    <!-- Modal cadastro existente -->
+    <div class="modal fade" id="modalExistente" tabindex="-1" role="dialog" aria-labelledby="modalExistenteTitle" aria-hidden="true" onkeypress="$('#modalExistente').modal('toggle');">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-warning" id="modalTitle">
+                        Cadastro já existe!
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <p class="lead"><b>Nome: </b><span id="span_nome"></span></p>
+                        <p class="lead"><b>Validade: </b><span id="span_validade"></span></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
         <div style="background-color: #3e4551; padding: 16px">
             <center>
@@ -310,6 +361,32 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    // button onclick
+                    document.getElementById('btn_enviar').addEventListener('click', function(event) {
+                        if (form.checkValidity() === false) {
+                            // button css
+                            document.getElementById('btn_enviar').className = 'btn btn-danger';
+                            document.getElementById('btn_enviar').disabled = true;
+                            document.getElementById('btn_enviar').style.cursor = 'not-allowed';
+
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 </body>
 
 </html>

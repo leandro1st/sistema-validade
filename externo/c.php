@@ -6,4 +6,7 @@
 	$validade = "validade";
 	$produtos = "produtos";
 	$excluidos = "excluidos";
+	$todos_produtos = "todos_produtos";
+	$nome = "nome";
+	$id = "id";
 ?>

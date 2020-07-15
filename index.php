@@ -1,5 +1,5 @@
 <?php
-require("c.php");
+require("externo/c.php");
 $pesquisar_produtos = mysqli_query($connect, "SELECT * FROM $produtos ORDER BY validade ASC");
 $numero_produtos = mysqli_num_rows($pesquisar_produtos);
 // echo $numero_produtos;
@@ -21,17 +21,17 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         }
         ?>
     </title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="dataTables/css/dataTables.bootstrap4.min.css"> -->
+    <link rel="stylesheet" href="externo/bootstrap/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="externo/dataTables/css/dataTables.bootstrap4.min.css"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="jquery/jquery-3.4.0.min.js"></script>
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- <script src="dataTables/js/jquery.dataTables.min.js"></script> -->
-    <!-- <script src="dataTables/js/dataTables.bootstrap4.min.js"></script> -->
-    <script src="funcoes.js"></script>
+    <link rel="stylesheet" href="externo/style.css">
+    <script src="externo/bootstrap/js/bootstrap.min.js"></script>
+    <script src="externo/jquery/jquery-3.4.0.min.js"></script>
+    <script src="externo/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="externo/dataTables/js/jquery.dataTables.min.js"></script> -->
+    <!-- <script src="externo/dataTables/js/dataTables.bootstrap4.min.js"></script> -->
+    <script src="externo/funcoes.js"></script>
     <script>
         /* Excluir produto pelo index */
         function excluirProduto(id, produto, validade) {
@@ -66,8 +66,8 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                         document.title = "Validades | " + num_index + " cadastro";
                     } else if (num_index == 0) {
                         document.getElementById("sem_dados").innerHTML = 'Não há nenhum registro!';
-                        document.getElementById("sem_dados").style.margin = '70px';
-                        document.getElementById("sem_dados").className = 'text-center lead';
+                        // document.getElementById("sem_dados").style.paddingTop = '8%';
+                        // document.getElementById("sem_dados").className = 'text-center lead';
                         document.getElementById("sem_dados").style.display = 'block';
                         document.getElementById("tabela").innerHTML = '';
                         document.getElementById("botao_excluir").disabled = 'true';
@@ -88,9 +88,10 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 method: 'POST',
                 url: 'excluir/excluir_tudo.php',
                 data: $('#form_excluirTudo').serialize(),
-                async: false,
                 success: function(data) {
-                    alert(data);
+                    $("#modalExcluirTudo").modal('toggle');
+                    document.getElementById('texto_excluido').innerHTML = data;
+                    $("#modalExcluido").modal('show');
                 },
                 error: function(data) {
                     alert(data);
@@ -102,7 +103,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
 
 <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="javascript:void(0)">
             <img src="imagens/logo.png" alt="logo" width="35px">
             <!-- <i class="far fa-calendar-alt" style="font-size: 35px;"></i> -->
         </a>
@@ -113,7 +114,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item px-1 active">
-                    <a class="nav-link underline" href="#"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
+                    <a class="nav-link underline" href="javascript:void(0)"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
                 <li class="nav-item px-1">
                     <a class="nav-link text-success" href="cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
@@ -123,7 +124,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="pesquisa/" method="POST">
-                <input class="form-control mr-sm-2" name="nome_pesquisa" type="search" placeholder="Nome do produto" aria-label="Search" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
+                <input class="form-control mr-sm-2" name="nome_pesquisa" placeholder="Nome do produto" aria-label="Search" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
                 <button type="submit" style="position: absolute; margin-left: 259px; border: none; cursor: pointer"><i class="fas fa-search text-success"></i></button>
             </form>
         </div>
@@ -189,13 +190,22 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div><br>
-    <main class="container">
+    </div>
+    <main class="container" style="margin-top: 1.5rem">
         <?php
         if ($numero_produtos == 0) { ?>
-            <p class="text-center lead" style="font-size: 1.75rem; margin: 70px;">Não há nenhum registro!</p>
+            <script>
+                $(document).ready(function() {
+                    if (window.matchMedia("(max-width:1366px)").matches) {
+                        document.getElementById("footer1").style.marginBottom = "-269px";
+                    } else if (window.matchMedia("(min-width:1600px) and (max-width:1920px)").matches) {
+                        document.getElementById("footer1").style.marginBottom = "-68px";
+                    }
+                });
+            </script>
+            <p class="text-center lead" style="font-size: 1.75rem; padding-top: 8%;">Não há nenhum registro!</p>
         <?php } else { ?>
-            <h3 class="text-secondary text-center" id="sem_dados" style="display: none; font-size: 1.75rem;"></h3>
+            <p class="text-center lead" id="sem_dados" style="display: none; font-size: 1.75rem; padding-top: 8%;"></p>
             <table id="tabela" class="table table-bordered table-hover">
                 <thead class="thead-light" style="font-size:20px">
                     <tr class="text-center">
@@ -233,7 +243,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                                     <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalExcluir">
-                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='red'>Excluir</font></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="Excluir <b><span class='text-danger'><?php echo $vetor_produto ?></span></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -286,7 +296,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
                                     <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalExcluir">
-                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='red'>Excluir</font></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="Excluir <b><span class='text-danger'><?php echo $vetor_produto ?></span></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -356,7 +366,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" id="btn_modal_excluir" class="btn btn-danger" onclick="excluirTudo()">Excluir tudo</button>
+                                                <button type="button" id="btn_modal_excluir" class="btn btn-danger" onclick="excluirTudo()">Excluir tudo</button>
                                             </div>
                                         </div>
                                     </div>
@@ -373,7 +383,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         // $resto = mysqli_query($connect, "SELECT * FROM $produtos WHERE validade != '$hoje'");
         // $num_resto = mysqli_num_rows($resto);
         ?>
-        <!-- <script src="chartjs/dist/Chart.bundle.min.js"></script> -->
+        <!-- <script src="externo/chartjs/dist/Chart.bundle.min.js"></script> -->
         <!-- <canvas id="doughnut-chart" width="400" height="150" style="margin-bottom: 80px"></canvas>
         <script type="text/javascript">
             var produtos_hoje = "<?php echo $num_hoje ?>";
@@ -424,9 +434,32 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 }, false);
             })();
         </script>
-    </main><br><br><br><br><br><br><br><br><br>
+    </main>
+    <!-- Modal excluido -->
+    <div class="modal fade" id="modalExcluido" tabindex="-1" role="dialog" aria-labelledby="modalExcluidoTitle" aria-hidden="true" onkeypress="location.reload();" onfocusout="location.reload();">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-success" id="modalTitle">
+                        Exclusão realizada com sucesso!
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="location.reload();">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <p id="texto_excluido" class="lead"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.reload();">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="footer1" class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
         <div style="background-color: #3e4551; padding: 16px">
             <center>

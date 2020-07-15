@@ -1,5 +1,5 @@
 <?php
-require("../c.php");
+require("../externo/c.php");
 // $nome = $_POST['nome_produto'];
 $vencimento = $_POST['validade'];
 $cod_produto = $_POST['cod_produto'];

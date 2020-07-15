@@ -1,5 +1,5 @@
 <?php
-require("../c.php");
+require("../externo/c.php");
 
 $pesquisar = mysqli_query($connect, "SELECT * FROM $produtos");
 $numero_pesquisa = mysqli_num_rows($pesquisar);

@@ -1,5 +1,5 @@
 <?php
-require("../c.php");
+require("../externo/c.php");
 
 $excluir_tudo = mysqli_query($connect, "DELETE FROM $excluidos");
 if ($excluir_tudo) {

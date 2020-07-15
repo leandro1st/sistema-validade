@@ -1,6 +1,6 @@
 <?php
-require("../c.php");
-$pesquisar_produtos_excluidos = mysqli_query($connect, "SELECT * FROM $excluidos ORDER BY hora_exclusao ASC");
+require("../externo/c.php");
+$pesquisar_produtos_excluidos = mysqli_query($connect, "SELECT * FROM $excluidos ORDER BY hora_exclusao DESC");
 $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
 ?>
 
@@ -21,14 +21,14 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
         }
         ?>
     </title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../externo/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../style.css">
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-    <script src="../jquery/jquery-3.4.0.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../funcoes.js"></script>
+    <link rel="stylesheet" href="../externo/style.css">
+    <script src="../externo/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../externo/jquery/jquery-3.4.0.min.js"></script>
+    <script src="../externo/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../externo/funcoes.js"></script>
     <script>
         /* Recuperar produto da 'lixeira' */
         function recuperarProduto(id, produto, validade) {
@@ -63,8 +63,8 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                         document.title = "Excluídos | " + num + " registro";
                     } else if (num == 0) {
                         document.getElementById("sem_dados").innerHTML = 'Não há nenhum registro excluído!';
-                        document.getElementById("sem_dados").style.margin = '70px';
-                        document.getElementById("sem_dados").className = 'text-center lead';
+                        // document.getElementById("sem_dados").style.paddingTop = '8%';
+                        // document.getElementById("sem_dados").className = 'text-center lead';
                         document.getElementById("sem_dados").style.display = 'block';
                         document.getElementById("tabela").innerHTML = '';
                         document.getElementById("botao_excluir").disabled = 'true';
@@ -110,8 +110,8 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                         document.title = "Excluídos | " + num + " registro";
                     } else if (num == 0) {
                         document.getElementById("sem_dados").innerHTML = 'Não há nenhum registro excluído!';
-                        document.getElementById("sem_dados").style.margin = '70px';
-                        document.getElementById("sem_dados").className = 'text-center lead';
+                        // document.getElementById("sem_dados").style.paddingTop = '8%';
+                        // document.getElementById("sem_dados").className = 'text-center lead';
                         document.getElementById("sem_dados").style.display = 'block';
                         document.getElementById("tabela").innerHTML = '';
                         document.getElementById("botao_excluir").disabled = 'true';
@@ -134,7 +134,9 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                 data: $('#form_excluirTudo').serialize(),
                 async: false,
                 success: function(data) {
-                    alert(data);
+                    $("#modalExcluirTudo").modal('toggle');
+                    document.getElementById('texto_excluido').innerHTML = data;
+                    $("#modalExcluido").modal('show');
                 },
                 error: function(data) {
                     alert(data);
@@ -163,11 +165,11 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                     <a class="nav-link text-success" href="../cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
                 <li class="nav-item px-1 active">
-                    <a class="nav-link underline" href="#"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i></a>
+                    <a class="nav-link underline" href="javascript:void(0)"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="../pesquisa/" method="POST">
-                <input class="form-control mr-sm-2" name="nome_pesquisa" type="search" placeholder="Nome do produto" aria-label="Search" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
+                <input class="form-control mr-sm-2" name="nome_pesquisa" placeholder="Nome do produto" aria-label="Search" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
                 <button type="submit" style="position: absolute; margin-left: 259px; border: none; cursor: pointer"><i class="fas fa-search text-success"></i></button>
             </form>
         </div>
@@ -175,8 +177,7 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
     <nav aria-label="breadcrumb" style="position: absolute; z-index: 10;">
         <ol class="breadcrumb" style="background: none; margin: 0">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
-            <li class="breadcrumb-item"><a href="#"><i class="far fa-file-alt"></i> Cadastro</a></li>
-            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="far fa-trash-alt"></i> Produtos Excluídos</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)" class="none_li"><i class="far fa-trash-alt"></i> Produtos Excluídos</a></li>
         </ol>
     </nav>
     <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
@@ -240,8 +241,8 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div><br>
-    <main class="container">
+    </div>
+    <main class="container" style="margin-top: 1.5rem">
         <form id="form_excluirTudo" method="POST">
             <div class="modal fade" id="modalExcluirTudo" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTudoTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -271,7 +272,7 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" id="btn_modal_excluir" class="btn btn-danger" onclick="excluirTudoDef()">Excluir tudo</button>
+                            <button type="button" id="btn_modal_excluir" class="btn btn-danger" onclick="excluirTudoDef()">Excluir tudo</button>
                         </div>
                     </div>
                 </div>
@@ -279,9 +280,18 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
         </form>
         <?php
         if ($numero_excluidos == 0) { ?>
-            <p class="text-center lead" style="font-size: 1.75rem; margin: 70px;">Não há nenhum registro excluído!</p>
+            <script>
+                $(document).ready(function() {
+                    if (window.matchMedia("(max-width:1366px)").matches) {
+                        document.getElementById("footer1").style.marginBottom = "-269px";
+                    } else if (window.matchMedia("(min-width:1600px) and (max-width:1920px)").matches) {
+                        document.getElementById("footer1").style.marginBottom = "-68px";
+                    }
+                });
+            </script>
+            <p class="text-center lead" style="font-size: 1.75rem; padding-top: 8%;">Não há nenhum registro excluído!</p>
         <?php } else { ?>
-            <h3 class="text-secondary text-center" id="sem_dados" style="display: none; font-size: 1.75rem;"></h3>
+            <p class="text-center lead" id="sem_dados" style="display: none; font-size: 1.75rem; padding-top: 8%;"></p>
             <table id="tabela" class="table table-bordered table-hover">
                 <thead class="thead-light" style="font-size:20px">
                     <tr class="text-center">
@@ -294,17 +304,17 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                 </thead>
                 <tbody>
                     <?php
-                        for ($i = 0; $i < $numero_excluidos; $i++) {
-                            $vetor = mysqli_fetch_assoc($pesquisar_produtos_excluidos);
-                            $vetor_produto = $vetor['nome_produto'];
-                            $vetor_validade = $vetor['validade'];
-                            $vetor_hora_exclusao = $vetor['hora_exclusao'];
-                            $vetor_id = $vetor['id'];
-                            date_default_timezone_set('America/Sao_Paulo');
-                            // echo 'Agora em São Paulo é: <strong>'. date('d/m/Y H:i:s').'</strong><br /><br />';
-                            // echo date('d-m-Y')."<br>";
-                            // echo date("d-m-Y", strtotime($vetor_validade));
-                            if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
+                    for ($i = 0; $i < $numero_excluidos; $i++) {
+                        $vetor = mysqli_fetch_assoc($pesquisar_produtos_excluidos);
+                        $vetor_produto = $vetor['nome_produto'];
+                        $vetor_validade = $vetor['validade'];
+                        $vetor_hora_exclusao = $vetor['hora_exclusao'];
+                        $vetor_id = $vetor['id'];
+                        date_default_timezone_set('America/Sao_Paulo');
+                        // echo 'Agora em São Paulo é: <strong>'. date('d/m/Y H:i:s').'</strong><br /><br />';
+                        // echo date('d-m-Y')."<br>";
+                        // echo date("d-m-Y", strtotime($vetor_validade));
+                        if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
                             <form id="form_recuperar-<?php echo $vetor_id ?>">
                                 <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
                                     <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
@@ -313,12 +323,12 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_exclusao)) ?></td>
                                     <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalRecuperar">
-                                            <i class="fas fa-history" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='#25d366'>Recuperar</font></b>" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                                            <i class="fas fa-history" data-toggle="tooltip" data-placement="top" data-html="true" title="Recuperar <b><span class='text-success'><?php echo $vetor_produto ?></span></b>" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                         </span>
                                     </td>
                                     <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalExcluir">
-                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='red'>Excluir</font></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProdutoDef(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="Excluir <b><span class='text-danger'><?php echo $vetor_produto ?></span></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProdutoDef(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -390,7 +400,7 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                 </div>
                             </form>
                         <?php
-                                } else { ?>
+                        } else { ?>
                             <form id="form_recuperar-<?php echo $vetor_id ?>">
                                 <tr id="linha-<?php echo $vetor_id ?>">
                                     <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
@@ -399,12 +409,12 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_exclusao)) ?></td>
                                     <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalRecuperar">
-                                            <i class="fas fa-history" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='#25d366'>Recuperar</font></b>" title="<b><font color='#25d366'>Recuperar</font></b>" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                                            <i class="fas fa-history" data-toggle="tooltip" data-placement="top" data-html="true" title="Recuperar <b><span class='text-success'><?php echo $vetor_produto ?></span></b>" title="<b><font color='#25d366'>Recuperar</font></b>" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                         </span>
                                     </td>
                                     <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalExcluir">
-                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="<b><font color='red'>Excluir</font></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProdutoDef(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="Excluir <b><span class='text-danger'><?php echo $vetor_produto ?></span></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProdutoDef(<?php echo $vetor_id; ?>, '<?php echo $vetor_produto; ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -476,15 +486,38 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                 </div>
                             </form>
                     <?php }
-                        }
-                        ?>
+                    }
+                    ?>
                 </tbody>
             </table>
         <?php }
         ?>
-    </main><br><br><br><br><br><br><br><br><br>
+    </main>
+    <!-- Modal excluido -->
+    <div class="modal fade" id="modalExcluido" tabindex="-1" role="dialog" aria-labelledby="modalExcluidoTitle" aria-hidden="true" onkeypress="location.reload();" onfocusout="location.reload();">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-success" id="modalTitle">
+                        Exclusão realizada com sucesso!
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="location.reload();">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <p id="texto_excluido" class="lead"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.reload();">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="footer1" class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
         <div style="background-color: #3e4551; padding: 16px">
             <center>
