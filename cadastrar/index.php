@@ -33,10 +33,11 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 url: "cadastrar.php",
                 data: $("#form_cadastrar").serialize(),
                 success: function(data) {
+                    // alert(data);
                     if (data == "0") {
-                        document.getElementById('btn_enviar').className = 'btn btn-danger';
-                        document.getElementById('btn_enviar').disabled = true;
-                        document.getElementById('btn_enviar').style.cursor = 'not-allowed';
+                        // document.getElementById('btn_enviar').className = 'btn btn-danger';
+                        // document.getElementById('btn_enviar').disabled = true;
+                        // document.getElementById('btn_enviar').style.cursor = 'not-allowed';
                     } else if (data == "1") {
                         location.reload();
                         // document.getElementById("form_cadastrar").reset();
@@ -163,7 +164,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         </a>
     </div>
     <main class="container" style="margin-top: 1.5rem">
-        <form id="form_cadastrar" method="post" class="needs-validation" novalidate>
+        <form id="form_cadastrar" method="post" class="needs-validation" novalidate onsubmit="return false;">
             <div class="form-row">
                 <div class="col">
                     <div id="div-nome">
@@ -202,7 +203,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     </div>
                 </div>
             </div>
-            <button type="button" id="btn_enviar" class="btn btn-success" onclick="cadastrar()" style="float: right">Cadastrar</button>
+            <button type="submit" id="btn_enviar" class="btn btn-success" onclick="cadastrar()" style="float: right">Cadastrar</button>
         </form>
         <?php
         $pesquisar_recentes = mysqli_query($connect, "SELECT * FROM $produtos WHERE hora_cadastro >= DATE_SUB(NOW(),INTERVAL 24 HOUR) ORDER BY hora_cadastro DESC");
@@ -371,13 +372,33 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 // Loop over them and prevent submission
                 var validation = Array.prototype.filter.call(forms, function(form) {
                     // button onclick
-                    document.getElementById('btn_enviar').addEventListener('click', function(event) {
+                    form.addEventListener('submit', function(event) {
                         if (form.checkValidity() === false) {
                             // button css
                             document.getElementById('btn_enviar').className = 'btn btn-danger';
                             document.getElementById('btn_enviar').disabled = true;
                             document.getElementById('btn_enviar').style.cursor = 'not-allowed';
 
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+        // onchange validation
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    // button onclick
+                    form.addEventListener('change', function(event) {
+                        if (form.checkValidity() === false) {
                             event.preventDefault();
                             event.stopPropagation();
                         }

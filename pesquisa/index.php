@@ -81,6 +81,9 @@ $numero_produto = mysqli_num_rows($pesquisar);
                 document.getElementById('validade_nova_erro').innerHTML = arr[2] + "/" + arr[1] + "/" + arr[0];
                 document.getElementById('data_hoje').innerHTML = data_hoje;
                 $("#modalErro").modal('show');
+                document.getElementById('editar_validade-' + id + '').style.display = 'none';
+                document.getElementById('editar_validade-' + id + '').className = 'form-control is-valid';
+                document.getElementById('validade_editada-' + id + '').style.display = 'inline';
             } else if (validade_nova > hoje) {
                 var arr = validade_nova.split("-");
                 document.getElementById('editar_validade-' + id + '').style.display = 'none';
