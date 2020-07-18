@@ -238,7 +238,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
                                             <span id="validade_editada-<?php echo $vetor_id ?>"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></span>
                                             <div id="div-vencimento">
                                                 <input type="hidden" id="id_produto" name="cod_produto" value="<?php echo $vetor_id ?>">
-                                                <input id="editar_validade-<?php echo $vetor_id ?>" name="validade" type="date" class="form-control" min="<?php echo $amanha ?>" max="2099-12-31" style="display: none; width: 200px" required onblur="mouse(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')" onkeydown="return event.key != 'Enter';">
+                                                <input id="editar_validade-<?php echo $vetor_id ?>" name="validade" type="date" class="form-control" value="<?php echo $vetor_validade ?>" min="<?php echo $amanha ?>" max="2099-12-31" style="display: none; width: 200px" required onblur="mouse(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')" onkeydown="return event.key != 'Enter';">
                                                 <div class="invalid-feedback">
                                                     <?php $amanha2 = date("Y/m/d", strtotime("+1 days")); ?>
                                                     Por favor, digite o data de vencimento! (min: <?php echo $amanha2 ?> | máx: 31/12/2099)
@@ -265,7 +265,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
                                             <span id="validade_editada-<?php echo $vetor_id ?>"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></span>
                                             <div id="div-vencimento">
                                                 <input type="hidden" id="id_produto" name="cod_produto" value="<?php echo $vetor_id ?>">
-                                                <input id="editar_validade-<?php echo $vetor_id ?>" name="validade" type="date" class="form-control" min="<?php echo $amanha ?>" max="2099-12-31" style="display: none; width: 200px" required onblur="mouse(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')" onkeydown="return event.key != 'Enter';">
+                                                <input id="editar_validade-<?php echo $vetor_id ?>" name="validade" type="date" class="form-control" value="<?php echo $vetor_validade ?>" min="<?php echo $amanha ?>" max="2099-12-31" style="display: none; width: 200px" required onblur="mouse(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')" onkeydown="return event.key != 'Enter';">
                                                 <div class="invalid-feedback">
                                                     <?php $amanha2 = date("Y/m/d", strtotime("+1 days")); ?>
                                                     Por favor, digite o data de vencimento! (min: <?php echo $amanha2 ?> | máx: 31/12/2099)
@@ -324,7 +324,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <!-- Footer -->
 
     <!--Modal: modalEditado-->
-    <div class="modal fade" id="modalEditado" tabindex="-1" role="dialog" aria-labelledby="modalEditadoTitle" aria-hidden="true">
+    <div class="modal fade" id="modalEditado" tabindex="-1" role="dialog" aria-labelledby="modalEditadoTitle" aria-hidden="true" onkeypress="$('#modalEditado').modal('toggle');">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center bg-success">
@@ -361,7 +361,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
         </div>
     </div>
     <!--Modal: modalErro-->
-    <div class="modal fade" id="modalErro" tabindex="-1" role="dialog" aria-labelledby="modalErroTitle" aria-hidden="true">
+    <div class="modal fade" id="modalErro" tabindex="-1" role="dialog" aria-labelledby="modalErroTitle" aria-hidden="true"  onkeypress="$('#modalErro').modal('toggle');">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
