@@ -143,7 +143,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
         </div>
     </nav>
     <nav aria-label="breadcrumb" style="position: absolute; z-index: 10;">
-        <ol class="breadcrumb" style="background: none; margin: 0">
+        <ol class="breadcrumb" style="background: none; margin: 0; word-break: break-word;">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
             <li class="breadcrumb-item active">
                 <a href="javascript:void(0)" class="none_li"><i class="fas fa-search"></i>
@@ -257,7 +257,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
                             <form id="form-<?php echo $vetor_id ?>" method="post">
                                 <tr id="linha-<?php echo $vetor_id ?>">
                                     <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                                    <td><?php echo $vetor_produto ?></td>
+                                    <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
                                     <td class="text-center">
                                         <?php $amanha = date("Y-m-d", strtotime("+1 days")) ?>
                                         <b id="teste" class="text-danger">
