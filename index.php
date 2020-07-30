@@ -141,7 +141,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     <img class="d-block w-100" src="imagens/mountain.jpg" alt="First slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Validades</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Validades</h1>
                     <?php if ($numero_produtos == "0") { ?>
                         <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_produtos == "1") { ?>
@@ -156,7 +156,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     <img class="d-block w-100" src="imagens/emilia.png" alt="Second slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Validades</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Validades</h1>
                     <?php if ($numero_produtos == "0") { ?>
                         <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_produtos == "1") { ?>
@@ -171,7 +171,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     <img class="d-block w-100" src="imagens/kimi_no_na.jpg" alt="Third slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Validades</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Validades</h1>
                     <?php if ($numero_produtos == "0") { ?>
                         <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_produtos == "1") { ?>
@@ -252,8 +252,8 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="modalTitle">
-                                                    <font color="#dc3545">Deseja realmente excluir?</font>
+                                                <h4 class="modal-title text-danger" id="modalTitle">
+                                                    Deseja realmente excluir?
                                                 </h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -265,11 +265,11 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                                 <div class="row">
                                                     <div class="col-9">
                                                         <b>Nome do produto: </b>
-                                                        <nome id="nome" style="overflow-wrap: break-word;"></nome>
+                                                        <span id="nome" style="overflow-wrap: break-word;"></span>
                                                     </div>
                                                     <div class="col">
                                                         <b>
-                                                            <validade id="vencimento" style="color: firebrick;"></validade>
+                                                            <span id="vencimento" style="color: firebrick;"></span>
                                                         </b>
                                                     </div>
                                                 </div>
@@ -305,8 +305,8 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="modalTitle">
-                                                    <font color="#dc3545">Deseja realmente excluir?</font>
+                                                <h4 class="modal-title text-danger" id="modalTitle">
+                                                    Deseja realmente excluir?
                                                 </h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -318,11 +318,11 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                                 <div class="row">
                                                     <div class="col-9">
                                                         <b>Nome do produto: </b>
-                                                        <nome id="nome" style="overflow-wrap: break-word;"></nome>
+                                                        <span id="nome" style="overflow-wrap: break-word;"></span>
                                                     </div>
                                                     <div class="col">
                                                         <b>
-                                                            <validade id="vencimento" style="color: firebrick;"></validade>
+                                                            <span id="vencimento" style="color: firebrick;"></span>
                                                         </b>
                                                     </div>
                                                 </div>
@@ -342,11 +342,11 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="modalTitle">
+                                                <h4 class="modal-title text-danger" id="modalTitle">
                                                     <?php if ($numero_produtos == 1) { ?>
-                                                        <font class="text-danger">Deseja realmente excluir o registro?</font>
+                                                        Deseja realmente excluir o registro?
                                                     <?php } else { ?>
-                                                        <font class="text-danger" id="contagem">Deseja realmente excluir todos(<?php echo $numero_produtos ?>) os registros?</font>
+                                                        <span id="contagem">Deseja realmente excluir todos(<?php echo $numero_produtos ?>) os registros?</span>
                                                     <?php } ?>
                                                 </h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -462,13 +462,19 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
     <footer id="footer1" class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
         <div style="background-color: #3e4551; padding: 16px">
-            <center>
-                <div class="row" style="display: inline-block">
-                    <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook" style="margin-right: 40px;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://github.com/leandro1st" class="btn-social btn-github" style="margin-right: 40px;"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram" style="margin-right: 40px;"><i class="fab fa-instagram"></i></a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 offset-md-3 text-right">
+                        <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <a href="https://github.com/leandro1st" class="btn-social btn-github"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-            </center>
+            </div>
         </div>
         <!-- Footer Elements -->
         <!-- Copyright -->

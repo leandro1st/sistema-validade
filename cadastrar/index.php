@@ -134,7 +134,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     <img class="d-block w-100" src="../imagens/mountain.jpg" alt="First slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Cadastrar produtos</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Cadastrar produtos</h1>
                 </div>
             </div>
             <div class="carousel-item">
@@ -142,7 +142,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     <img class="d-block w-100" src="../imagens/emilia.png" alt="Second slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Cadastrar produtos</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Cadastrar produtos</h1>
                 </div>
             </div>
             <div class="carousel-item">
@@ -150,7 +150,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     <img class="d-block w-100" src="../imagens/kimi_no_na.jpg" alt="Third slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Cadastrar produtos</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Cadastrar produtos</h1>
                 </div>
             </div>
         </div>
@@ -211,110 +211,108 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         $pesquisar_ultimos50 = mysqli_query($connect, "SELECT * FROM $produtos ORDER BY hora_cadastro DESC limit 50");
         $qntd_pesquisa_ultimos50 = mysqli_num_rows($pesquisar_ultimos50);
         ?>
-        <center>
-            <!-- <h4 class="text-primary" style="margin: 15px">Cadastros Recentes</h4> -->
-            <div id="accordion" style="margin-top: 65px">
-                <div class="card border-0">
-                    <div class="card-header pointer" id="header_ultimas24h" data-toggle="collapse" data-target="#ultimas_24h" aria-expanded="true" aria-controls="ultimas_24h" style="background-color: white">
-                        <button class="btn btn_transparente text-primary">
-                            <h5 class="mb-0">
-                                Cadastros das últimas 24 horas
-                            </h5>
-                        </button>
-                    </div>
-                    <?php
-                    if ($qntd_pesquisa_recentes == 0) { ?>
-                        <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
-                            <div class="card-body">
-                                <p class="lead">Nenhum cadastro nas últimas 24 horas</p>
-                            </div>
-                        </div>
-                    <?php } else { ?>
-                        <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
-                            <div class="card-body">
-                                <table class="table table-hover">
-                                    <thead class="thead-light" style="font-size:20px">
-                                        <tr class="text-center">
-                                            <th scope="col">#</th>
-                                            <th scope="col">Produto</th>
-                                            <th scope="col">Validade</th>
-                                            <th scope="col">Hora do cadastro</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for ($i = 0; $i < $qntd_pesquisa_recentes; $i++) {
-                                            $vetor_pesquisa = mysqli_fetch_array($pesquisar_recentes);
-                                            $vetor_nome = $vetor_pesquisa['nome_produto'];
-                                            $vetor_hora = $vetor_pesquisa['hora_cadastro'];
-                                            $vetor_validade = $vetor_pesquisa['validade'];
-                                            $data_hora = new DateTime($vetor_hora);
-                                            $hora = $data_hora->format('H:i:s');
-                                        ?>
-                                            <tr>
-                                                <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
-                                                <td width="65%"><?php echo $vetor_nome ?></td>
-                                                <td width="*" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
-                                                <td width="*" class="text-center"><?php echo $hora ?></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    <?php } ?>
+        <!-- <h4 class="text-primary" style="margin: 15px">Cadastros Recentes</h4> -->
+        <div id="accordion" style="margin-top: 65px" class="text-center">
+            <div class="card border-0">
+                <div class="card-header pointer" id="header_ultimas24h" data-toggle="collapse" data-target="#ultimas_24h" aria-expanded="true" aria-controls="ultimas_24h" style="background-color: white">
+                    <button class="btn btn_transparente text-primary">
+                        <h5 class="mb-0">
+                            Cadastros das últimas 24 horas
+                        </h5>
+                    </button>
                 </div>
-                <div class="card border-0">
-                    <div class="card-header pointer" id="header_ultimos50" data-toggle="collapse" data-target="#ultimos50" aria-expanded="false" aria-controls="ultimos50" style="background-color: white">
-                        <button class="btn btn_transparente text-primary">
-                            <h5 class="mb-0">
-                                Últimos 50 cadastros
-                            </h5>
-                        </button>
+                <?php
+                if ($qntd_pesquisa_recentes == 0) { ?>
+                    <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
+                        <div class="card-body">
+                            <p class="lead">Nenhum cadastro nas últimas 24 horas</p>
+                        </div>
                     </div>
-                    <?php if ($qntd_pesquisa_ultimos50 == 0) { ?>
-                        <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
-                            <div class="card-body">
-                                <p class="lead">Não há nenhum cadastro!</p>
-                            </div>
-                        </div>
-                    <?php } else { ?>
-                        <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
-                            <div class="card-body">
-                                <table class="table table-hover">
-                                    <thead class="thead-light" style="font-size:20px">
-                                        <tr class="text-center">
-                                            <th scope="col">#</th>
-                                            <th scope="col">Produto</th>
-                                            <th scope="col">Validade</th>
-                                            <th scope="col">Data do cadastro</th>
+                <?php } else { ?>
+                    <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead class="thead-light" style="font-size:20px">
+                                    <tr class="text-center">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Produto</th>
+                                        <th scope="col">Validade</th>
+                                        <th scope="col">Hora do cadastro</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for ($i = 0; $i < $qntd_pesquisa_recentes; $i++) {
+                                        $vetor_pesquisa = mysqli_fetch_array($pesquisar_recentes);
+                                        $vetor_nome = $vetor_pesquisa['nome_produto'];
+                                        $vetor_hora = $vetor_pesquisa['hora_cadastro'];
+                                        $vetor_validade = $vetor_pesquisa['validade'];
+                                        $data_hora = new DateTime($vetor_hora);
+                                        $hora = $data_hora->format('H:i:s');
+                                    ?>
+                                        <tr>
+                                            <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
+                                            <td width="65%"><?php echo $vetor_nome ?></td>
+                                            <td width="*" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                            <td width="*" class="text-center"><?php echo $hora ?></td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        for ($i = 0; $i < $qntd_pesquisa_ultimos50; $i++) {
-                                            $vetor_pesquisa = mysqli_fetch_array($pesquisar_ultimos50);
-                                            $vetor_nome = $vetor_pesquisa['nome_produto'];
-                                            $vetor_hora = $vetor_pesquisa['hora_cadastro'];
-                                            $vetor_validade = $vetor_pesquisa['validade'];
-                                            // $data_hora = new DateTime($vetor_hora);
-                                            // $hora = $data_hora->format('H:i:s');
-                                        ?>
-                                            <tr>
-                                                <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
-                                                <td width="*"><?php echo $vetor_nome ?></td>
-                                                <td width="15%" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
-                                                <td width="20%" class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora)) ?></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
-                    <?php } ?>
-                </div>
+                    </div>
+                <?php } ?>
             </div>
-        </center>
+            <div class="card border-0">
+                <div class="card-header pointer" id="header_ultimos50" data-toggle="collapse" data-target="#ultimos50" aria-expanded="false" aria-controls="ultimos50" style="background-color: white">
+                    <button class="btn btn_transparente text-primary">
+                        <h5 class="mb-0">
+                            Últimos 50 cadastros
+                        </h5>
+                    </button>
+                </div>
+                <?php if ($qntd_pesquisa_ultimos50 == 0) { ?>
+                    <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
+                        <div class="card-body">
+                            <p class="lead">Não há nenhum cadastro!</p>
+                        </div>
+                    </div>
+                <?php } else { ?>
+                    <div id="ultimos50" class="collapse" aria-labelledby="header_ultimos50" data-parent="#accordion" style="transition: 0.3s">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead class="thead-light" style="font-size:20px">
+                                    <tr class="text-center">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Produto</th>
+                                        <th scope="col">Validade</th>
+                                        <th scope="col">Data do cadastro</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    for ($i = 0; $i < $qntd_pesquisa_ultimos50; $i++) {
+                                        $vetor_pesquisa = mysqli_fetch_array($pesquisar_ultimos50);
+                                        $vetor_nome = $vetor_pesquisa['nome_produto'];
+                                        $vetor_hora = $vetor_pesquisa['hora_cadastro'];
+                                        $vetor_validade = $vetor_pesquisa['validade'];
+                                        // $data_hora = new DateTime($vetor_hora);
+                                        // $hora = $data_hora->format('H:i:s');
+                                    ?>
+                                        <tr>
+                                            <th width="5%" class="text-center"><?php echo $i + 1 ?></th>
+                                            <td width="*"><?php echo $vetor_nome ?></td>
+                                            <td width="15%" class="text-center"><b class="text-danger"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></b></td>
+                                            <td width="20%" class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora)) ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
     </main>
     <!-- Modal cadastro existente -->
     <div class="modal fade" id="modalExistente" tabindex="-1" role="dialog" aria-labelledby="modalExistenteTitle" aria-hidden="true" onkeypress="$('#modalExistente').modal('toggle');">
@@ -344,13 +342,19 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
     <footer class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
         <div style="background-color: #3e4551; padding: 16px">
-            <center>
-                <div class="row" style="display: inline-block">
-                    <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook" style="margin-right: 40px;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://github.com/leandro1st" class="btn-social btn-github" style="margin-right: 40px;"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram" style="margin-right: 40px;"><i class="fab fa-instagram"></i></a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 offset-md-3 text-right">
+                        <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <a href="https://github.com/leandro1st" class="btn-social btn-github"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-            </center>
+            </div>
         </div>
         <!-- Footer Elements -->
         <!-- Copyright -->

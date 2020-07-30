@@ -168,7 +168,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
                     <img class="d-block w-100" src="../imagens/mountain.jpg" alt="First slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Validades</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Validades</h1>
                 </div>
             </div>
             <div class="carousel-item">
@@ -176,7 +176,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
                     <img class="d-block w-100" src="../imagens/emilia.png" alt="Second slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Validades</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Validades</h1>
                 </div>
             </div>
             <div class="carousel-item">
@@ -184,7 +184,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
                     <img class="d-block w-100" src="../imagens/kimi_no_na.jpg" alt="Third slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Validades</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Validades</h1>
                 </div>
             </div>
         </div>
@@ -304,13 +304,19 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <footer id="footer1" class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
         <div style="background-color: #3e4551; padding: 16px">
-            <center>
-                <div class="row" style="display: inline-block">
-                    <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook" style="margin-right: 40px;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://github.com/leandro1st" class="btn-social btn-github" style="margin-right: 40px;"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram" style="margin-right: 40px;"><i class="fab fa-instagram"></i></a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 offset-md-3 text-right">
+                        <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <a href="https://github.com/leandro1st" class="btn-social btn-github"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-            </center>
+            </div>
         </div>
         <!-- Footer Elements -->
         <!-- Copyright -->
@@ -361,7 +367,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
         </div>
     </div>
     <!--Modal: modalErro-->
-    <div class="modal fade" id="modalErro" tabindex="-1" role="dialog" aria-labelledby="modalErroTitle" aria-hidden="true"  onkeypress="$('#modalErro').modal('toggle');">
+    <div class="modal fade" id="modalErro" tabindex="-1" role="dialog" aria-labelledby="modalErroTitle" aria-hidden="true" onkeypress="$('#modalErro').modal('toggle');">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">

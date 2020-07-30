@@ -161,3 +161,16 @@ a:link {
 .table>tbody>tr>th {
     vertical-align: middle;
 }
+
+/* custom font css */
+@font-face {
+    font-family: 'Montara';
+    src: url('../externo/Montara-Gothic.otf');
+}
+
+.montara {
+    font-family: 'Montara';
+    color: #FFFFFF;
+    background: transparent;
+    text-shadow: -2px -2px 2px rgba(255, 255, 255, .1), 2px 2px 2px rgba(0, 0, 0, .5);
+}

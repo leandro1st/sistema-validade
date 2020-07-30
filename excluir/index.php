@@ -192,7 +192,7 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                     <img class="d-block w-100" src="../imagens/mountain.jpg" alt="First slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Excluídos</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Excluídos</h1>
                     <?php if ($numero_excluidos == "0") { ?>
                         <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_excluidos == "1") { ?>
@@ -207,7 +207,7 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                     <img class="d-block w-100" src="../imagens/emilia.png" alt="Second slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Excluídos</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Excluídos</h1>
                     <?php if ($numero_excluidos == "0") { ?>
                         <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_excluidos == "1") { ?>
@@ -222,7 +222,7 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                     <img class="d-block w-100" src="../imagens/kimi_no_na.jpg" alt="Third slide">
                 </div>
                 <div class="carousel-caption">
-                    <h1 style="padding-bottom: 10px">Excluídos</h1>
+                    <h1 class="montara" style="padding-bottom: 10px">Excluídos</h1>
                     <?php if ($numero_excluidos == "0") { ?>
                         <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_excluidos == "1") { ?>
@@ -248,11 +248,11 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="modalTitle">
+                            <h4 class="modal-title text-danger" id="modalTitle">
                                 <?php if ($numero_excluidos == 1) { ?>
-                                    <font class="text-danger">Deseja realmente excluir o registro?</font>
+                                    Deseja realmente excluir o registro?
                                 <?php } else { ?>
-                                    <font class="text-danger" id="contagem">Deseja realmente excluir todos(<?php echo $numero_excluidos ?>) os registros?</font>
+                                    <span id="contagem">Deseja realmente excluir todos(<?php echo $numero_excluidos ?>) os registros?</span>
                                 <?php } ?>
                             </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -336,8 +336,8 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="modalTitle">
-                                                    <font color="#25d366">Deseja realmente recuperar?</font>
+                                                <h4 class="modal-title text-success" id="modalTitle">
+                                                    Deseja realmente recuperar?
                                                 </h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -349,11 +349,11 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                                 <div class="row">
                                                     <div class="col-9">
                                                         <b>Nome do produto: </b>
-                                                        <nome id="nome" style="overflow-wrap: break-word;"></nome>
+                                                        <span id="nome" style="overflow-wrap: break-word;"></span>
                                                     </div>
                                                     <div class="col">
                                                         <b>
-                                                            <validade id="vencimento" style="color: firebrick;"></validade>
+                                                            <span id="vencimento" style="color: firebrick;"></span>
                                                         </b>
                                                     </div>
                                                 </div>
@@ -369,8 +369,8 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="modalTitle">
-                                                    <font color="#dc3545">Deseja realmente excluir?</font>
+                                                <h4 class="modal-title text-danger" id="modalTitle">
+                                                    Deseja realmente excluir?
                                                 </h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -382,11 +382,11 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                                 <div class="row">
                                                     <div class="col-9">
                                                         <b>Nome do produto: </b>
-                                                        <nome id="nome2" style="overflow-wrap: break-word;"></nome>
+                                                        <span id="nome2" style="overflow-wrap: break-word;"></span>
                                                     </div>
                                                     <div class="col">
                                                         <b>
-                                                            <validade id="vencimento2" style="color: firebrick;"></validade>
+                                                            <span id="vencimento2" style="color: firebrick;"></span>
                                                         </b>
                                                     </div>
                                                 </div>
@@ -409,7 +409,7 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                     <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_exclusao)) ?></td>
                                     <td align="center" class="td_53x53">
                                         <span data-toggle="modal" data-target="#modalRecuperar">
-                                            <i class="fas fa-history" data-toggle="tooltip" data-placement="top" data-html="true" title="Recuperar <b><span class='text-success'><?php echo $vetor_produto ?></span></b>" title="<b><font color='#25d366'>Recuperar</font></b>" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                                            <i class="fas fa-history" data-toggle="tooltip" data-placement="top" data-html="true" title="Recuperar <b><span class='text-success'><?php echo $vetor_produto ?></span></b>" style="cursor: pointer; color: #25d366; font-size: 25px;" onclick="recuperarProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                         </span>
                                     </td>
                                     <td align="center" class="td_53x53">
@@ -422,8 +422,8 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="modalTitle">
-                                                    <font color="#25d366">Deseja realmente recuperar?</font>
+                                                <h4 class="modal-title text-success" id="modalTitle">
+                                                    Deseja realmente recuperar?
                                                 </h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -435,11 +435,11 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                                 <div class="row">
                                                     <div class="col-9">
                                                         <b>Nome do produto: </b>
-                                                        <nome id="nome" style="overflow-wrap: break-word;"></nome>
+                                                        <span id="nome" style="overflow-wrap: break-word;"></span>
                                                     </div>
                                                     <div class="col">
                                                         <b>
-                                                            <validade id="vencimento" style="color: firebrick;"></validade>
+                                                            <span id="vencimento" style="color: firebrick;"></span>
                                                         </b>
                                                     </div>
                                                 </div>
@@ -455,8 +455,8 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="modalTitle">
-                                                    <font color="#dc3545">Deseja realmente excluir?</font>
+                                                <h4 class="modal-title text-danger" id="modalTitle">
+                                                    Deseja realmente excluir?
                                                 </h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -468,11 +468,11 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                                                 <div class="row">
                                                     <div class="col-9">
                                                         <b>Nome do produto: </b>
-                                                        <nome id="nome2" style="overflow-wrap: break-word;"></nome>
+                                                        <span id="nome2" style="overflow-wrap: break-word;"></span>
                                                     </div>
                                                     <div class="col">
                                                         <b>
-                                                            <validade id="vencimento2" style="color: firebrick;"></validade>
+                                                            <span id="vencimento2" style="color: firebrick;"></span>
                                                         </b>
                                                     </div>
                                                 </div>
@@ -520,13 +520,19 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
     <footer id="footer1" class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
         <div style="background-color: #3e4551; padding: 16px">
-            <center>
-                <div class="row" style="display: inline-block">
-                    <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook" style="margin-right: 40px;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://github.com/leandro1st" class="btn-social btn-github" style="margin-right: 40px;"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram" style="margin-right: 40px;"><i class="fab fa-instagram"></i></a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 offset-md-3 text-right">
+                        <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <a href="https://github.com/leandro1st" class="btn-social btn-github"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-            </center>
+            </div>
         </div>
         <!-- Footer Elements -->
         <!-- Copyright -->
