@@ -53,12 +53,12 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
 
         function validar_inputs() {
             var nome_input = $("#nome").val().trim();
-            var validade_input = $("#vencimento").val().trim();
+            var validade_input = new Date($('#vencimento').val() + ' 0:00:00');
+            var date_max = new Date('2099-12-31 0:00:00');
 
             var today = new Date();
-            var date = today.getFullYear() + '-' + ("0" + (today.getMonth() + 1)).slice(-2) + '-' + ("0" + today.getDate()).slice(-2);
 
-            if ((nome_input && validade_input) && (validade_input > date)) {
+            if ((nome_input && validade_input) && (validade_input > today) && (validade_input <= date_max)) {
                 document.getElementById('btn_enviar').className = 'btn btn-success';
                 document.getElementById('btn_enviar').disabled = false;
                 document.getElementById('btn_enviar').style.cursor = 'pointer';
