@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Ago-2020 às 23:16
+-- Tempo de geração: 08-Ago-2020 às 23:04
 -- Versão do servidor: 10.4.11-MariaDB
 -- versão do PHP: 7.4.5
 
@@ -1309,7 +1309,7 @@ INSERT INTO `todos_produtos` (`id`, `nome`) VALUES
 (1242, 'DOCE SATS YABURE MANJU 210G+'),
 (1243, 'DOCE SATS YAKI-MANJU AZUKI C/12 250G'),
 (1244, 'DOCE SATS YAKI MANJU AZUKI BDJ P C/ 6 170G+'),
-(1245, 'DOCE SATS YAKI MANJU AZUKI C/10 280G'),
+(1245, 'DOCE SATS YAKI MANJU AZUKI C/10 280G+'),
 (1246, 'DOCE SATS YAKI MANJU BRANCO 280G'),
 (1247, 'DOCE SATS YAKI MANJU BRANCO C/ 6 200G'),
 (1248, 'DOCE SATS YAKI MANJU BRANCO. BDJ P C/6 170G');
