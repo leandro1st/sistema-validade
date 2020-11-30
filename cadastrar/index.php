@@ -196,7 +196,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
             </form>
         </div>
     </nav>
-    <nav aria-label="breadcrumb" style="position: absolute; z-index: 10;">
+    <nav aria-label="breadcrumb" style="position: absolute; z-index: 10">
         <ol class="breadcrumb asap_regular" style="background: none; margin: 0">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
             <li class="breadcrumb-item active"><a href="javascript:void(0)" class="none_li"><i class="fas fa-edit"></i> Cadastrar Produtos</a></li>
