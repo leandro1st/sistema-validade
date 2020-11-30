@@ -1,6 +1,6 @@
 <?php
 require("externo/c.php");
-$pesquisar_produtos = mysqli_query($connect, "SELECT * FROM $produtos ORDER BY validade ASC");
+$pesquisar_produtos = mysqli_query($connect, "SELECT * FROM $vencimentos ORDER BY validade ASC");
 $numero_produtos = mysqli_num_rows($pesquisar_produtos);
 // echo $numero_produtos;
 ?>
@@ -206,14 +206,14 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
             <p class="text-center lead" style="font-size: 1.75rem; padding-top: 8%;">Não há nenhum registro!</p>
         <?php } else { ?>
             <p class="text-center lead" id="sem_dados" style="display: none; font-size: 1.75rem; padding-top: 8%;"></p>
-            <table id="tabela" class="table table-bordered table-hover">
-                <thead class="thead-light" style="font-size:20px">
-                    <tr class="text-center">
-                        <th scope="col" width="8%">#</th>
-                        <th scope="col">Produto</th>
-                        <th scope="col" width="20%">Validade</th>
-                        <th scope="col" width="20%">Data do cadastro</th>
-                        <th scope="col" width="5%"><i class="fas fa-cogs"></i></th>
+            <table id="tabela" class="table table-hover table-striped text-center">
+                <thead>
+                    <tr class="table-warning">
+                        <th scope="col" class="lead" width="8%"><b>#</b></th>
+                        <th scope="col" class="lead"><b>NOME</b></th>
+                        <th scope="col" class="lead" width="10%"><b>VALIDADE</b></th>
+                        <th scope="col" class="lead" width="20%"><b>CADASTRO</b></th>
+                        <th scope="col" class="lead" width="5%"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -231,233 +231,148 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
 
                         if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
                             <!-- Se data de vencimento for hoje, mostra a linha com cor de fundo -->
+                            <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
+                            <?php } else { ?>
+                            <tr id="linha-<?php echo $vetor_id ?>">
+                            <?php } ?>
                             <form id="form_excluir-<?php echo $vetor_id ?>">
-                                <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
-                                    <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                                    <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
-                                    <td class="text-center">
-                                        <b id="teste" class="text-danger">
-                                            <?php echo date("d/m/Y", strtotime($vetor_validade)) ?>
-                                        </b>
-                                    </td>
-                                    <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
-                                    <td align="center" class="td_53x53">
-                                        <span data-toggle="modal" data-target="#modalExcluir">
-                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="Excluir <b><span class='text-danger'><?php echo $vetor_produto ?></span></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <!-- Modal excluir Produto -->
-                                <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title text-danger" id="modalTitle">
-                                                    Deseja realmente excluir?
-                                                </h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <input type="hidden" id="cod_produto" class="form-control" name="cod_produto" value="<?php echo $vetor_id ?>" readonly>
-                                                <!-- <input type="hidden" id="nome_produto" class="form-control" name="nome_produto" value="" readonly> -->
-                                                <div class="row">
-                                                    <div class="col-9">
-                                                        <b>Nome do produto: </b>
-                                                        <span id="nome" style="overflow-wrap: break-word;"></span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <b>
-                                                            <span id="vencimento" style="color: firebrick;"></span>
-                                                        </b>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" class="btn btn-danger" onclick="excluir(document.getElementById('cod_produto').value)" data-dismiss="modal">Excluir</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- Modal excluir Produto -->
-                            </form><!-- Se data de vencimento for hoje, mostra a linha com cor de fundo -->
-                        <?php } else { ?>
-                            <!-- Se data de vencimento for diferente de hoje, mostra a linha sem cor de fundo -->
-                            <form id="form_excluir-<?php echo $vetor_id ?>">
-                                <tr id="linha-<?php echo $vetor_id ?>">
-                                    <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                                    <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
-                                    <td class="text-center">
-                                        <b id="teste" class="text-danger">
-                                            <?php echo date("d/m/Y", strtotime($vetor_validade)) ?>
-                                        </b>
-                                    </td>
-                                    <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
-                                    <td align="center" class="td_53x53">
-                                        <span data-toggle="modal" data-target="#modalExcluir">
-                                            <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="Excluir <b><span class='text-danger'><?php echo $vetor_produto ?></span></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <!-- Modal excluir Produto -->
-                                <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title text-danger" id="modalTitle">
-                                                    Deseja realmente excluir?
-                                                </h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <input type="hidden" id="cod_produto" class="form-control" name="cod_produto" value="<?php echo $vetor_id ?>" readonly>
-                                                <!-- <input type="hidden" id="nome_produto" class="form-control" name="nome_produto" value="" readonly> -->
-                                                <div class="row">
-                                                    <div class="col-9">
-                                                        <b>Nome do produto: </b>
-                                                        <span id="nome" style="overflow-wrap: break-word;"></span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <b>
-                                                            <span id="vencimento" style="color: firebrick;"></span>
-                                                        </b>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="submit" class="btn btn-danger" onclick="excluir(document.getElementById('cod_produto').value)" data-dismiss="modal">Excluir</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- Modal excluir Produto -->
-                            </form><!-- Se data de vencimento for diferente de hoje, mostra a linha sem cor de fundo -->
-
-                            <!-- Modal excluir tudo -->
-                            <form id="form_excluirTudo" method="POST">
-                                <div class="modal fade" id="modalExcluirTudo" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTudoTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title text-danger" id="modalTitle">
-                                                    <?php if ($numero_produtos == 1) { ?>
-                                                        Deseja realmente excluir o registro?
-                                                    <?php } else { ?>
-                                                        <span id="contagem">Deseja realmente excluir todos(<?php echo $numero_produtos ?>) os registros?</span>
-                                                    <?php } ?>
-                                                </h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-9">
-                                                        <?php if ($numero_produtos == 1) { ?>
-                                                            <h6 class="text-warning">Você excluirá 1 registro!</h6>
-                                                        <?php } else { ?>
-                                                            <h6 class="text-warning" id="contagem2">Você excluirá <?php echo $numero_produtos ?> registros!</h6>
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <button type="button" id="btn_modal_excluir" class="btn btn-danger" onclick="excluirTudo()">Excluir tudo</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form><!-- Modal excluir tudo -->
-                    <?php }
-                    } ?>
+                                <input type="hidden" id="cod_produto" class="form-control" name="cod_produto" value="<?php echo $vetor_id ?>" readonly>
+                                <td><?php echo $vetor_id ?></td>
+                                <td class="text-left" style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
+                                <td>
+                                    <b id="validade" class="text-danger">
+                                        <?php echo date("d/m/Y", strtotime($vetor_validade)) ?>
+                                    </b>
+                                </td>
+                                <td><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
+                                <td>
+                                    <span data-toggle="modal" data-target="#modalExcluir">
+                                        <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="Excluir <b><span class='text-danger'><?php echo $vetor_produto ?></span></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
+                                    </span>
+                                </td>
+                            </form>
+                            </tr>
+                        <?php } ?>
                 </tbody>
             </table>
-        <?php }
-        // $hoje = date('Y-m-d');
-        // $vence_hoje = mysqli_query($connect, "SELECT * FROM $produtos WHERE validade = '$hoje'");
-        // $num_hoje = mysqli_num_rows($vence_hoje);
-        // $resto = mysqli_query($connect, "SELECT * FROM $produtos WHERE validade != '$hoje'");
-        // $num_resto = mysqli_num_rows($resto);
-        ?>
-        <!-- <script src="externo/chartjs/dist/Chart.bundle.min.js"></script> -->
-        <!-- <canvas id="doughnut-chart" width="400" height="150" style="margin-bottom: 80px"></canvas>
-        <script type="text/javascript">
-            var produtos_hoje = "<?php echo $num_hoje ?>";
-            var produtos_resto = "<?php echo $num_resto ?>";
-            new Chart(document.getElementById("doughnut-chart"), {
-                type: 'doughnut',
-                data: {
-                    labels: ["Hoje", "Outros"],
-                    datasets: [{
-                        label: "Vencimento",
-                        backgroundColor: ["#dc3545", "#15A4F2"],
-                        data: [produtos_hoje, produtos_resto]
-                    }]
-                },
-                options: {
-                    title: {
-                        display: true,
-                        text: 'Vencimentos',
-                        fontSize: 24,
-                        fontColor: "black"
-                    },
-                    legend: {
-                        labels: {
-                            fontSize: 15,
-                            fontColor: "black"
-                        }
-                    },
-                }
-            });
-        </script> -->
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function() {
-                'use strict';
-                window.addEventListener('load', function() {
-                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                    var forms = document.getElementsByClassName('needs-validation');
-                    // Loop over them and prevent submission
-                    var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-                            form.classList.add('was-validated');
-                        }, false);
-                    });
-                }, false);
-            })();
-        </script>
+        <?php } ?>
     </main>
+
+    <!-- Modal excluir Produto -->
+    <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-danger asap_regular" id="modalTitle">
+                        Deseja realmente excluir?
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body asap_regular">
+                    <div class="row">
+                        <div class="col-9">
+                            <b>Nome do produto: </b>
+                            <span id="nome" style="overflow-wrap: break-word;"></span>
+                        </div>
+                        <div class="col">
+                            <b>
+                                <span id="vencimento" class="text-danger"></span>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary asap_regular" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger asap_regular" onclick="excluir(document.getElementById('cod_produto').value)" data-dismiss="modal">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- Modal excluir Produto -->
+
     <!-- Modal excluido -->
     <div class="modal fade" id="modalExcluido" tabindex="-1" role="dialog" aria-labelledby="modalExcluidoTitle" aria-hidden="true" onkeypress="location.reload();" onfocusout="location.reload();">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title text-success" id="modalTitle">
+                    <h4 class="modal-title text-success asap_regular" id="modalTitle">
                         Exclusão realizada com sucesso!
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="location.reload();">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body asap_regular">
                     <div class="container">
                         <p id="texto_excluido" class="lead"></p>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="location.reload();">OK</button>
+                    <button type="button" class="btn btn-success asap_regular" data-dismiss="modal" onclick="location.reload();">OK</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal excluir tudo -->
+    <form id="form_excluirTudo" method="POST">
+        <div class="modal fade" id="modalExcluirTudo" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTudoTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-danger asap_regular" id="modalTitle">
+                            <?php if ($numero_produtos == 1) { ?>
+                                Deseja realmente excluir o registro?
+                            <?php } else { ?>
+                                <span id="contagem">Deseja realmente excluir todos (<?php echo $numero_produtos ?>) os registros?</span>
+                            <?php } ?>
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body asap_regular">
+                        <div class="row">
+                            <div class="col-9">
+                                <?php if ($numero_produtos == 1) { ?>
+                                    <h5 class="text-warning">Você excluirá 1 registro!</h5>
+                                <?php } else { ?>
+                                    <h5 class="text-warning" id="contagem2">Você excluirá <?php echo $numero_produtos ?> registros!</h5>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary asap_regular" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btn_modal_excluir asap_regular" class="btn btn-danger" onclick="excluirTudo()">Excluir tudo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form><!-- Modal excluir tudo -->
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
     <!-- Footer -->
     <footer id="footer1" class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
@@ -478,8 +393,8 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         </div>
         <!-- Footer Elements -->
         <!-- Copyright -->
-        <div class="text-center" style="background-color: #323741; padding: 16px; color: #dddddd">©
-            2019 Copyright –
+        <div class="text-center asap_regular" style="background-color: #323741; padding: 16px; color: #dddddd">©
+            2020 Copyright –
             <a href="https://sakamototen.com.br/" style="text-decoration: none"> SakamotoTen – Produtos Orientais e
                 Naturais</a>
         </div>

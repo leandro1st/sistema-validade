@@ -13,7 +13,7 @@ $hora_cadastro = $vetor_produto['hora_cadastro'];
 $numero_pesquisa = mysqli_num_rows($pesquisar);
 if ($numero_pesquisa > 0) {
     $excluir = mysqli_query($connect, "DELETE FROM $excluidos WHERE id = '$cod_produto'");
-    $recuperar = mysqli_query($connect, "INSERT INTO $produtos(nome_produto, validade, hora_cadastro, id) VALUES('$vetor_nome_produto', '$vetor_validade', '$hora_cadastro', '$vetor_id')");
+    $recuperar = mysqli_query($connect, "INSERT INTO $vencimentos(nome_produto, validade, hora_cadastro, id) VALUES('$vetor_nome_produto', '$vetor_validade', '$hora_cadastro', '$vetor_id')");
 } else {
     ?>
     <script>

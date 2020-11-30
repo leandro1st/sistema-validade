@@ -6,7 +6,7 @@ $produto = trim($_POST['nome_pesquisa']);
 if (!$_POST['nome_pesquisa']) {
     header("location: ../");
 }
-$pesquisar = mysqli_query($connect, "SELECT * FROM $produtos WHERE $nome_produto like '%" . $produto . "%' or DATE_FORMAT(validade, '%d/%m/%Y') like '%" . $produto . "%' or id like '%" . $produto . "%' ORDER BY validade ASC");
+$pesquisar = mysqli_query($connect, "SELECT * FROM $vencimentos WHERE $nome_produto like '%" . $produto . "%' or DATE_FORMAT(validade, '%d/%m/%Y') like '%" . $produto . "%' or id like '%" . $produto . "%' ORDER BY validade ASC");
 $numero_produto = mysqli_num_rows($pesquisar);
 ?>
 
@@ -143,7 +143,7 @@ $numero_produto = mysqli_num_rows($pesquisar);
         </div>
     </nav>
     <nav aria-label="breadcrumb" style="position: absolute; z-index: 10;">
-        <ol class="breadcrumb" style="background: none; margin: 0; word-break: break-word;">
+        <ol class="breadcrumb asap_regular" style="background: none; margin: 0; word-break: break-word;">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
             <li class="breadcrumb-item active">
                 <a href="javascript:void(0)" class="none_li"><i class="fas fa-search"></i>
@@ -200,22 +200,22 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <?php
     if ($numero_produto > 0) { ?>
         <main class="container" style="margin-top: 1.5rem">
-            <h4>Resultados: <small style="color: black; text-decoration: none;"><?php echo $produto ?></small></h4>
-            <p class="lead">
+            <h4 class="asap_bold">Resultados: <small class="asap_regular"><?php echo $produto ?></small></h4>
+            <p class="asap_regular" style="font-size: 1.25em">
                 <?php if ($numero_produto == 1) {
                     echo "<b>" . $numero_produto . "</b> resultado encontrado";
                 } else {
                     echo "<b>" . $numero_produto . "</b> resultados encontrados";
                 } ?>
             </p>
-            <table class="table table-bordered table-hover">
-                <thead class="thead-light" style="font-size:20px">
-                    <tr class="text-center">
-                        <th scope="col" width="8%">#</th>
-                        <th scope="col">Produto</th>
-                        <th scope="col" width="20%">Validade</th>
-                        <th scope="col" width="20%">Data do cadastro</th>
-                        <th scope="col" width="5%"><i class="fas fa-cogs"></i></th>
+            <table class="table table-hover table-striped text-center">
+                <thead>
+                    <tr class="table-warning">
+                        <th scope="col" class="lead" width="8%"><b>#</b></th>
+                        <th scope="col" class="lead"><b>PRODUTO</b></th>
+                        <th scope="col" class="lead" width="10%"><b>VALIDADE</b></th>
+                        <th scope="col" class="lead" width="20%"><b>CADASTRO</b></th>
+                        <th scope="col" class="lead" width="5%"><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -227,60 +227,35 @@ $numero_produto = mysqli_num_rows($pesquisar);
                         $vetor_hora_cadastro = $vetor['hora_cadastro'];
                         $vetor_id = $vetor['id'];
                         if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
+                            <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
+                            <?php } else { ?>
+                            <tr id="linha-<?php echo $vetor_id ?>">
+                            <?php } ?>
                             <form id="form-<?php echo $vetor_id ?>" method="post">
-                                <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
-                                    <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                                    <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
-                                    <td class="text-center">
-                                        <?php $amanha = date("Y-m-d", strtotime("+1 days")); ?>
-                                        <b id="teste" class="text-danger">
-                                            <!-- mostra a validade -->
-                                            <span id="validade_editada-<?php echo $vetor_id ?>"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></span>
-                                            <div id="div-vencimento">
-                                                <input type="hidden" id="id_produto" name="cod_produto" value="<?php echo $vetor_id ?>">
-                                                <input id="editar_validade-<?php echo $vetor_id ?>" name="validade" type="date" class="form-control" value="<?php echo $vetor_validade ?>" min="<?php echo $amanha ?>" max="2099-12-31" style="display: none; width: 200px" required onblur="mouse(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')" onkeydown="return event.key != 'Enter';">
-                                                <div class="invalid-feedback">
-                                                    <?php $amanha2 = date("Y/m/d", strtotime("+1 days")); ?>
-                                                    Por favor, digite o data de vencimento! (min: <?php echo $amanha2 ?> | máx: 31/12/2099)
-                                                </div>
+                                <td><?php echo $vetor_id ?></td>
+                                <td class="text-left" style="max-width: 600px; word-wrap: break-word"><?php echo $vetor_produto ?></td>
+                                <td>
+                                    <?php $amanha = date("Y-m-d", strtotime("+1 days")) ?>
+                                    <b id="validade" class="text-danger">
+                                        <!-- mostra a validade -->
+                                        <span id="validade_editada-<?php echo $vetor_id ?>"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></span>
+                                        <div id="div-vencimento">
+                                            <input type="hidden" id="id_produto" name="cod_produto" value="<?php echo $vetor_id ?>">
+                                            <input id="editar_validade-<?php echo $vetor_id ?>" name="validade" type="date" class="form-control" value="<?php echo $vetor_validade ?>" min="<?php echo $amanha ?>" max="2099-12-31" style="display: none; width: 200px" required onblur="mouse(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')" onkeydown="return event.key != 'Enter';">
+                                            <div class="invalid-feedback">
+                                                <?php $amanha2 = date("Y/m/d", strtotime("+1 days")); ?>
+                                                Por favor, digite o data de vencimento! (min: <?php echo $amanha2 ?> | máx: 31/12/2099)
                                             </div>
-                                        </b>
-                                    </td>
-                                    <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
-                                    <td align="center" class="td_53x53">
-                                        <i class="fas fa-edit" style="cursor: pointer; color: green; font-size: 25px;" onclick="editar(<?php echo $vetor_id ?>)"></i>
-                                    </td>
-                                </tr>
+                                        </div>
+                                    </b>
+                                </td>
+                                <td><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
+                                <td>
+                                    <i class="fas fa-edit" style="cursor: pointer; color: green; font-size: 25px;" onclick="editar(<?php echo $vetor_id ?>)"></i>
+                                </td>
                             </form>
-                        <?php
-                        } else { ?>
-                            <form id="form-<?php echo $vetor_id ?>" method="post">
-                                <tr id="linha-<?php echo $vetor_id ?>">
-                                    <th scope="row" class="text-center"><?php echo $vetor_id ?></th>
-                                    <td style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
-                                    <td class="text-center">
-                                        <?php $amanha = date("Y-m-d", strtotime("+1 days")) ?>
-                                        <b id="teste" class="text-danger">
-                                            <!-- mostra a validade -->
-                                            <span id="validade_editada-<?php echo $vetor_id ?>"><?php echo date("d/m/Y", strtotime($vetor_validade)) ?></span>
-                                            <div id="div-vencimento">
-                                                <input type="hidden" id="id_produto" name="cod_produto" value="<?php echo $vetor_id ?>">
-                                                <input id="editar_validade-<?php echo $vetor_id ?>" name="validade" type="date" class="form-control" value="<?php echo $vetor_validade ?>" min="<?php echo $amanha ?>" max="2099-12-31" style="display: none; width: 200px" required onblur="mouse(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')" onkeydown="return event.key != 'Enter';">
-                                                <div class="invalid-feedback">
-                                                    <?php $amanha2 = date("Y/m/d", strtotime("+1 days")); ?>
-                                                    Por favor, digite o data de vencimento! (min: <?php echo $amanha2 ?> | máx: 31/12/2099)
-                                                </div>
-                                            </div>
-                                        </b>
-                                    </td>
-                                    <td class="text-center"><?php echo date("d/m/Y H:i:s", strtotime($vetor_hora_cadastro)) ?></td>
-                                    <td align="center" class="td_53x53">
-                                        <i class="fas fa-edit" style="cursor: pointer; color: green; font-size: 25px;" onclick="editar(<?php echo $vetor_id ?>)"></i>
-                                    </td>
-                                </tr>
-                            </form>
-                    <?php }
-                    } ?>
+                            </tr>
+                        <?php } ?>
                 </tbody>
             </table>
         </main>
@@ -298,8 +273,73 @@ $numero_produto = mysqli_num_rows($pesquisar);
             <!-- <h4>Resultados: <small style="color: black; text-decoration: none;"><?php echo $produto ?></small></h4> -->
             <p class="lead text-center" style="padding-top: 8%; font-size: 25px"><b>Nenhum </b>resultado foi encontrado!</p>
         </main>
-
     <?php } ?>
+
+    <!--Modal: modalEditado-->
+    <div class="modal fade" id="modalEditado" tabindex="-1" role="dialog" aria-labelledby="modalEditadoTitle" aria-hidden="true" onkeypress="$('#modalEditado').modal('toggle');">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 650px;">
+            <div class="modal-content">
+                <div class="modal-header text-center bg-success">
+                    <h3 class="modal-title w-100 asap_regular" id="exampleModalLongTitle" style="font-size: 26px"><b>Validade alterada</b></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-justify asap_regular">
+                    <!-- Mostra mensagem no modal -->
+                    <div class="container" style="font-size: 1.25em">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="text-right">Código</td>
+                                    <td width="65%"><b id="id_produto_editado"></b></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">Produto</td>
+                                    <td width="65%" style="word-break: break-word"><b id="produto_editado"></b></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">Validade antiga</td>
+                                    <td width="65%"><b id="validade_antiga"></b></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">Validade nova</td>
+                                    <td width="65%"><b><span id='validade_nova' class='text-success'></span></b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success asap_regular" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal: modalErro-->
+    <div class="modal fade" id="modalErro" tabindex="-1" role="dialog" aria-labelledby="modalErroTitle" aria-hidden="true" onkeypress="$('#modalErro').modal('toggle');">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 asap_regular text-warning" id="exampleModalLongTitle" style="font-size: 26px"><b>Validade não alterada</b></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-justify asap_regular">
+                    <!-- Mostra mensagem no modal -->
+                    <div class="container">
+                        <h5>A validade nova (<span id="validade_nova_erro"></span>) é menor igual a <span id="data_hoje"></span>.</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-warning asap_regular" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer id="footer1" class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
@@ -320,73 +360,14 @@ $numero_produto = mysqli_num_rows($pesquisar);
         </div>
         <!-- Footer Elements -->
         <!-- Copyright -->
-        <div class="text-center" style="background-color: #323741; padding: 16px; color: #dddddd">©
-            2019 Copyright –
+        <div class="text-center asap_regular" style="background-color: #323741; padding: 16px; color: #dddddd">©
+            2020 Copyright –
             <a href="https://sakamototen.com.br/" style="text-decoration: none"> SakamotoTen – Produtos Orientais e
                 Naturais</a>
         </div>
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
-
-    <!--Modal: modalEditado-->
-    <div class="modal fade" id="modalEditado" tabindex="-1" role="dialog" aria-labelledby="modalEditadoTitle" aria-hidden="true" onkeypress="$('#modalEditado').modal('toggle');">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center bg-success">
-                    <h3 class="modal-title w-100 lead" id="exampleModalLongTitle" style="font-size: 26px"><b>Validade alterada</b></h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-justify lead">
-                    <!-- Mostra mensagem no modal -->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-4" style="padding-right: 0">Código:</div>
-                            <div class="col-8" style="padding: 0"><b id="id_produto_editado"></b></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4" style="padding-right: 0">Produto:</div>
-                            <div class="col-8" style="padding: 0"><b id="produto_editado"></b></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4" style="padding-right: 0">Validade antiga:</div>
-                            <div class="col-8" style="padding: 0"><b id="validade_antiga"></b></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4" style="padding-right: 0">Validade nova:</div>
-                            <div class="col-8" style="padding: 0"><b><span id='validade_nova' class='text-success'></span></b></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Ok</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Modal: modalErro-->
-    <div class="modal fade" id="modalErro" tabindex="-1" role="dialog" aria-labelledby="modalErroTitle" aria-hidden="true" onkeypress="$('#modalErro').modal('toggle');">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h3 class="modal-title w-100 lead text-warning" id="exampleModalLongTitle" style="font-size: 26px"><b>Validade não alterada</b></h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-justify lead">
-                    <!-- Mostra mensagem no modal -->
-                    <div class="container">
-                        <p>A validade nova (<span id="validade_nova_erro"></span>) é menor igual a <span id="data_hoje"></span>.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Ok</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 </body>
 
 </html>

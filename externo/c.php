@@ -4,9 +4,11 @@
 
 	$nome_produto = "nome_produto";
 	$validade = "validade";
+	$vencimentos = "vencimentos";
 	$produtos = "produtos";
 	$excluidos = "excluidos";
-	$todos_produtos = "todos_produtos";
 	$nome = "nome";
 	$id = "id";
+	$cod_barras1 = "cod_barras1";
+	$cod_barras2 = "cod_barras2";
 ?>
