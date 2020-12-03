@@ -89,7 +89,9 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 }
             }, function(err) {
                 if (err) {
-                    alert(err);
+                    document.getElementById('span_quagga_erro').innerHTML = err;
+                    $('#modalErroQuaggaJS').modal('show');
+                    // alert(err);
                     return
                 }
                 console.log("Initialization finished. Ready to start");
@@ -415,7 +417,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title text-warning" id="modalTitle">
+                    <h4 class="modal-title text-warning asap_regular" id="modalTitle">
                         Cadastro já existe!
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -423,13 +425,35 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="container">
-                        <p class="lead"><b>Nome: </b><span id="span_nome"></span></p>
-                        <p class="lead"><b>Validade: </b><span id="span_validade"></span></p>
+                    <div class="container asap_regular">
+                        <p><b>Nome: </b><span id="span_nome"></span></p>
+                        <p><b>Validade: </b><span id="span_validade"></span></p>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="">OK</button>
+                    <button type="button" class="btn btn-success asap_regular" data-dismiss="modal" onclick="">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal erro QuaggaJS -->
+    <div class="modal fade" id="modalErroQuaggaJS" tabindex="-1" role="dialog" aria-labelledby="modalErroQuaggaJSTitle" aria-hidden="true" onkeypress="$('#modalErroQuaggaJS').modal('toggle');">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-warning asap_regular" id="modalTitle">
+                        Erro ao inicializar QuaggaJS!
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body asap_regular">
+                    <span id="span_quagga_erro"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning asap_regular" data-dismiss="modal" onclick="">OK</button>
                 </div>
             </div>
         </div>
