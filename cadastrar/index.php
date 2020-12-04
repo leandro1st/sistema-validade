@@ -16,9 +16,9 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../externo/style.css">
-    <script src="../externo/bootstrap/js/bootstrap.min.js"></script>
     <script src="../externo/jquery/jquery-3.4.0.min.js"></script>
     <script src="../externo/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="../externo/bootstrap/js/bootstrap.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-pt_BR.min.js"></script>
     <script src="../externo/quagga.min.js"></script>
@@ -53,9 +53,6 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         } /* Cadastrar produto */
 
         function validar_inputs() {
-            if ($('#nome').val().trim()) {
-                $('#barcode').val($('#nome').find(':selected').data('barcode'));
-            }
             var nome_input = $("#nome").val().trim();
             var validade_input = new Date($('#vencimento').val() + ' 0:00:00');
             var date_max = new Date('2099-12-31 0:00:00');
@@ -81,7 +78,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     type: "LiveStream",
                     target: document.querySelector('#camera'),
                     constraints: {
-                        facing: "environment" // or user
+                        facingMode: "environment" // or user
                     }
                 },
                 decoder: {
@@ -120,6 +117,8 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 success: function(data) {
                     // Dividindo a data em um array de strings
                     dados_produto = data.split("|");
+                    // console.log($("#barcode").val());
+                    // console.log(dados_produto);
 
                     // Preenchendo automaticamente de acordo com o código de barras fornecido
                     // Se o código não existir no banco, o campo não será preenchido
@@ -140,7 +139,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
             });
         }
 
-
+        // Quando o botão para ativar o QuaggaJS é clicado, a janela desce até o label "Código de barras do produto"
         $(document).ready(function() {
             $("#btn_quagga").click(function() {
                 var navOffset = document.getElementById('navigation_bar').clientHeight;
@@ -150,6 +149,47 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 }, 0);
             });
         });
+
+        // avoiding negative numbers and stuff
+        $(document).ready(function() {
+            barcode = document.getElementById('barcode');
+
+            // Listen for input event on numInput.
+            barcode.onkeydown = function(e) {
+                // allowing only numbers, backspace, tab, f5, f6, delete, arrows, enter, c, x, v
+                if (!((e.keyCode > 95 && e.keyCode < 106) ||
+                        (e.keyCode > 47 && e.keyCode < 58) ||
+                        e.keyCode == 8 ||
+                        e.keyCode == 9 ||
+                        e.keyCode == 116 ||
+                        e.keyCode == 117 ||
+                        e.keyCode == 46 ||
+                        (e.keyCode > 36 && e.keyCode < 41) ||
+                        e.keyCode == 13 ||
+                        e.keyCode == 67 ||
+                        e.keyCode == 88 ||
+                        e.keyCode == 86)) {
+                    return false;
+                }
+            }
+
+            // A pesquisa do produto é realizada quando o usuário soltar uma tecla que foi pressionada pelo mesmo
+            barcode.onkeyup = function(e) {
+                pesquisar_produto();
+            }
+        });
+
+        // Ocultando o collapse dos cadastros realizados nas útimas 24 horas quando o tamanho da tela for menor ou igual a 603px
+        $(document).ready(function() {
+            if (window.matchMedia("(max-width:603px)").matches) {
+                $('#ultimas_24h').removeClass('show');
+            }
+        });
+
+        // Função que altera o valor do input do barcode de acordo com o valor selecionado no 'select'
+        function alterar_barcode() {
+            $('#barcode').val($('#nome').find(':selected').data('barcode'));
+        }
     </script>
     <style>
         li.no-results {
@@ -246,12 +286,12 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         </a>
     </div>
     <main class="container" style="margin-top: 1.5rem">
-        <form id="form_cadastrar" method="post" class="needs-validation" novalidate onsubmit="return false;">
+        <form id="form_cadastrar" method="post" class="needs-validation" novalidate onkeyup="validar_inputs()" onchange="validar_inputs()" onsubmit="return false;">
             <div class="form-row">
                 <div class="col">
                     <label for="barcode" id="label_barcode" class="asap_bold">Código de barras do produto:</label>
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" id="barcode" name="barcode" placeholder="Digite o código de barras" aria-label="barcode" aria-describedby="basic-addon2" autofocus onkeyup="pesquisar_produto()" onchange="pesquisar_produto()">
+                        <input type="number" class="form-control" id="barcode" name="barcode" placeholder="Digite o código de barras" aria-label="barcode" aria-describedby="basic-addon2" autofocus onchange="pesquisar_produto()">
                         <div class="input-group-append">
                             <button id="btn_quagga" type="button" class="fas fa-barcode btn btn-outline-primary" onclick="quagga()"></button>
                         </div>
@@ -259,7 +299,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     <div id="div-nome">
                         <div class="form-group">
                             <label for="nome" class="asap_bold">Nome do produto:</label>
-                            <select id="nome" name="nome_produto" class="selectpicker show-tick" data-live-search="true" data-width="100%" data-size="6" title="Selecione um produto" data-none-results-text="Nenhum resultado encontrado!" required onchange="validar_inputs()">
+                            <select id="nome" name="nome_produto" class="selectpicker show-tick" data-live-search="true" data-width="100%" data-size="6" title="Selecione um produto" data-none-results-text="Nenhum resultado encontrado!" required onchange="alterar_barcode()">
                                 <?php
                                 for ($i = 0; $i < $numero_produtos; $i++) {
                                     $vetor_produto = mysqli_fetch_array($pesquisar_produtos);
@@ -288,7 +328,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     <div id="div-vencimento">
                         <div class="form-group">
                             <label for="vencimento" class="asap_bold">Data do vencimento:</label>
-                            <input class="form-control" type="date" id="vencimento" name="data_vencimento" min="<?php echo $amanha ?>" max="2099-12-31" required onkeyup="validar_inputs()" onchange="validar_inputs()">
+                            <input class="form-control" type="date" id="vencimento" name="data_vencimento" min="<?php echo $amanha ?>" max="2099-12-31" required>
                             <div class="invalid-feedback">
                                 <?php
                                 $amanha2 = date("d/m/Y", strtotime("+1 days"));
@@ -314,7 +354,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 <div class="card-header pointer" id="header_ultimas24h" data-toggle="collapse" data-target="#ultimas_24h" aria-expanded="true" aria-controls="ultimas_24h" style="background-color: white">
                     <button class="btn btn_transparente text-primary">
                         <h5 class="mb-0 asap_bold">
-                            Cadastros das últimas 24 horas
+                            Cadastros realizados nas últimas 24 horas
                         </h5>
                     </button>
                 </div>
@@ -322,7 +362,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 if ($qntd_pesquisa_recentes == 0) { ?>
                     <div id="ultimas_24h" class="collapse show" aria-labelledby="header_ultimas24h" data-parent="#accordion" style="transition: 0.3s">
                         <div class="card-body">
-                            <p class="lead">Nenhum cadastro nas últimas 24 horas</p>
+                            <p class="lead">Nenhum cadastro foi realizado nas últimas 24 horas</p>
                         </div>
                     </div>
                 <?php } else { ?>
@@ -476,6 +516,25 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                             document.getElementById('btn_enviar').disabled = true;
                             document.getElementById('btn_enviar').style.cursor = 'not-allowed';
 
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+        // onkeyup validation
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('keyup', function(event) {
+                        if (form.checkValidity() === false) {
                             event.preventDefault();
                             event.stopPropagation();
                         }

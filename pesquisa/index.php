@@ -29,8 +29,8 @@ $numero_produto = mysqli_num_rows($pesquisar);
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../externo/style.css">
-    <script src="../externo/bootstrap/js/bootstrap.min.js"></script>
     <script src="../externo/jquery/jquery-3.4.0.min.js"></script>
+    <!-- <script src="../externo/bootstrap/js/bootstrap.min.js"></script> -->
     <script src="../externo/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
         /* Ao clicar no ícone de editar, executa a seguinte função que oculta a validade antiga e mostra um input */
