@@ -50,13 +50,16 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                     $('#linha-' + id).fadeOut(300, function() {
                         $('#linha-' + id).remove();
                     });
+
                     num -= 1;
                     if (num > 1) {
                         document.getElementById("contagem").innerHTML = 'Deseja realmente excluir todos (' + num + ') os registros?';
                         document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num + ' registros!';
                         document.title = "Excluídos | " + num + " registros";
                     } else if (num == 1) {
-                        document.getElementById("botao_excluir").innerHTML = 'Excluir';
+                        document.getElementById("botao_excluir-0").innerHTML = 'Excluir';
+                        document.getElementById("botao_excluir-1").innerHTML = 'Excluir';
+                        document.getElementById("botao_excluir-2").innerHTML = 'Excluir';
                         document.getElementById("contagem").innerHTML = 'Deseja realmente excluir o registro?';
                         document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num + ' registro!';
                         document.getElementById("btn_modal_excluir").innerHTML = 'Excluir';
@@ -67,9 +70,15 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                         // document.getElementById("sem_dados").className = 'text-center lead';
                         document.getElementById("sem_dados").style.display = 'block';
                         document.getElementById("tabela").innerHTML = '';
-                        document.getElementById("botao_excluir").disabled = 'true';
-                        document.getElementById("botao_excluir").style.cursor = 'not-allowed';
-                        document.getElementById("botao_excluir").title = 'Não há nada para ser excluído!';
+                        document.getElementById("botao_excluir-0").disabled = 'true';
+                        document.getElementById("botao_excluir-0").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-0").title = 'Não há nada para ser excluído!';
+                        document.getElementById("botao_excluir-1").disabled = 'true';
+                        document.getElementById("botao_excluir-1").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-1").title = 'Não há nada para ser excluído!';
+                        document.getElementById("botao_excluir-2").disabled = 'true';
+                        document.getElementById("botao_excluir-2").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-2").title = 'Não há nada para ser excluído!';
                         document.title = "Excluídos | Nenhum registro";
                     }
                 },
@@ -97,13 +106,16 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                     $('#linha-' + id).fadeOut(300, function() {
                         $('#linha-' + id).remove();
                     });
+
                     num -= 1;
                     if (num > 1) {
                         document.getElementById("contagem").innerHTML = 'Deseja realmente excluir todos (' + num + ') os registros?';
                         document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num + ' registros!';
                         document.title = "Excluídos | " + num + " registros";
                     } else if (num == 1) {
-                        document.getElementById("botao_excluir").innerHTML = 'Excluir';
+                        document.getElementById("botao_excluir-0").innerHTML = 'Excluir';
+                        document.getElementById("botao_excluir-1").innerHTML = 'Excluir';
+                        document.getElementById("botao_excluir-2").innerHTML = 'Excluir';
                         document.getElementById("contagem").innerHTML = 'Deseja realmente excluir o registro?';
                         document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num + ' registro!';
                         document.getElementById("btn_modal_excluir").innerHTML = 'Excluir';
@@ -114,9 +126,15 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                         // document.getElementById("sem_dados").className = 'text-center lead';
                         document.getElementById("sem_dados").style.display = 'block';
                         document.getElementById("tabela").innerHTML = '';
-                        document.getElementById("botao_excluir").disabled = 'true';
-                        document.getElementById("botao_excluir").style.cursor = 'not-allowed';
-                        document.getElementById("botao_excluir").title = 'Não há nada para ser excluído!';
+                        document.getElementById("botao_excluir-0").disabled = 'true';
+                        document.getElementById("botao_excluir-0").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-0").title = 'Não há nada para ser excluído!';
+                        document.getElementById("botao_excluir-1").disabled = 'true';
+                        document.getElementById("botao_excluir-1").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-1").title = 'Não há nada para ser excluído!';
+                        document.getElementById("botao_excluir-2").disabled = 'true';
+                        document.getElementById("botao_excluir-2").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-2").title = 'Não há nada para ser excluído!';
                         document.title = "Excluídos | Nenhum registro";
                     }
                 },
@@ -194,11 +212,11 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                 <div class="carousel-caption">
                     <h1 class="montara" style="padding-bottom: 10px">Excluídos</h1>
                     <?php if ($numero_excluidos == "0") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-0" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_excluidos == "1") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
+                        <button type="button" id="botao_excluir-0" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
                     <?php } else { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-0" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
                     <?php } ?>
                 </div>
             </div>
@@ -209,11 +227,11 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                 <div class="carousel-caption">
                     <h1 class="montara" style="padding-bottom: 10px">Excluídos</h1>
                     <?php if ($numero_excluidos == "0") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-1" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_excluidos == "1") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
+                        <button type="button" id="botao_excluir-1" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
                     <?php } else { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-1" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
                     <?php } ?>
                 </div>
             </div>
@@ -224,11 +242,11 @@ $numero_excluidos = mysqli_num_rows($pesquisar_produtos_excluidos);
                 <div class="carousel-caption">
                     <h1 class="montara" style="padding-bottom: 10px">Excluídos</h1>
                     <?php if ($numero_excluidos == "0") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-2" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_excluidos == "1") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
+                        <button type="button" id="botao_excluir-2" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
                     <?php } else { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-2" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
                     <?php } ?>
                 </div>
             </div>

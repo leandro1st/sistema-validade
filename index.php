@@ -22,15 +22,12 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
         ?>
     </title>
     <link rel="stylesheet" href="externo/bootstrap/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="externo/dataTables/css/dataTables.bootstrap4.min.css"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="externo/style.css">
     <script src="externo/jquery/jquery-3.4.0.min.js"></script>
     <!-- <script src="externo/bootstrap/js/bootstrap.min.js"></script> -->
     <script src="externo/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- <script src="externo/dataTables/js/jquery.dataTables.min.js"></script> -->
-    <!-- <script src="externo/dataTables/js/dataTables.bootstrap4.min.js"></script> -->
     <script src="externo/funcoes.js"></script>
     <script>
         /* Excluir produto pelo index */
@@ -40,6 +37,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
             document.getElementById("nome").innerHTML = produto;
             document.getElementById("vencimento").innerHTML = validade;
         }
+
         var num_index = "<?php echo $numero_produtos ?>";
 
         function excluir(id) {
@@ -47,19 +45,25 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
             $.ajax({
                 method: 'POST',
                 url: 'excluir/excluir.php',
-                data: $('#form_excluir-' + id + '').serialize(),
+                data: $('#form_excluir').serialize(),
                 success: function(data) {
-                    //alert(data);
+                    // alert(data);
+                    $('#checkbox-' + id).prop('checked', false);
+
                     $('#linha-' + id).fadeOut(300, function() {
                         $('#linha-' + id).remove();
                     });
+
                     num_index -= 1;
+                    // console.log(num_index);
                     if (num_index > 1) {
                         document.getElementById("contagem").innerHTML = 'Deseja realmente excluir todos (' + num_index + ') os registros?';
                         document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num_index + ' registros!';
                         document.title = "Validades | " + num_index + " cadastros";
                     } else if (num_index == 1) {
-                        document.getElementById("botao_excluir").innerHTML = 'Excluir';
+                        document.getElementById("botao_excluir-0").innerHTML = 'Excluir';
+                        document.getElementById("botao_excluir-1").innerHTML = 'Excluir';
+                        document.getElementById("botao_excluir-2").innerHTML = 'Excluir';
                         document.getElementById("contagem").innerHTML = 'Deseja realmente excluir o registro?';
                         document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num_index + ' registro!';
                         document.getElementById("btn_modal_excluir").innerHTML = 'Excluir';
@@ -70,9 +74,15 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                         // document.getElementById("sem_dados").className = 'text-center lead';
                         document.getElementById("sem_dados").style.display = 'block';
                         document.getElementById("tabela").innerHTML = '';
-                        document.getElementById("botao_excluir").disabled = 'true';
-                        document.getElementById("botao_excluir").style.cursor = 'not-allowed';
-                        document.getElementById("botao_excluir").title = 'Não há nada para ser excluído!';
+                        document.getElementById("botao_excluir-0").disabled = 'true';
+                        document.getElementById("botao_excluir-0").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-0").title = 'Não há nada para ser excluído!';
+                        document.getElementById("botao_excluir-1").disabled = 'true';
+                        document.getElementById("botao_excluir-1").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-1").title = 'Não há nada para ser excluído!';
+                        document.getElementById("botao_excluir-2").disabled = 'true';
+                        document.getElementById("botao_excluir-2").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-2").title = 'Não há nada para ser excluído!';
                         document.title = "Validades | Nenhum cadastro";
                     }
                 },
@@ -80,7 +90,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     alert("Ocorreu um erro!");
                 }
             });
-        } /* Excluir produto pelo index */
+        }
 
         /* Excluir todos produtos pelo index */
         function excluirTudo() {
@@ -97,8 +107,192 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     alert(data);
                 }
             });
-        } /* Excluir todos produtos pelo index */
+        }
+
+        // Função para excluir a partir das seleções realizadas nos checkboxes
+        function exclusao_multipla(id_produtos_selecionados) {
+            $.ajax({
+                method: 'POST',
+                url: 'excluir/exclusao_multipla.php',
+                data: $('#form_excluir').serialize(),
+                success: function(data) {
+                    for (i = 0; i < id_produtos_selecionados.length; i++) {
+                        // Unchecking checkbox
+                        $('#checkbox-' + id_produtos_selecionados[i]).prop('checked', false);
+
+                        // Verificando se algum checkbox está selecionado
+                        // Se estiver, desativa a seleção de qualquer texto das linhas da tabela
+                        if ($("#tabela input:checkbox:checked").length > 0) {
+                            $('tr').addClass('unselectable');
+                        } else {
+                            $('tr').removeClass('unselectable');
+                        }
+
+                        $('#linha-' + id_produtos_selecionados[i]).fadeOut(300, function() {
+                            $('#linha-' + id_produtos_selecionados[i]).remove();
+                        });
+                    }
+                    // console.log(id_produtos_selecionados);
+
+                    num_index -= id_produtos_selecionados.length;
+                    // console.log(num_index);
+                    if (num_index > 1) {
+                        document.getElementById("contagem").innerHTML = 'Deseja realmente excluir todos (' + num_index + ') os registros?';
+                        document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num_index + ' registros!';
+                        document.title = "Validades | " + num_index + " cadastros";
+                    } else if (num_index == 1) {
+                        document.getElementById("botao_excluir-0").innerHTML = 'Excluir';
+                        document.getElementById("botao_excluir-1").innerHTML = 'Excluir';
+                        document.getElementById("botao_excluir-2").innerHTML = 'Excluir';
+                        document.getElementById("contagem").innerHTML = 'Deseja realmente excluir o registro?';
+                        document.getElementById("contagem2").innerHTML = 'Você excluirá ' + num_index + ' registro!';
+                        document.getElementById("btn_modal_excluir").innerHTML = 'Excluir';
+                        document.title = "Validades | " + num_index + " cadastro";
+                    } else if (num_index == 0) {
+                        document.getElementById("sem_dados").innerHTML = 'Não há nenhum registro!';
+                        // document.getElementById("sem_dados").style.paddingTop = '8%';
+                        // document.getElementById("sem_dados").className = 'text-center lead';
+                        document.getElementById("sem_dados").style.display = 'block';
+                        document.getElementById("tabela").innerHTML = '';
+                        document.getElementById("botao_excluir-0").disabled = 'true';
+                        document.getElementById("botao_excluir-0").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-0").title = 'Não há nada para ser excluído!';
+                        document.getElementById("botao_excluir-1").disabled = 'true';
+                        document.getElementById("botao_excluir-1").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-1").title = 'Não há nada para ser excluído!';
+                        document.getElementById("botao_excluir-2").disabled = 'true';
+                        document.getElementById("botao_excluir-2").style.cursor = 'not-allowed';
+                        document.getElementById("botao_excluir-2").title = 'Não há nada para ser excluído!';
+                        document.title = "Validades | Nenhum cadastro";
+                    }
+                },
+                error: function(data) {
+                    alert("Ocorreu um erro!");
+                }
+            });
+        }
+
+        // Função que controla o botão de ativar checkbox/excluir produto
+        function ativar_checkbox() {
+            // Habilitando todos os checkboxes
+            $('table#tabela input[type=checkbox]').attr('disabled', false);
+
+            var icone = $('#icone_ativar_checkbox');
+            // Adicionando a classe bounceOutLeft para o ícone
+            icone.addClass('bounceOutLeft');
+
+            // Função que é executada após o término da animação bounceOutLeft
+            icone.one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function() {
+                // Se o ícone for da classe 'fas fa-trash text-danger bounceOutLeft'
+                if (document.getElementById('icone_ativar_checkbox').className == 'fas fa-trash text-danger bounceOutLeft') {
+                    // Se algum checkbox estiver selecionado, ocorre a exclusão dos produtos e o ícone permanece 'fas fa-trash text-danger'
+                    if ($("#tabela input:checkbox:checked").length > 0) {
+                        // Convertendo os valores contidos nos checkboxes selecionados para array
+                        var id_produtos_selecionados = $("#tabela input:checkbox:checked").map(function() {
+                            return $(this).val();
+                        }).get();
+                        // Chamando a função que realiza a exclusão múltipla
+                        exclusao_multipla(id_produtos_selecionados);
+
+                        document.getElementById('icone_ativar_checkbox').className = 'fas fa-trash text-danger';
+                    } else {
+                        /* Se nenhum checkbox estiver selecionado, o ícone retorna à sua classe inicial 'far fa-check-square text-success'
+                        e desabilita todos os checkboxes */
+                        document.getElementById('icone_ativar_checkbox').className = 'far fa-check-square text-success';
+                        $('table#tabela input[type=checkbox]').attr('disabled', true);
+                    }
+                } else {
+                    // Se o ícone não for da classe 'fas fa-trash text-danger bounceOutLeft', ele muda pra classe 'fas fa-trash text-danger'
+                    document.getElementById('icone_ativar_checkbox').className = 'fas fa-trash text-danger';
+                }
+            });
+        }
+
+        // Função para permitir a seleção múltipla dos checkboxes usando a tecla shift
+        $(document).ready(function() {
+            var lastChecked = null;
+
+            var $chkboxes = $('.custom-control-input');
+            $chkboxes.click(function(e) {
+                // Verificando se algum checkbox está selecionado
+                // Se estiver, desativa a seleção de qualquer texto das linhas da tabela
+                if ($("#tabela input:checkbox:checked").length > 0) {
+                    $('tr').addClass('unselectable');
+                } else {
+                    $('tr').removeClass('unselectable');
+                }
+
+                // console.log(this.value);
+                if (!lastChecked) {
+                    lastChecked = this;
+                    return;
+                }
+
+                if (e.shiftKey) {
+                    var start = $chkboxes.index(this);
+                    var end = $chkboxes.index(lastChecked);
+
+                    $chkboxes.slice(Math.min(start, end), Math.max(start, end) + 1).prop('checked', this.checked);
+                }
+
+                lastChecked = this;
+            });
+        });
     </script>
+    <style>
+        .unselectable {
+            user-select: none;
+            /* CSS3 (little to no support) */
+            -ms-user-select: none;
+            /* IE 10+ */
+            -moz-user-select: none;
+            /* Gecko (Firefox) */
+            -webkit-user-select: none;
+            /* Webkit (Safari, Chrome) */
+        }
+
+        .custom-control-label::before,
+        .custom-control-label::after {
+            width: 1.25em;
+            height: 1.25em;
+            left: -1.33em;
+            top: 0.18em;
+        }
+
+        .bounceOutLeft {
+            -webkit-animation-name: bounceOutLeft;
+            animation-name: bounceOutLeft;
+            -webkit-animation-duration: 0.7s;
+            animation-duration: 0.7s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        @keyframes bounceOutLeft {
+
+            20%,
+            100% {
+                -webkit-transform: translate3d(0, 0, 0);
+                -moz-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0)
+            }
+
+            40%,
+            80% {
+                opacity: 1;
+                -webkit-transform: translate3d(5px, 0, 0);
+                -moz-transform: translate3d(5px, 0, 0);
+                transform: translate3d(5px, 0, 0)
+            }
+
+            50% {
+                opacity: 0;
+                -webkit-transform: translate3d(-10px, 0, 0);
+                -moz-transform: translate3d(-10px, 0, 0);
+                transform: translate3d(-10px, 0, 0)
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -143,11 +337,11 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 <div class="carousel-caption">
                     <h1 class="montara" style="padding-bottom: 10px">Validades</h1>
                     <?php if ($numero_produtos == "0") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-0" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_produtos == "1") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
+                        <button type="button" id="botao_excluir-0" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
                     <?php } else { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-0" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
                     <?php } ?>
                 </div>
             </div>
@@ -158,11 +352,11 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 <div class="carousel-caption">
                     <h1 class="montara" style="padding-bottom: 10px">Validades</h1>
                     <?php if ($numero_produtos == "0") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-1" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_produtos == "1") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
+                        <button type="button" id="botao_excluir-1" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
                     <?php } else { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-1" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
                     <?php } ?>
                 </div>
             </div>
@@ -173,11 +367,11 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                 <div class="carousel-caption">
                     <h1 class="montara" style="padding-bottom: 10px">Validades</h1>
                     <?php if ($numero_produtos == "0") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-2" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo" style="display: none;">Excluir tudo</button>
                     <?php } else if ($numero_produtos == "1") { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
+                        <button type="button" id="botao_excluir-2" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir</button>
                     <?php } else { ?>
-                        <button type="button" id="botao_excluir" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
+                        <button type="button" id="botao_excluir-2" class="btn btn-lg btn-outline-danger" data-toggle="modal" data-target="#modalExcluirTudo">Excluir tudo</button>
                     <?php } ?>
                 </div>
             </div>
@@ -209,6 +403,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
             <table id="tabela" class="table table-hover table-striped text-center">
                 <thead>
                     <tr class="table-warning">
+                        <th scope="col" class="lead" width="1%"><i id="icone_ativar_checkbox" class="far fa-check-square text-success" style="font-size: 24px; cursor: pointer" onclick="ativar_checkbox()"></i></th>
                         <th scope="col" class="lead" width="8%"><b>#</b></th>
                         <th scope="col" class="lead"><b>NOME</b></th>
                         <th scope="col" class="lead" width="10%"><b>VALIDADE</b></th>
@@ -217,26 +412,33 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    for ($i = 0; $i < $numero_produtos; $i++) {
-                        $vetor = mysqli_fetch_assoc($pesquisar_produtos);
-                        $vetor_produto = $vetor['nome_produto'];
-                        $vetor_validade = $vetor['validade'];
-                        $vetor_hora_cadastro = $vetor['hora_cadastro'];
-                        $vetor_id = $vetor['id'];
-                        date_default_timezone_set('America/Sao_Paulo');
-                        // echo 'Agora em São Paulo é: <strong>'. date('d/m/Y H:i:s').'</strong><br /><br />'
-                        // echo date('d-m-Y')."<br>";
-                        // echo date("d-m-Y", strtotime($vetor_validade));
+                    <form id="form_excluir">
+                        <!-- Input para controlar o produto a ser excluído -->
+                        <input type="hidden" id="cod_produto" class="form-control" name="cod_produto" value="">
+                        <?php
+                        for ($i = 0; $i < $numero_produtos; $i++) {
+                            $vetor = mysqli_fetch_assoc($pesquisar_produtos);
+                            $vetor_produto = $vetor['nome_produto'];
+                            $vetor_validade = $vetor['validade'];
+                            $vetor_hora_cadastro = $vetor['hora_cadastro'];
+                            $vetor_id = $vetor['id'];
+                            date_default_timezone_set('America/Sao_Paulo');
+                            // echo 'Agora em São Paulo é: <strong>'. date('d/m/Y H:i:s').'</strong><br /><br />'
+                            // echo date('d-m-Y')."<br>";
+                            // echo date("d-m-Y", strtotime($vetor_validade));
 
-                        if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
-                            <!-- Se data de vencimento for hoje, mostra a linha com cor de fundo -->
-                            <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
-                            <?php } else { ?>
-                            <tr id="linha-<?php echo $vetor_id ?>">
-                            <?php } ?>
-                            <form id="form_excluir-<?php echo $vetor_id ?>">
-                                <input type="hidden" id="cod_produto" class="form-control" name="cod_produto" value="<?php echo $vetor_id ?>" readonly>
+                            if (date('d-m-Y') == date("d-m-Y", strtotime($vetor_validade))) { ?>
+                                <!-- Se data de vencimento for hoje, mostra a linha com cor de fundo -->
+                                <tr id="linha-<?php echo $vetor_id ?>" class="bg-warning">
+                                <?php } else { ?>
+                                <tr id="linha-<?php echo $vetor_id ?>">
+                                <?php } ?>
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="check_list[]" id="checkbox-<?php echo $vetor_id ?>" value="<?php echo $vetor_id ?>" disabled>
+                                        <label class="custom-control-label" for="checkbox-<?php echo $vetor_id ?>"></label>
+                                    </div>
+                                </td>
                                 <td><?php echo $vetor_id ?></td>
                                 <td class="text-left" style="max-width: 600px; word-wrap: break-word;"><?php echo $vetor_produto ?></td>
                                 <td>
@@ -250,9 +452,9 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                                         <i class="fas fa-times" data-toggle="tooltip" data-placement="top" data-html="true" title="Excluir <b><span class='text-danger'><?php echo $vetor_produto ?></span></b>" style="cursor: pointer; color: red; font-size: 25px;" onclick="excluirProduto(<?php echo $vetor_id ?>, '<?php echo $vetor_produto ?>', '<?php echo date('d/m/Y', strtotime($vetor_validade)) ?>')"></i>
                                     </span>
                                 </td>
-                            </form>
-                            </tr>
-                        <?php } ?>
+                                </tr>
+                            <?php } ?>
+                    </form>
                 </tbody>
             </table>
         <?php } ?>
@@ -345,7 +547,7 @@ $numero_produtos = mysqli_num_rows($pesquisar_produtos);
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary asap_regular" data-dismiss="modal">Cancelar</button>
-                        <button type="button" id="btn_modal_excluir asap_regular" class="btn btn-danger" onclick="excluirTudo()">Excluir tudo</button>
+                        <button type="button" id="btn_modal_excluir" class="btn btn-danger asap_regular" onclick="excluirTudo()">Excluir tudo</button>
                     </div>
                 </div>
             </div>
